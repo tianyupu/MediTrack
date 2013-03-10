@@ -3,6 +3,6 @@
 
     <string name="app_name">MediTrack</string>
     <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello World! Testing git...</string>
+    <string name="hello_world">Hello World!</string>
 
 </resources>
