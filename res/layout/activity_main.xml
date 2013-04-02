@@ -1,40 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".MainActivity" >
-    
-    
-    <!--  this is a comment -->
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <!-- this is a comment -->
 
     <EditText
         android:id="@+id/username_edittext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="37dp" 
         android:layout_centerHorizontal="true"
-        android:hint="@strings/username"
+        android:hint="Username"
         android:inputType="text"
-        />
+        tools:ignore="HardcodedText" />
 
+    <EditText
+        android:id="@+id/password_edittext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/username_edittext"
+        android:layout_centerHorizontal="true"
+        android:hint="Password"
+        android:inputType="textPassword" tools:ignore="HardcodedText"/>
 
+    <Button
+        android:id="@+id/login_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/signup_button"
+        android:layout_alignBottom="@+id/signup_button"
+        android:layout_toRightOf="@+id/signup_button"
+        android:text="Login"
+        tools:ignore="HardcodedText" />
 
-        <EditText
-            android:id="@+id/password_edittext"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="74dp"
-            android:hint="@strings/password"
-            android:inputType="textPassword"
-             />
-
+    <Button
+        android:id="@+id/signup_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/password_edittext"
+        android:layout_toLeftof="@+id/login_button"
+        android:text="Sign Up"
+        tools:ignore="HardcodedText" />
 
 </RelativeLayout>
