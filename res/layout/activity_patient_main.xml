@@ -2,6 +2,57 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
-    
+
+    <Button
+        android:id="@+id/edit"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/add"
+        android:layout_below="@+id/add"
+        android:text="Edit" />
+
+    <Button
+        android:id="@+id/sum"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/edit"
+        android:layout_alignBottom="@+id/edit"
+        android:layout_toRightOf="@+id/edit"
+        android:text="Summary" />
+
+    <Button
+        android:id="@+id/view"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/sum"
+        android:layout_alignLeft="@+id/sum"
+        android:text="View" />
+
+    <Button
+        android:id="@+id/add"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="28dp"
+        android:text="Add" />
+
+    <TextView
+        android:id="@+id/babyname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/babypic"
+        android:layout_centerHorizontal="true"
+        android:text="@string/Baby Name"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <ImageView
+        android:id="@+id/babypic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/add"
+        android:layout_marginBottom="54dp"
+        android:layout_toLeftOf="@+id/babyname"
+        android:src="@drawable/ic_launcher" />
 
 </RelativeLayout>
