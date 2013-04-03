@@ -40,7 +40,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/password_edittext"
-        android:layout_toLeftof="@+id/login_button"
+        android:layout_toLeftOf="@+id/login_button"
         android:text="Sign Up"
         tools:ignore="HardcodedText" />
 
