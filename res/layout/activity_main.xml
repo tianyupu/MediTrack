@@ -5,16 +5,13 @@
     android:layout_height="wrap_content"
     android:orientation="vertical" >
 
-    <!-- this is a comment -->
-
     <EditText
         android:id="@+id/username_edittext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:hint="Username"
-        android:inputType="text"
-        tools:ignore="HardcodedText" />
+        android:hint="@string/username"
+        android:inputType="text" />
 
     <EditText
         android:id="@+id/password_edittext"
@@ -22,16 +19,15 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/username_edittext"
         android:layout_centerHorizontal="true"
-        android:hint="Password"
-        android:inputType="textPassword" tools:ignore="HardcodedText"/>
+        android:hint="@string/password"
+        android:inputType="textPassword"/>
 
     <Button
         android:id="@+id/signup_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/password_edittext"
-        android:text="Sign Up"
-        tools:ignore="HardcodedText" />
+        android:text="@string/signup"/>
     
     <Button
         android:id="@+id/login_button"
@@ -40,7 +36,6 @@
         android:layout_alignBaseline="@id/signup_button"
         android:layout_alignBottom="@id/signup_button"
         android:layout_toRightOf="@id/signup_button"
-        android:text="Login"
-        tools:ignore="HardcodedText" />
+        android:text="@string/login" />
 
 </RelativeLayout>
