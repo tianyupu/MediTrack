@@ -22,6 +22,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="org.uwhealthkids.MediTrack.SummActivity"
+            android:label="@string/title_activity_summ" >
+        </activity>
+        <activity
+            android:name="org.uwhealthkids.MediTrack.SummTFrameActivity"
+            android:label="@string/title_activity_summ_tframe" >
+        </activity>
     </application>
 
 </manifest>
