@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.TextView;
 
 public class SummTFrameActivity extends Activity {
+	
+	public static int TFRAME;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +42,24 @@ public class SummTFrameActivity extends Activity {
 	}
 	
 	public void tFrameTapped(View view){
+		int id = view.getId();
 		
+		switch(id){
+		
+		case R.id.last_7:
+			TFRAME = 7;
+			
+		case R.id.last_14:
+			TFRAME = 14;
+			
+		case R.id.last_30:
+			TFRAME = 30;
+			
+		case R.id.pick_date:
+			
+			
+		break;
+		}
 	}
 
 }

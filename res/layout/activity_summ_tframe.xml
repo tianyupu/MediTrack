@@ -8,8 +8,8 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".SummTFrameActivity" >
 
-    <TextView
-        android:id="@+id/textView1"
+    <CheckedTextView
+        android:id="@+id/last_7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -19,31 +19,31 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:onClick="tFrameTapped" />
 
-    <TextView
-        android:id="@+id/textView2"
+    <CheckedTextView
+        android:id="@+id/last_14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/textView1"
-        android:layout_below="@+id/textView1"
+        android:layout_alignRight="@+id/last_7"
+        android:layout_below="@+id/last_7"
         android:text="@string/last_14"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:onClick="tFrameTapped" />
 
-    <TextView
-        android:id="@+id/textView3"
+    <CheckedTextView
+        android:id="@+id/last_30"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView2"
-        android:layout_below="@+id/textView2"
+        android:layout_alignLeft="@+id/last_14"
+        android:layout_below="@+id/last_14"
         android:text="@string/last_30"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:onClick="tFrameTapped" />
 
-    <TextView
-        android:id="@+id/textView4"
+    <CheckedTextView
+        android:id="@+id/pick_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView3"
+        android:layout_below="@+id/last_30"
         android:layout_centerHorizontal="true"
         android:text="@string/pick_date"
         android:textAppearance="?android:attr/textAppearanceLarge"
