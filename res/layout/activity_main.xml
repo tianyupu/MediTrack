@@ -27,6 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/password_edittext"
+        android:onClick="onSignupButtonClicked"
         android:text="@string/signup"/>
     
     <Button
@@ -36,6 +37,7 @@
         android:layout_alignBaseline="@id/signup_button"
         android:layout_alignBottom="@id/signup_button"
         android:layout_toRightOf="@id/signup_button"
+        android:onClick="onLoginButtonClicked"
         android:text="@string/login" />
 
 </RelativeLayout>
