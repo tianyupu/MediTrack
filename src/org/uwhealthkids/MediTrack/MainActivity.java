@@ -29,10 +29,13 @@ public class MainActivity extends Activity {
 
 	public void onSignUpButtonClicked(View v) {
 		
-		
+		String username = usernameEditText.getText().toString();
+		String password = passwordEditText.getText().toString();
 	}
 	
 	public void onLoginButtonClicked(View v) {
 		
+		String username = usernameEditText.getText().toString();
+		String password = passwordEditText.getText().toString();
 	}
 }
