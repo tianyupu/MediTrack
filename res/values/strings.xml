@@ -27,5 +27,11 @@
     <string name="last_14">Last 14 Days</string>
     <string name="last_30">Last 30 Days</string>
     <string name="pick_date">Pick Date</string>
+    <string name="patient_add_button">Add</string>
+    <string name="patient_view_button">View</string>
+    <string name="patient_edit_button">Edit</string>
+    <string name="patient_summary_button">Summary</string><string name="patient_baby_name">Baby Name</string>
+    
+    <string name="baby_image">Baby Picture</string>
 
 </resources>

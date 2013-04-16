@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:layout_alignRight="@+id/add"
         android:layout_below="@+id/add"
-        android:text="Edit" />
+        android:text="@string/patient_edit_button" />
 
     <Button
         android:id="@+id/sum"
@@ -18,7 +18,7 @@
         android:layout_alignBaseline="@+id/edit"
         android:layout_alignBottom="@+id/edit"
         android:layout_toRightOf="@+id/edit"
-        android:text="Summary" />
+        android:text="@string/patient_summary_button" />
 
     <Button
         android:id="@+id/view"
@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/sum"
         android:layout_alignLeft="@+id/sum"
-        android:text="View" />
+        android:text="@string/patient_view_button" />
 
     <Button
         android:id="@+id/add"
@@ -35,7 +35,7 @@
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         android:layout_marginLeft="28dp"
-        android:text="Add" />
+        android:text="@string/patient_add_button" />
 
     <TextView
         android:id="@+id/babyname"
@@ -43,11 +43,12 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/babypic"
         android:layout_centerHorizontal="true"
-        android:text="Baby Name"
+        android:text="@string/patient_baby_name"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <ImageView
         
+        android:contentDescription="@string/baby_image"
         android:id="@+id/babypic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
