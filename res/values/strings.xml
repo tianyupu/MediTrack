@@ -1,3 +1,4 @@
+
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
@@ -29,5 +30,11 @@
     <string name="pick_date">Pick Date</string>
     <string name="title_activity_view">ViewActivity</string>
     <string name="hello_world">Hello world!</string>
+    <string name="patient_add_button">Add</string>
+    <string name="patient_view_button">View</string>
+    <string name="patient_edit_button">Edit</string>
+    <string name="patient_summary_button">Summary</string>
+    <string name="patient_baby_name">Baby Name</string>
+    <string name="baby_image">Baby Picture</string>
 
 </resources>
