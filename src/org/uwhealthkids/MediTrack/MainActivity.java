@@ -16,8 +16,6 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		usernameEditText = (EditText) findViewById(R.id.username_edittext);
-		passwordEditText = (EditText) findViewById(R.id.password_edittext);
 	}
 
 	@Override
@@ -28,12 +26,16 @@ public class MainActivity extends Activity {
 	}
 
 	public void onSignUpButtonClicked(View v) {
-		
+		usernameEditText = (EditText) findViewById(R.id.username_edittext);
+		passwordEditText = (EditText) findViewById(R.id.password_edittext);
+	
 		String username = usernameEditText.getText().toString();
 		String password = passwordEditText.getText().toString();
 	}
 	
 	public void onLoginButtonClicked(View v) {
+		usernameEditText = (EditText) findViewById(R.id.username_edittext);
+		passwordEditText = (EditText) findViewById(R.id.password_edittext);
 		
 		String username = usernameEditText.getText().toString();
 		String password = passwordEditText.getText().toString();
