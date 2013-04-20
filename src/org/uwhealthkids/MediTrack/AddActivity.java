@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.AdapterView.*;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 
 public class AddActivity extends Activity {
 	@Override
@@ -24,7 +25,9 @@ public class AddActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
-				// TODO Auto-generated method stub
+				Intent i = new Intent(AddActivity.this, BaseAddCharActivity.class);
+				i.putExtra("charId", arg2);
+				startActivity(i);
 			}
 		});
 	}
@@ -41,12 +44,12 @@ public class AddActivity extends Activity {
 		}
 		
 		public Object getItem(int position) {
-			return null;
+			return mThumbIds[position];
 		}
 
 		@Override
 		public long getItemId(int arg0) {
-			return 0;
+			return arg0;
 		}
 
 		@Override

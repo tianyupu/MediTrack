@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+   <TextView
+        android:id="@+id/char_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/feeding_label"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+   
+   <TimePicker
+        android:id="@+id/char_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/feeding_time"
+        android:ems="10">
+
+    <!-- <requestFocus /> -->
+    </TimePicker>
+    
+    <EditText
+        android:id="@+id/char_data1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/feeding_amount"
+        android:ems="10"
+        android:lines="3"
+        android:inputType="number" />
+
+    <Button
+        android:id="@+id/save_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_save" />
+
+</LinearLayout>

@@ -5,18 +5,26 @@
     android:orientation="vertical" >
 
     <TextView
-        android:layout_width="match_parent"
+        android:id="@+id/char_label"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/add_textlabel"
+        android:text="@string/weight"
         android:textAppearance="?android:attr/textAppearanceMedium" />
-    
-    <GridView
-        android:id="@+id/addGridView"
+
+    <EditText
+        android:id="@+id/char_data"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:numColumns="2"
-        android:verticalSpacing="10dp"
-        android:gravity="center">
-    </GridView>
+        android:ems="10"
+        android:inputType="number" >
+
+        <requestFocus />
+    </EditText>
+
+    <Button
+        android:id="@+id/save_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_save" />
 
 </LinearLayout>
