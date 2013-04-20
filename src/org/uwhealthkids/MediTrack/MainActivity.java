@@ -1,7 +1,5 @@
 package org.uwhealthkids.MediTrack;
 
-import com.example.bloodpressuredatabasegraph.AddNewEntryActivity;
-
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -45,7 +43,7 @@ public class MainActivity extends Activity {
 	}
 	
 	public void onAddButtonClicked(View v) {
-    	Intent intent = new Intent(this, /*add name*/ .class);
+    	Intent intent = new Intent(this, AddActivity.class);
     	startActivity(intent);
 	}
 }
