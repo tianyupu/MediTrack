@@ -40,4 +40,35 @@
         android:onClick="onLoginButtonClicked"
         android:text="@string/login" />
 
+    <Button
+        android:id="@+id/button_add"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:onClick="onAddButtonClicked"
+        android:text="Add" />
+
+    <Button
+        android:id="@+id/button_summ"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/button_add"
+        android:layout_alignBaseline="@+id/button_add"
+        android:layout_alignBottom="@+id/button_add"
+        android:onClick="onSummButtonClicked"
+        android:text="Summ" />
+
+    <Button
+        android:id="@+id/button_view"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/button_summ"
+        android:layout_alignBaseline="@+id/button_summ"
+        android:layout_alignBottom="@+id/button_summ"
+        android:onClick="onViewButtonClicked"
+        android:text="View" />
+
 </RelativeLayout>

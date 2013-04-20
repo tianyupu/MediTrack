@@ -1,7 +1,10 @@
 package org.uwhealthkids.MediTrack;
 
+import com.example.bloodpressuredatabasegraph.AddNewEntryActivity;
+
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
@@ -39,5 +42,10 @@ public class MainActivity extends Activity {
 		
 		String username = usernameEditText.getText().toString();
 		String password = passwordEditText.getText().toString();
+	}
+	
+	public void onAddButtonClicked(View v) {
+    	Intent intent = new Intent(this, /*add name*/ .class);
+    	startActivity(intent);
 	}
 }
