@@ -5,36 +5,28 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    
-    <Button
-        android:id="@+id/button_table"
+
+    <DatePicker
+        android:id="@+id/datePicker_first"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Table"
-        tools:ignore="HardcodedText" />
+        android:layout_centerHorizontal="true" />
+    
+    <DatePicker
+        android:id="@+id/datePicker_last"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/datePicker_first"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:id="@+id/button_graph"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/button_table"
+        android:layout_below="@+id/datePicker_last"
+        android:layout_centerHorizontal="true"
+        android:onClick="onGraphButtonClicked"
         android:text="Graph"
-        tools:ignore="HardcodedText" />
-
-    <LinearLayout
-        android:id="@+id/linear_layout_graph"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button_table"
-        android:orientation="vertical" >
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/button_selectdates"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/linear_layout_graph"
-        android:text="Select Dates"
         tools:ignore="HardcodedText" />
 
 </RelativeLayout>
