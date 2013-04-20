@@ -34,7 +34,7 @@
             android:name="org.uwhealthkids.MediTrack.ViewActivity"
             android:label="@string/title_activity_view" >
         </activity>
-        <activity android:name="GraphViewActivity"></activity>
+        <activity android:name="org.uwhealthkids.MediTrack.GraphViewActivity"></activity>
         <activity android:name="org.uwhealthkids.MediTrack.AddActivity"></activity>
     </application>
 
