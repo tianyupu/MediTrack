@@ -54,9 +54,9 @@ public class AddActivity extends Activity {
 			ImageView imageView;
 			if (arg1 == null) {
 				imageView = new ImageView(mContext);
-				imageView.setLayoutParams(new GridView.LayoutParams(85, 85));
-				imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-				imageView.setPadding(8, 8, 8, 8);
+				imageView.setLayoutParams(new GridView.LayoutParams(150, 150));
+				imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+				//imageView.setPadding(8, 8, 8, 8);
 			} else {
 				imageView = (ImageView) arg1;
 			}
