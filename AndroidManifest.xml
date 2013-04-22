@@ -37,6 +37,7 @@
         <activity android:name="org.uwhealthkids.MediTrack.GraphViewActivity"></activity>
         <activity android:name="org.uwhealthkids.MediTrack.AddActivity"></activity>
         <activity android:name="org.uwhealthkids.MediTrack.BaseAddCharActivity"></activity>
+        <activity android:name="org.uwhealthkids.MediTrack.SeekbarAddCharActivity"></activity>
     </application>
 
 </manifest>

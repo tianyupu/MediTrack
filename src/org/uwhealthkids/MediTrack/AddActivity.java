@@ -13,6 +13,12 @@ import android.content.Context;
 import android.content.Intent;
 
 public class AddActivity extends Activity {
+	protected Integer[] layouts = {
+			R.layout.add_heartrate, R.layout.add_bloodpressure,
+			R.layout.add_pulseoxygen, R.layout.add_feedings,
+			R.layout.add_weight, R.layout.add_medication
+	};
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -25,7 +31,12 @@ public class AddActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
-				Intent i = new Intent(AddActivity.this, BaseAddCharActivity.class);
+				Intent i;
+				if (layouts[arg2] == R.layout.add_pulseoxygen) {
+					i = new Intent(AddActivity.this, SeekbarAddCharActivity.class);
+				} else {
+					i = new Intent(AddActivity.this, BaseAddCharActivity.class);
+				}
 				i.putExtra("charId", arg2);
 				startActivity(i);
 			}
