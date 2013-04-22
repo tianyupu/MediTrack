@@ -7,7 +7,7 @@ import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 
-public class SeekbarAddCharActivity extends AddActivity {
+public class SeekBarAddCharActivity extends AddActivity {
 	SeekBar seekBar;
 	TextView textView;
 	
