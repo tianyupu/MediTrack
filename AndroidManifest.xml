@@ -38,6 +38,7 @@
         <activity android:name="org.uwhealthkids.MediTrack.AddActivity"></activity>
         <activity android:name="org.uwhealthkids.MediTrack.DefaultAddCharActivity"></activity>
         <activity android:name="org.uwhealthkids.MediTrack.SeekBarAddCharActivity"></activity>
+        <activity android:name="org.uwhealthkids.MediTrack.MedicationAddActivity"></activity>
     </application>
 
 </manifest>
