@@ -45,8 +45,8 @@
         <activity android:name="org.uwhealthkids.MediTrack.SeekBarAddCharActivity"></activity>
         <activity android:name="org.uwhealthkids.MediTrack.MedicationAddActivity"></activity>
         <activity android:name="org.uwhealthkids.MediTrack.ListviewActivity"></activity>
-        <activity android:name="org.uwhealthkids.MediTrack.SignUpActivity"></activity>
-        <activity android:name="org.uwhealthkids.MediTrack.SignUpBaby"></activity>
+        <activity android:name="org.uwhealthkids.MediTrack.SignUpActivities.SignUpActivity"></activity>
+        <activity android:name="org.uwhealthkids.MediTrack.SignUpActivities.SignUpBaby"></activity>
     </application>
 
 </manifest>
