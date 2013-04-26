@@ -40,6 +40,9 @@ public class MainActivity extends Activity {
 		
 		String username = usernameEditText.getText().toString();
 		String password = passwordEditText.getText().toString();
+		
+		Intent intent = new Intent(this, PatientActivity.class);
+		startActivity(intent);
 	}
 	
 	public void onAddButtonClicked(View v) {
