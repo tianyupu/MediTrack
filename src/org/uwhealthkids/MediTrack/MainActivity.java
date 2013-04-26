@@ -36,12 +36,11 @@ public class MainActivity extends Activity {
 		return true;
 	}
 
-	public void onSignUpButtonClicked(View v) {
-		usernameEditText = (EditText) findViewById(R.id.username_edittext);
-		passwordEditText = (EditText) findViewById(R.id.password_edittext);
-
-		String username = usernameEditText.getText().toString();
-		String password = passwordEditText.getText().toString();
+	public void onSignupButtonClicked(View v) {
+		
+		Intent intent = new Intent(this, SignUpActivity.class);
+		startActivity(intent);
+		
 	}
 
 	public void onLoginButtonClicked(View v) {
