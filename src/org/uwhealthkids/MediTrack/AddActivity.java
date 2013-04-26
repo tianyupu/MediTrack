@@ -34,7 +34,11 @@ public class AddActivity extends Activity {
 				Intent i;
 				if (layouts[arg2] == R.layout.add_pulseoxygen) {
 					i = new Intent(AddActivity.this, SeekBarAddCharActivity.class);
-				} else {
+				}
+				else if (layouts[arg2] == R.layout.add_medication) {
+					i = new Intent(AddActivity.this, MedicationAddActivity.class);
+				}
+				else {
 					i = new Intent(AddActivity.this, DefaultAddCharActivity.class);
 				}
 				i.putExtra("charId", arg2);

@@ -20,7 +20,7 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		 Parse.initialize(this, "Zx2IAp6TTPyM5UYRCr1Q4Q0GD0RyS0IDLzTm0aH0", "Dwj8peVWshOTpzos0Qae9yOBnhmZIMIxv4kJ6oTm");
+		Parse.initialize(this, "Zx2IAp6TTPyM5UYRCr1Q4Q0GD0RyS0IDLzTm0aH0", "Dwj8peVWshOTpzos0Qae9yOBnhmZIMIxv4kJ6oTm");
 		
 		ParseObject testObject = new ParseObject("TestObject");
 		testObject.put("foo", "bar");
@@ -36,12 +36,11 @@ public class MainActivity extends Activity {
 		return true;
 	}
 
-	public void onSignUpButtonClicked(View v) {
-		usernameEditText = (EditText) findViewById(R.id.username_edittext);
-		passwordEditText = (EditText) findViewById(R.id.password_edittext);
-
-		String username = usernameEditText.getText().toString();
-		String password = passwordEditText.getText().toString();
+	public void onSignupButtonClicked(View v) {
+		
+		Intent intent = new Intent(this, SignUpActivity.class);
+		startActivity(intent);
+		
 	}
 
 	public void onLoginButtonClicked(View v) {
