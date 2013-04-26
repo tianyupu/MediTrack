@@ -27,8 +27,7 @@
         android:layout_height="wrap_content"
         android:hint="@string/feeding_amount"
         android:ems="10"
-        android:lines="3"
-        android:inputType="number" />
+        android:lines="3" />
 
     <Button
         android:id="@+id/save_button"
