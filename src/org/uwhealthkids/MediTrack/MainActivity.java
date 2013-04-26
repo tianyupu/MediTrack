@@ -64,4 +64,9 @@ public class MainActivity extends Activity {
     	Intent intent = new Intent(this, ViewActivity.class);
     	startActivity(intent);
 	}
+	
+	public void onSummButtonClicked(View v){
+		Intent intent = new Intent(this, SummActivity.class);
+		startActivity(intent);
+	}
 }

@@ -31,6 +31,8 @@
     <string name="last_14">Last 14 Days</string>
     <string name="last_30">Last 30 Days</string>
     <string name="pick_date">Pick Date</string>
+    <string name="title_of_tFrame">Pick the time frame</string>
+    <string name="or_pick_own_date">Or pick your own date</string>
     <string name="title_activity_view">ViewActivity</string>
     <string name="hello_world">Hello world!</string>
     <string name="patient_add_button">Add</string>
