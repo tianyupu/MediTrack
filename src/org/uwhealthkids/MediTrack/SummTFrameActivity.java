@@ -1,27 +1,35 @@
 package org.uwhealthkids.MediTrack;
 
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.app.ListActivity;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.DatePicker.OnDateChangedListener;
 import android.widget.ListView;
+import android.widget.Spinner;
 
-public class SummTFrameActivity extends ListActivity {
+public class SummTFrameActivity extends Activity {
 
 	public static String TFRAME;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
+		Log.i("SummTFrame","Good for you, you created it");
+		setContentView(R.layout.activity_summ_tframe);
+		Log.i("SummTFrame", "Past setContentView!!!!!!! Fuck yeah!!");
 		//----------------------------------------------------------
 		//Used to test if information is passed correctly with intent
 		// Get the message from the intent
@@ -40,30 +48,42 @@ public class SummTFrameActivity extends ListActivity {
 	    }
 		 */
 		//-----------------------------------------------------------
-		String[] values = new String[] { "Last 7 Days", "Last 14 Days",
-				"Last 30 Days", "Pick Date"};
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-				android.R.layout.simple_list_item_1, values);
-		setListAdapter(adapter);
+		Spinner tFrameSpinner = (Spinner) findViewById(R.id.pick_tframe);
+		
+		ArrayList<String> values = new ArrayList<String>();
+		values.add("Last 7 Days");
+		values.add("Last 14 Days");
+		values.add("Last 30 Days");
+		//String[] values = new String[] { "Last 7 Days", "Last 14 Days",
+				//"Last 30 Days"};
+		
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(tFrameSpinner.getContext(),
+				android.R.layout.simple_spinner_item, values);
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		Log.i("SummTFrame", "Bitch isn't running correctly");
+		tFrameSpinner.setAdapter(adapter);
+		
+		
+	   
 	}
 
-	@Override
+
+	/**
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		String item = (String) getListAdapter().getItem(position);
 		TFRAME = item;
 		
-		if(TFRAME == "Pick Date"){
-			Date today = new Date();
+		/*if(TFRAME == "Pick Date"){
 			DatePicker picker = new DatePicker(this);
 			picker.setSpinnersShown(true);
 			//picker.setEnabled(true);
 			OnDateChangedListener onDateChangedListener = null;
-			picker.init(today.getYear(), today.getMonth(), today.getDay(), 
+			picker.init(Calendar.YEAR, Calendar.MONTH, Calendar.DATE, 
 					onDateChangedListener);
 		}
 		//Toast.makeText(this, item + " selected", Toast.LENGTH_LONG).show();
 	}
-
+	*/
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.

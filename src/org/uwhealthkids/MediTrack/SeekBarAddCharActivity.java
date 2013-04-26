@@ -21,6 +21,7 @@ public class SeekBarAddCharActivity extends AddActivity {
 		
 		seekBar = (SeekBar) findViewById(R.id.char_data);
 		textView = (TextView) findViewById(R.id.slider_value);
+		textView.setText("0%");
 		
 		seekBar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
 			public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
