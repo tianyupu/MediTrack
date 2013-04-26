@@ -37,7 +37,7 @@ public class SignUpBaby extends Activity{
 			startActivity(intent);
 		}
 		if(checkedID == rd2.getId()){
-			Intent intent = new Intent(this, PatientActivity.class);
+			Intent intent = new Intent(this, SignUpBabyInfo.class);
 			startActivity(intent);
 		}
 	}
