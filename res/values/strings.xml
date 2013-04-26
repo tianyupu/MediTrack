@@ -39,5 +39,13 @@
     <string name="patient_summary_button">Summary</string>
     <string name="patient_baby_name">Baby Name</string>
     <string name="baby_image">Baby Picture</string>
+    <string name="welcome">Welcome to MediTrack</string>
+    <string name="fname">First Name</string>
+    <string name="surname">Last Name</string>
+    <string name="email">Email</string>
+    <string name="confPW">Confirm Password</string>
+    <string name="baby">My Baby: </string>
+    <string name="newRec">Start a record for my baby</string>
+    <string name="hasRec">My baby has a record with MediTrack</string>
 
 </resources>
