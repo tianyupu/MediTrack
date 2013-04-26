@@ -48,5 +48,12 @@
     <string name="baby">My Baby: </string>
     <string name="newRec">Start a record for my baby</string>
     <string name="hasRec">My baby has a record with MediTrack</string>
+    <string name="babyname">&quot;Baby's Name&quot;</string>
+    <string name="dob">Birthday:</string>
+    <string name="gender">Gender:</string>
+    <string name="boy">Boy</string>
+    <string name="girl">Girl</string>
+    <string name="pickDate">Pick Date</string>
+    
 
 </resources>

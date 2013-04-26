@@ -47,6 +47,8 @@
         <activity android:name="org.uwhealthkids.MediTrack.ListviewActivity"></activity>
         <activity android:name="org.uwhealthkids.MediTrack.SignUpActivities.SignUpActivity"></activity>
         <activity android:name="org.uwhealthkids.MediTrack.SignUpActivities.SignUpBaby"></activity>
+        <activity android:name="org.uwhealthkids.MediTrack.SignUpActivities.SignUpBabyInfo"></activity>
+        <activity android:name="org.uwhealthkids.MediTrack.SignUpActivities.DatePickerFragment"></activity>
     </application>
 
 </manifest>
