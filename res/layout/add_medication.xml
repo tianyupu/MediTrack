@@ -24,7 +24,8 @@
     <Spinner
         android:id="@+id/medication_spinner"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:prompt="@string/medication_dropdown_prompt" />
     
     <EditText
         android:id="@+id/char_data1"
