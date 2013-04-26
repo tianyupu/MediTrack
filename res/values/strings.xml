@@ -13,6 +13,7 @@
     <string name="bloodpressure_high">Systolic</string>
     <string name="feeding_label">Feeding</string>
     <string name="medication_label">Medication</string>
+    <string name="medication_dropdown_prompt">Choose a medication&#8230;</string>
     <string name="title_activity_summ">SummActivity</string>
     <!-- choices of kinds of data to enter in -->
     <string name="heart_rate">Heart Rate</string>
