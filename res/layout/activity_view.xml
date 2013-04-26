@@ -28,5 +28,15 @@
         android:onClick="onGraphButtonClicked"
         android:text="Graph"
         tools:ignore="HardcodedText" />
+    
+    <Button
+        android:id="@+id/button_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button_graph"
+        android:layout_centerHorizontal="true"
+        android:onClick="onListButtonClicked"
+        android:text="List"
+        tools:ignore="HardcodedText" />
 
 </RelativeLayout>

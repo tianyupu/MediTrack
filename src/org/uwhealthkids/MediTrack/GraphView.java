@@ -19,16 +19,38 @@ public class GraphView extends View {
 	public static boolean BAR = true;
 	public static boolean LINE = false;
 	private Paint paint;
-	private List<Float> values;
+	private List<Integer> valuesOne;
+	private List<Integer> valuesTwo;
 	private String[] horlabels;
 	private String[] verlabels;
 	private String title;
 	private boolean type;
 
-	public GraphView(Context gView, List<Float> values,  
+	public GraphView(Context gView, List<Integer> valuesOne, List<Integer> valuesTwo,
 			String title, String[] horlabels, String[] verlabels, boolean type) {
 		super(gView);
-		this.values = values;
+		this.valuesOne = valuesOne;
+		this.valuesTwo = valuesTwo;		
+		if (title == null)
+			title = "";
+		else
+			this.title = title;
+		if (horlabels == null)
+			this.horlabels = new String[0];
+		else
+			this.horlabels = horlabels;
+		if (verlabels == null)
+			this.verlabels = new String[0];
+		else
+			this.verlabels = verlabels;
+		this.type = type;
+		paint = new Paint();
+	}
+	
+	public GraphView(Context gView, List<Integer> values,  
+			String title, String[] horlabels, String[] verlabels, boolean type) {
+		super(gView);
+		this.valuesOne = values;
 		
 		if (title == null)
 			title = "";
@@ -97,27 +119,42 @@ public class GraphView extends View {
 		if (max != min) {
 			paint.setColor(Color.LTGRAY);
 			if (type == BAR) {
-				float colwidth = (width - (2 * border)) / values.size();
-				for (int i = 0; i < values.size(); i++) {
-					float h1 = graphheight * ((values.get(i) - min) / diff);
+				float colwidth = (width - (2 * border)) / valuesOne.size();
+				for (int i = 0; i < valuesOne.size(); i++) {
+					float h1 = graphheight * ((valuesOne.get(i) - min) / diff);
+					float h2 = graphheight * ((valuesTwo.get(i) - min) / diff);
 					canvas.drawRect((i * colwidth) + horstart, (border - h1) + 
+							graphheight, ((i * colwidth) + horstart) + (colwidth - 1), 
+							height - (border - 1), paint);
+					canvas.drawRect((i * colwidth) + horstart, (border - h2) + 
 							graphheight, ((i * colwidth) + horstart) + (colwidth - 1), 
 							height - (border - 1), paint);
 				}
 			} else {
-				float lasth1 = graphheight * ((values.get(0) - min) / diff);
-				float nextOne = graphwidth/(values.size() - 1);
+				float lasth1 = graphheight * ((valuesOne.get(0) - min) / diff);
+				float lasth2 = 0;
+				if (valuesTwo != null) {
+					lasth2 = graphheight * ((valuesTwo.get(0) - min) / diff);
+				}
+				float nextOne = graphwidth/(valuesOne.size() - 1);
 				float a = 0;
 				
 				//each iteration draws two new lines of the graph
-				//red for systolic and blue for diastolic
-				for (int i = 1; i < values.size(); i++) {
-					float h = graphheight * ((values.get(i) - min) / diff);
+				for (int i = 1; i < valuesOne.size(); i++) {
+					float h1 = graphheight * ((valuesOne.get(i) - min) / diff);
 					paint.setColor(Color.RED);
 					canvas.drawLine(horstart + a, (border - lasth1) + graphheight, 
-							horstart + a + nextOne, (border - h) + graphheight, paint);
-					paint.setColor(Color.BLUE);
-					lasth1 = h;
+							horstart + a + nextOne, (border - h1) + graphheight, paint);
+					lasth1 = h1;
+					
+					if (valuesTwo != null) {
+						float h2 = graphheight * ((valuesTwo.get(i) - min) / diff);
+						paint.setColor(Color.BLUE);
+						canvas.drawLine(horstart + a, (border - lasth2) + graphheight, 
+						horstart + a + nextOne, (border - h2) + graphheight, paint);
+						lasth2 = h2;
+					}
+					
 					a += nextOne;
 				}
 			}

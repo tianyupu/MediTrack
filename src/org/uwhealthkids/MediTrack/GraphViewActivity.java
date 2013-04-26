@@ -1,6 +1,9 @@
 package org.uwhealthkids.MediTrack;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -10,6 +13,11 @@ import android.os.Bundle;
 
 public class GraphViewActivity extends Activity {
 
+	private ArrayList<RecordDetailsPojo> pojoArrayList;
+	private List<Integer> valuesOneArr;
+	private List<Integer> valuesTwoArr;
+	private List<Calendar> calendarArray;
+	
 	private int charid;
 	private int babyid;
 	
@@ -39,10 +47,27 @@ public class GraphViewActivity extends Activity {
 		sqliteDatabase = dbHelper.getReadableDatabase();
 		
 		Cursor cursor = sqliteDatabase.query(DBHelper.TABLE_NAME_RECORD, 
-				null, selection, null, null, null, DBHelper.RECORD_COLUMN_NAME_TIME);
+				columns, selection, null, null, null, DBHelper.RECORD_COLUMN_NAME_TIME);
 		
 		while(cursor.moveToNext()) {
-			//TODO: iterate tables.
+			Calendar cal = null;
+			cal.setTime(new Date(cursor.getString(cursor.getColumnIndex
+					(DBHelper.RECORD_COLUMN_NAME_TIME))));
+			int valOne = Integer.parseInt(cursor.getString(cursor.getColumnIndex
+					(DBHelper.RECORD_COLUMN_NAME_VALUEONE)));
+			int valTwo = Integer.parseInt(cursor.getString(cursor.getColumnIndex
+					(DBHelper.RECORD_COLUMN_NAME_VALUETWO)));
+
+			RecordDetailsPojo pojoClass = new RecordDetailsPojo();
+			pojoClass.setTime(cal);
+			pojoClass.setValOne(valOne);
+			pojoClass.setValTwo(valTwo);
+
+			pojoArrayList.add(pojoClass);
+
+			valuesOneArr.add(valOne);
+			valuesTwoArr.add(valTwo);
+			calendarArray.add(cal);
 		}
 	}
 	
