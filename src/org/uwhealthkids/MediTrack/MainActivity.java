@@ -46,4 +46,9 @@ public class MainActivity extends Activity {
     	Intent intent = new Intent(this, AddActivity.class);
     	startActivity(intent);
 	}
+	
+	public void onViewButtonClicked(View v) {
+    	Intent intent = new Intent(this, ViewActivity.class);
+    	startActivity(intent);
+	}
 }
