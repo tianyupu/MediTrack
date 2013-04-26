@@ -1,4 +1,6 @@
 package org.uwhealthkids.MediTrack;
+import org.uwhealthkids.MediTrack.SignUpActivities.SignUpActivity;
+
 import com.parse.Parse;
 import com.parse.ParseAnalytics;
 import com.parse.ParseObject;
