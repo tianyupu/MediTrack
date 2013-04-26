@@ -1,53 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+
     tools:context=".SummTFrameActivity" >
 
-
-
-    <ListView
-        android:id="@+id/listView1"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" >
-    <!--   
-    <CheckedTextView
-        android:id="@+id/last_7"
+    <TextView
+        android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
-        android:text="@string/last_7"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:onClick="tFrameTapped" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="@string/title_of_tFrame"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <CheckedTextView
-        android:id="@+id/last_14"
+    <Spinner
+        android:id="@+id/pick_tframe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/last_14"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:onClick="tFrameTapped" />
-
-    <CheckedTextView
-        android:id="@+id/last_30"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/last_30"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:onClick="tFrameTapped" />
-
-    <CheckedTextView
+        android:layout_below="@+id/title" />
+	 
+    <TextView
         android:id="@+id/pick_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/pick_date"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:onClick="tFrameTapped" />
-    -->
-    </ListView>
+        android:layout_alignLeft="@+id/pick_tframe"
+        android:layout_below="@+id/pick_tframe"
+        android:text="@string/or_pick_own_date"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <DatePicker
+        android:id="@+id/endDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/startDate"
+        android:layout_below="@+id/startDate" />
+
+    <DatePicker
+        android:id="@+id/startDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/pick_date" />
+
+    <TextView
+        android:id="@+id/firstDay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignTop="@+id/startDate"
+        android:text="@string/begin"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/lastDay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/startDate"
+        android:text="@string/end"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
 
 </RelativeLayout>
