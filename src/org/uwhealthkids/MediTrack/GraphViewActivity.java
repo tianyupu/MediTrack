@@ -27,6 +27,7 @@ public class GraphViewActivity extends Activity {
 	private DBHelper dbHelper;
 	private SQLiteDatabase sqliteDatabase;
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
@@ -39,36 +40,43 @@ public class GraphViewActivity extends Activity {
 				intent.getIntExtra("firstDay", 0));
 		charid = intent.getIntExtra("char_id", 0);
 		babyid = intent.getIntExtra("baby_id", 0);
-		String selection = DBHelper.RECORD_COLUMN_NAME_CHAR + "='" + charid + "' AND " +
-				DBHelper.RECORD_COLUMN_NAME_BABY + "='" + babyid + "'";
-		String[] columns = {DBHelper.RECORD_COLUMN_NAME_TIME, DBHelper.RECORD_COLUMN_NAME_VALUEONE, 
-				DBHelper.RECORD_COLUMN_NAME_VALUETWO};
-
-		sqliteDatabase = dbHelper.getReadableDatabase();
 		
-		Cursor cursor = sqliteDatabase.query(DBHelper.TABLE_NAME_RECORD, 
-				columns, selection, null, null, null, DBHelper.RECORD_COLUMN_NAME_TIME);
+		valuesOneArr = intent.getIntegerArrayListExtra("valOneList");
+		valuesOneArr = intent.getIntegerArrayListExtra("valTwoList");
+		calendarArray = (List<Calendar>) intent.getSerializableExtra("dateList");
 		
-		while(cursor.moveToNext()) {
-			Calendar cal = null;
-			cal.setTime(new Date(cursor.getString(cursor.getColumnIndex
-					(DBHelper.RECORD_COLUMN_NAME_TIME))));
-			int valOne = Integer.parseInt(cursor.getString(cursor.getColumnIndex
-					(DBHelper.RECORD_COLUMN_NAME_VALUEONE)));
-			int valTwo = Integer.parseInt(cursor.getString(cursor.getColumnIndex
-					(DBHelper.RECORD_COLUMN_NAME_VALUETWO)));
-
-			RecordDetailsPojo pojoClass = new RecordDetailsPojo();
-			pojoClass.setTime(cal);
-			pojoClass.setValOne(valOne);
-			pojoClass.setValTwo(valTwo);
-
-			pojoArrayList.add(pojoClass);
-
-			valuesOneArr.add(valOne);
-			valuesTwoArr.add(valTwo);
-			calendarArray.add(cal);
-		}
+		GraphView g = new GraphView(this, valuesOneArr, valuesOneArr, /*title*/ "", /*horizontal labels*/ new String[1], /*vertical labels*/ new String[1], true);
+		
+//		String selection = DBHelper.RECORD_COLUMN_NAME_CHAR + "='" + charid + "' AND " +
+//				DBHelper.RECORD_COLUMN_NAME_BABY + "='" + babyid + "'";
+//		String[] columns = {DBHelper.RECORD_COLUMN_NAME_TIME, DBHelper.RECORD_COLUMN_NAME_VALUEONE, 
+//				DBHelper.RECORD_COLUMN_NAME_VALUETWO};
+//
+//		sqliteDatabase = dbHelper.getReadableDatabase();
+//		
+//		Cursor cursor = sqliteDatabase.query(DBHelper.TABLE_NAME_RECORD, 
+//				columns, selection, null, null, null, DBHelper.RECORD_COLUMN_NAME_TIME);
+//		
+//		while(cursor.moveToNext()) {
+//			Calendar cal = null;
+//			cal.setTime(new Date(cursor.getString(cursor.getColumnIndex
+//					(DBHelper.RECORD_COLUMN_NAME_TIME))));
+//			int valOne = Integer.parseInt(cursor.getString(cursor.getColumnIndex
+//					(DBHelper.RECORD_COLUMN_NAME_VALUEONE)));
+//			int valTwo = Integer.parseInt(cursor.getString(cursor.getColumnIndex
+//					(DBHelper.RECORD_COLUMN_NAME_VALUETWO)));
+//
+//			RecordDetailsPojo pojoClass = new RecordDetailsPojo();
+//			pojoClass.setTime(cal);
+//			pojoClass.setValOne(valOne);
+//			pojoClass.setValTwo(valTwo);
+//
+//			pojoArrayList.add(pojoClass);
+//
+//			valuesOneArr.add(valOne);
+//			valuesTwoArr.add(valTwo);
+//			calendarArray.add(cal);
+//		}
 	}
 	
 }
