@@ -23,12 +23,6 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 
 		Parse.initialize(this, "Zx2IAp6TTPyM5UYRCr1Q4Q0GD0RyS0IDLzTm0aH0", "Dwj8peVWshOTpzos0Qae9yOBnhmZIMIxv4kJ6oTm");
-		
-		ParseObject testObject = new ParseObject("TestObject");
-		testObject.put("foo", "bar");
-		testObject.saveInBackground();
-
-
 	}
 
 	@Override
@@ -64,5 +58,10 @@ public class MainActivity extends Activity {
 	public void onViewButtonClicked(View v) {
     	Intent intent = new Intent(this, ViewActivity.class);
     	startActivity(intent);
+	}
+	
+	public void onSummButtonClicked(View v){
+		Intent intent = new Intent(this, SummActivity.class);
+		startActivity(intent);
 	}
 }

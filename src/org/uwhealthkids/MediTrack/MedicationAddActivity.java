@@ -12,11 +12,16 @@ import com.parse.Parse;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 public class MedicationAddActivity extends AddActivity {
 	public ArrayList<String> medicationNames = new ArrayList<String>();
+	public ArrayAdapter<String> adapter;
+	
 	public void onCreate(Bundle savedBundleInstance) {
 		super.onCreate(savedBundleInstance);
 		Parse.initialize(this, "Zx2IAp6TTPyM5UYRCr1Q4Q0GD0RyS0IDLzTm0aH0", "Dwj8peVWshOTpzos0Qae9yOBnhmZIMIxv4kJ6oTm");
@@ -27,6 +32,10 @@ public class MedicationAddActivity extends AddActivity {
 		setContentView(super.layouts[id]);
 		
 		Spinner spinner = (Spinner) findViewById(R.id.medication_spinner);
+		adapter = new ArrayAdapter<String>(spinner.getContext(), android.R.layout.simple_spinner_item, medicationNames);
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		spinner.setAdapter(adapter);
+		
 		ParseQuery query = new ParseQuery("Medication");
 		query.setCachePolicy(ParseQuery.CachePolicy.CACHE_ELSE_NETWORK);
 		query.findInBackground(new FindCallback() {
@@ -39,14 +48,24 @@ public class MedicationAddActivity extends AddActivity {
 							medicationNames.add(name);
 						}
 					}
+					adapter.notifyDataSetChanged();
 				} else {
 					Log.i("MedicationAddActivity", "error retrieving medications list");
 				}
 			}
 		});
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(spinner.getContext(), android.R.layout.simple_spinner_item, medicationNames);
-		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		spinner.setAdapter(adapter);
+		spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+			@Override
+			public void onItemSelected(AdapterView<?> parent, View view,
+					int position, long id) {
+				Log.i("MedicationAddActivity", "selected something");
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> parent) {
+				
+			}
+		});
 	}
 	
 }

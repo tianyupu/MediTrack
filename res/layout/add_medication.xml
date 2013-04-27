@@ -25,7 +25,8 @@
         android:id="@+id/medication_spinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:prompt="@string/medication_dropdown_prompt" />
+        android:prompt="@string/medication_dropdown_prompt"
+        android:visibility="visible" />
     
     <EditText
         android:id="@+id/char_data1"
@@ -33,8 +34,7 @@
         android:layout_height="wrap_content"
         android:hint="@string/medication_amount"
         android:ems="10"
-        android:lines="3"
-        android:inputType="number" />
+        android:lines="3"/>
 
     <Button
         android:id="@+id/save_button"
