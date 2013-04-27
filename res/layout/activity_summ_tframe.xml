@@ -19,7 +19,8 @@
         android:id="@+id/pick_tframe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/title" />
+        android:layout_below="@+id/title"
+        android:contentDescription="Choose one..." />
 	 
     <TextView
         android:id="@+id/pick_date"

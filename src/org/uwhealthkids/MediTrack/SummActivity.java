@@ -34,9 +34,14 @@ public class SummActivity extends Activity {
 		//will only pass one selection
 		//TODO figure out how to pass multiple selections
 		if(selections.size() != 0){
+			Bundle selects = new Bundle();
+			selects.putIntegerArrayList("summSelections", selections);
+			toTFrame.putExtras(selects);
+			/**
 			CheckBox select = (CheckBox) findViewById(selections.get(0));
 			String message = (String) select.getText();
 			toTFrame.putExtra(EXTRA_MESSAGE, message);
+			*/
 		}
 		startActivity(toTFrame);
 	}

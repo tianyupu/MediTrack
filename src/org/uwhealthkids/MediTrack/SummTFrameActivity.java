@@ -9,20 +9,25 @@ import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.ListActivity;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.DatePicker.OnDateChangedListener;
 import android.widget.ListView;
 import android.widget.Spinner;
 
-public class SummTFrameActivity extends Activity {
+public class SummTFrameActivity extends Activity implements OnItemSelectedListener {
 
 	public static String TFRAME;
+	private Calendar startDate;
+	private Calendar endDate;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -33,10 +38,12 @@ public class SummTFrameActivity extends Activity {
 		//----------------------------------------------------------
 		//Used to test if information is passed correctly with intent
 		// Get the message from the intent
-		/**
+		
 	    Intent intent = getIntent();
+	    
+	    
+	    /**
 	    String message = intent.getStringExtra(SummActivity.EXTRA_MESSAGE);
-
 	    // Create the text view
 	    if(message != null){
 	    	TextView textView = new TextView(this);
@@ -60,9 +67,8 @@ public class SummTFrameActivity extends Activity {
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(tFrameSpinner.getContext(),
 				android.R.layout.simple_spinner_item, values);
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		Log.i("SummTFrame", "Bitch isn't running correctly");
 		tFrameSpinner.setAdapter(adapter);
-		
+		Log.i("SummTFrame", "Bitch is running correctly");		
 		
 	   
 	}
@@ -89,6 +95,31 @@ public class SummTFrameActivity extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.summ_tframe, menu);
 		return true;
+	}
+
+
+	@Override
+	public void onItemSelected(AdapterView<?> parent, View view, int pos,
+			long id) {
+		String choice = (String) parent.getItemAtPosition(pos);
+		endDate = Calendar.getInstance();
+		if(choice == "Last 7 Days"){
+			endDate.add(Calendar.DATE, -7);
+		}
+		else if(choice == "Last 14 Days"){
+			endDate.add(Calendar.DATE, -14);
+		}
+		else if(choice == "Last 30 Days"){
+			endDate.add(Calendar.DATE, -30);
+		}
+		
+	}
+
+
+	@Override
+	public void onNothingSelected(AdapterView<?> parent) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	/**
