@@ -58,6 +58,9 @@
     <string name="boy">Boy</string>
     <string name="girl">Girl</string>
     <string name="pickDate">Pick Date</string>
+    <string name="doctors">Pick Doctor</string>
+    <string name="noDoc">Skip</string>
+    
     
 
 </resources>
