@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.CheckBox;
@@ -31,12 +32,12 @@ public class SummActivity extends Activity {
 	
 	public void buttonClicked(View view){
 		Intent toTFrame = new Intent(this, SummTFrameActivity.class);
-		//will only pass one selection
 		//TODO figure out how to pass multiple selections
 		if(selections.size() != 0){
 			Bundle selects = new Bundle();
 			selects.putIntegerArrayList("summSelections", selections);
 			toTFrame.putExtras(selects);
+			Log.i("SummFrame", "Added the select bundle!!");
 			/**
 			CheckBox select = (CheckBox) findViewById(selections.get(0));
 			String message = (String) select.getText();

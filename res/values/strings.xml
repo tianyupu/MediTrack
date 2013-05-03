@@ -59,6 +59,6 @@
     <string name="boy">Boy</string>
     <string name="girl">Girl</string>
     <string name="pickDate">Pick Date</string>
-    
+    <string name="title_activity_main_summ">MainSummActivity</string>
 
 </resources>

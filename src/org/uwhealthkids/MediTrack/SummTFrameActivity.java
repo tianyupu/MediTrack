@@ -28,6 +28,8 @@ public class SummTFrameActivity extends Activity implements OnItemSelectedListen
 	public static String TFRAME;
 	private Calendar startDate;
 	private Calendar endDate;
+	private Bundle allInfo = new Bundle();
+	private int tFrame = -1;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,14 @@ public class SummTFrameActivity extends Activity implements OnItemSelectedListen
 		// Get the message from the intent
 		
 	    Intent intent = getIntent();
+	    Bundle selections = intent.getExtras();
+	    Log.i("SummTFrame", "Ahh I see what's happening here");
+	    if(selections != null) {
+	    	allInfo.putIntegerArrayList("summSelections",
+	    			selections.getIntegerArrayList("summSelections"));
+	    	//Log.i("SummTFrame", "past the bundling code");
+	    }
+    	Log.i("SummTFrame", "past the bundling code");
 	    
 	    
 	    /**
@@ -59,6 +69,7 @@ public class SummTFrameActivity extends Activity implements OnItemSelectedListen
 
 		
 		ArrayList<String> values = new ArrayList<String>();
+		values.add("Nothing Selected");
 		values.add("Last 7 Days");
 		values.add("Last 14 Days");
 		values.add("Last 30 Days");
@@ -70,8 +81,7 @@ public class SummTFrameActivity extends Activity implements OnItemSelectedListen
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		tFrameSpinner.setAdapter(adapter);
 		Log.i("SummTFrame", "Bitch is running correctly");		
-		
-		tFrameSpinner.setSelected(false);
+
 		tFrameSpinner.setOnItemSelectedListener(this);
 	}
 
@@ -106,7 +116,12 @@ public class SummTFrameActivity extends Activity implements OnItemSelectedListen
 		String choice = (String) parent.getItemAtPosition(pos);
 		startDate = Calendar.getInstance();
 		endDate = Calendar.getInstance();
-		if(choice == "Last 7 Days"){
+		
+		if(choice == "Nothing Selected") {
+			onNothingSelected(parent);
+		}
+		
+		else if(choice == "Last 7 Days"){
 			endDate.add(Calendar.DATE, -7);
 			Log.i("SummTFrame", "You selected something motha titmonger!!7");
 		}
