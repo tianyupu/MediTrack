@@ -59,6 +59,13 @@
     <string name="boy">Boy</string>
     <string name="girl">Girl</string>
     <string name="pickDate">Pick Date</string>
+<<<<<<< HEAD
     <string name="title_activity_main_summ">MainSummActivity</string>
+=======
+    <string name="doctors">Pick Doctor</string>
+    <string name="noDoc">Skip</string>
+    
+    
+>>>>>>> 5a029f1d114f12bbde3e1b5f5762fde5963bb9c0
 
 </resources>
