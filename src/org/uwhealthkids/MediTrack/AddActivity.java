@@ -39,13 +39,13 @@ public class AddActivity extends Activity {
 					long arg3) {
 				Intent i;
 				if (layouts[arg2] == R.layout.add_pulseoxygen) {
-					i = new Intent(AddActivity.this, SeekBarAddCharActivity.class);
+					i = new Intent(CustomApplication.getInstance(), SeekBarAddCharActivity.class);
 				}
 				else if (layouts[arg2] == R.layout.add_medication) {
-					i = new Intent(AddActivity.this, MedicationAddActivity.class);
+					i = new Intent(CustomApplication.getInstance(), MedicationAddActivity.class);
 				}
 				else {
-					i = new Intent(AddActivity.this, DefaultAddCharActivity.class);
+					i = new Intent(CustomApplication.getInstance(), DefaultAddCharActivity.class);
 				}
 				i.putExtra("charId", arg2);
 				startActivity(i);
