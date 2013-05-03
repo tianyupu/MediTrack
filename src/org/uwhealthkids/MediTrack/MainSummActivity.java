@@ -1,7 +1,8 @@
 package org.uwhealthkids.MediTrack;
 
-import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.Menu;
 
 public class MainSummActivity extends Activity {
@@ -10,6 +11,10 @@ public class MainSummActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main_summ);
+		
+		Intent prevIntent = getIntent();
+		Bundle allInfo = prevIntent.getExtras();
+		
 	}
 
 	@Override

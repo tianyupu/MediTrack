@@ -2,15 +2,9 @@ package org.uwhealthkids.MediTrack;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
 
-import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.app.Activity;
-import android.app.ListActivity;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -19,17 +13,16 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
-import android.widget.DatePicker.OnDateChangedListener;
-import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 public class SummTFrameActivity extends Activity implements OnItemSelectedListener {
 
 	public static String TFRAME;
-	private Calendar startDate;
-	private Calendar endDate;
+	private Calendar startDate, custStart;
+	private Calendar endDate, custEnd;
 	private Bundle allInfo = new Bundle();
-	private int tFrame = -1;
+	String firstChoice;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +76,7 @@ public class SummTFrameActivity extends Activity implements OnItemSelectedListen
 		Log.i("SummTFrame", "Bitch is running correctly");		
 
 		tFrameSpinner.setOnItemSelectedListener(this);
+
 	}
 
 
@@ -113,24 +107,24 @@ public class SummTFrameActivity extends Activity implements OnItemSelectedListen
 	@Override
 	public void onItemSelected(AdapterView<?> parent, View view, int pos,
 			long id) {
-		String choice = (String) parent.getItemAtPosition(pos);
+		firstChoice = (String) parent.getItemAtPosition(pos);
 		startDate = Calendar.getInstance();
 		endDate = Calendar.getInstance();
 		
 		
-		if(choice == "Nothing Selected") {
+		if(firstChoice == "Nothing Selected") {
 			onNothingSelected(parent);
 		}
 		
-		else if(choice == "Last 7 Days"){
+		else if(firstChoice == "Last 7 Days"){
 			endDate.add(Calendar.DATE, -7);
 			Log.i("SummTFrame", "You selected something motha titmonger!!7");
 		}
-		else if(choice == "Last 14 Days"){
+		else if(firstChoice == "Last 14 Days"){
 			endDate.add(Calendar.DATE, -14);
 			Log.i("SummTFrame", "You selected something motha titmonger!!14");
 		}
-		else if(choice == "Last 30 Days"){
+		else if(firstChoice == "Last 30 Days"){
 			endDate.add(Calendar.DATE, -30);
 			Log.i("SummTFrame", "You selected something motha titmonger!!30");
 		}
@@ -143,39 +137,29 @@ public class SummTFrameActivity extends Activity implements OnItemSelectedListen
 
 	@Override
 	public void onNothingSelected(AdapterView<?> parent) {
+		
+	}
+	
+	public void toNextScreen(View view){
 		DatePicker start = (DatePicker) findViewById(R.id.startDate);
 		DatePicker end = (DatePicker) findViewById(R.id.endDate);
 		
 		startDate.set(start.getYear(), start.getMonth(), start.getDayOfMonth());
 		endDate.set(end.getYear(), end.getMonth(), end.getDayOfMonth());
-		Log.i("SummTFrame","Used datepicker");
-	}
-
-	/**
-	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
-	public void tFrameTapped(View view){
-		int id = view.getId();
-
-		switch(id){
-
-		case R.id.last_7:
-			TFRAME = 7;
-
-		case R.id.last_14:
-			TFRAME = 14;
-
-		case R.id.last_30:
-			TFRAME = 30;
-
-		case R.id.pick_date:
-			PopupMenu pickDates = new PopupMenu(this, view);
-		    MenuInflater inflater = pickDates.getMenuInflater();
-		    inflater.inflate(R.menu.summ_tframe, pickDates.getMenu());
-		    pickDates.show();
-
-		break;
+		custStart = startDate;
+		custEnd = endDate;
+		Log.i("SummTFrame","button clicked and processing data");
+		allInfo.putSerializable("start", startDate);
+		allInfo.putSerializable("end", endDate);
+		if((firstChoice != "Nothing Selected" && !(custStart.equals(custEnd))) || 
+				(firstChoice == "Nothing Selected" && startDate.equals(endDate))){
+			Toast.makeText(this, "Only select one option", Toast.LENGTH_LONG).show();
+		}
+		else{
+			Intent toLastScreen = new Intent(this, MainSummActivity.class);
+			toLastScreen.putExtras(allInfo);
+			startActivity(toLastScreen);
 		}
 	}
-	 */
 
 }
