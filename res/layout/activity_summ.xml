@@ -19,61 +19,68 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textSize="15sp" />
 
-    <CheckBox android:id="@+id/heart_rate"
+    <CheckBox
+        android:id="@+id/heart_rate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/heart_rate"
-        android:onClick="onOpSel"/>
-    
-    <CheckBox android:id="@+id/blood_pressure"
+        android:onClick="onOpSel"
+        android:text="@string/heart_rate" />
+
+    <CheckBox
+        android:id="@+id/blood_pressure"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/blood_pressure"
-        android:onClick="onOpSel"/>
-    
-    <CheckBox android:id="@+id/pulse_oxygen"
+        android:onClick="onOpSel"
+        android:text="@string/blood_pressure" />
+
+    <CheckBox
+        android:id="@+id/pulse_oxygen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/pulse_oxygen"
-        android:onClick="onOpSel"/>
-    
-	<CheckBox android:id="@+id/feeding_time"
+        android:onClick="onOpSel"
+        android:text="@string/pulse_oxygen" />
+
+    <CheckBox
+        android:id="@+id/feeding_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/feeding_time"
-        android:onClick="onOpSel"/>
-    
-	<CheckBox android:id="@+id/feeding_amount"
+        android:onClick="onOpSel"
+        android:text="@string/feeding_time" />
+
+    <CheckBox
+        android:id="@+id/feeding_amount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/feeding_amount"
-        android:onClick="onOpSel"/>
-	
-	<CheckBox android:id="@+id/weight"
+        android:onClick="onOpSel"
+        android:text="@string/feeding_amount" />
+
+    <CheckBox
+        android:id="@+id/weight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/weight"
-        android:onClick="onOpSel"/>
-	
-	<CheckBox android:id="@+id/medication_time"
+        android:onClick="onOpSel"
+        android:text="@string/weight" />
+
+    <CheckBox
+        android:id="@+id/medication_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/medication_time"
-        android:onClick="onOpSel"/>
-	
-	<CheckBox
-	    android:id="@+id/medication_amount"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:onClick="onOpSel"
-	    android:text="@string/medication_amount" />
-	
-	<Button
-	    android:id="@+id/summ_sel"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:layout_gravity="end"
-	    android:onClick="buttonClicked"
-	    android:text="@string/next" />
+        android:onClick="onOpSel"
+        android:text="@string/medication_time" />
+
+    <CheckBox
+        android:id="@+id/medication_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onOpSel"
+        android:text="@string/medication_amount" />
+
+    <Button
+        android:id="@+id/summ_sel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:onClick="buttonClicked"
+        android:text="@string/next" />
 
 </LinearLayout>
