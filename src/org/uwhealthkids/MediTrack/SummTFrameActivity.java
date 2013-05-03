@@ -56,6 +56,7 @@ public class SummTFrameActivity extends Activity implements OnItemSelectedListen
 		 */
 		//-----------------------------------------------------------
 		Spinner tFrameSpinner = (Spinner) findViewById(R.id.pick_tframe);
+
 		
 		ArrayList<String> values = new ArrayList<String>();
 		values.add("Last 7 Days");
@@ -70,7 +71,8 @@ public class SummTFrameActivity extends Activity implements OnItemSelectedListen
 		tFrameSpinner.setAdapter(adapter);
 		Log.i("SummTFrame", "Bitch is running correctly");		
 		
-	   
+		tFrameSpinner.setSelected(false);
+		tFrameSpinner.setOnItemSelectedListener(this);
 	}
 
 
@@ -102,15 +104,19 @@ public class SummTFrameActivity extends Activity implements OnItemSelectedListen
 	public void onItemSelected(AdapterView<?> parent, View view, int pos,
 			long id) {
 		String choice = (String) parent.getItemAtPosition(pos);
+		startDate = Calendar.getInstance();
 		endDate = Calendar.getInstance();
 		if(choice == "Last 7 Days"){
 			endDate.add(Calendar.DATE, -7);
+			Log.i("SummTFrame", "You selected something motha titmonger!!7");
 		}
 		else if(choice == "Last 14 Days"){
 			endDate.add(Calendar.DATE, -14);
+			Log.i("SummTFrame", "You selected something motha titmonger!!14");
 		}
 		else if(choice == "Last 30 Days"){
 			endDate.add(Calendar.DATE, -30);
+			Log.i("SummTFrame", "You selected something motha titmonger!!30");
 		}
 		
 	}
@@ -118,8 +124,12 @@ public class SummTFrameActivity extends Activity implements OnItemSelectedListen
 
 	@Override
 	public void onNothingSelected(AdapterView<?> parent) {
-		// TODO Auto-generated method stub
+		DatePicker start = (DatePicker) findViewById(R.id.startDate);
+		DatePicker end = (DatePicker) findViewById(R.id.endDate);
 		
+		startDate.set(start.getYear(), start.getMonth(), start.getDayOfMonth());
+		endDate.set(end.getYear(), end.getMonth(), end.getDayOfMonth());
+		Log.i("SummTFrame","Used datepicker");
 	}
 
 	/**
