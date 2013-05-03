@@ -28,10 +28,11 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 
 		Parse.initialize(this, "Zx2IAp6TTPyM5UYRCr1Q4Q0GD0RyS0IDLzTm0aH0", "Dwj8peVWshOTpzos0Qae9yOBnhmZIMIxv4kJ6oTm");
-    	ParseQuery query = new ParseQuery("Baby");
-		query.setCachePolicy(ParseQuery.CachePolicy.CACHE_ELSE_NETWORK);
-    	query.whereEqualTo("objectId", "KvqFGj101E");
-    	query.findInBackground(new FindCallback() {
+    	// get a default baby for testing purposes
+		ParseQuery babyQuery = new ParseQuery("Baby");
+		babyQuery.setCachePolicy(ParseQuery.CachePolicy.CACHE_ELSE_NETWORK);
+    	babyQuery.whereEqualTo("objectId", "KvqFGj101E");
+    	babyQuery.findInBackground(new FindCallback() {
 			@Override
 			public void done(List<ParseObject> objects, ParseException e) {
 				if (e == null) {
@@ -47,6 +48,28 @@ public class MainActivity extends Activity {
 				}
 			}
     	});
+
+    	// get a default user for user for testing purposes
+    	ParseQuery query = new ParseQuery("_User");
+		query.setCachePolicy(ParseQuery.CachePolicy.CACHE_ELSE_NETWORK);
+    	query.whereEqualTo("objectId", "aP36gawCYz");
+    	query.findInBackground(new FindCallback() {
+			@Override
+			public void done(List<ParseObject> objects, ParseException e) {
+				if (e == null) {
+					if (objects.size() == 1) {
+						CustomApplication.getInstance().setCurrUser(objects.get(0));
+					}
+					else {
+						Log.i("PatientActivity", "why the hell do I get more than 1 user");
+					}
+				}
+				else {
+					Log.i("PatientActivity", "error fetching user");
+				}
+			}
+    	});
+
 	}
 
 	@Override

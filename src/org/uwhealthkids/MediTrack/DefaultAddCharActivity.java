@@ -18,7 +18,7 @@ public class DefaultAddCharActivity extends AddActivity {
 		setContentView(layouts[id]);
 	}
 	
-	// Called when the user touches the button
+	// Called when the user touches the save button
 	public void saveChar(View view) {
 		
 	}
