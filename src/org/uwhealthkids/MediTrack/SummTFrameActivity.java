@@ -38,8 +38,8 @@ public class SummTFrameActivity extends Activity implements OnItemSelectedListen
 	    Bundle selections = intent.getExtras();
 	    Log.i("SummTFrame", "Ahh I see what's happening here");
 	    if(selections != null) {
-	    	allInfo.putIntegerArrayList("summSelections",
-	    			selections.getIntegerArrayList("summSelections"));
+	    	allInfo.putStringArrayList("summSelections",
+	    			selections.getStringArrayList("summSelections"));
 	    	//Log.i("SummTFrame", "past the bundling code");
 	    }
     	Log.i("SummTFrame", "past the bundling code");
@@ -117,49 +117,74 @@ public class SummTFrameActivity extends Activity implements OnItemSelectedListen
 		}
 		
 		else if(firstChoice == "Last 7 Days"){
-			endDate.add(Calendar.DATE, -7);
+			endDate.add(Calendar.DAY_OF_MONTH, -7);
 			Log.i("SummTFrame", "You selected something motha titmonger!!7");
 		}
 		else if(firstChoice == "Last 14 Days"){
-			endDate.add(Calendar.DATE, -14);
+			endDate.add(Calendar.DAY_OF_MONTH, -14);
 			Log.i("SummTFrame", "You selected something motha titmonger!!14");
 		}
 		else if(firstChoice == "Last 30 Days"){
-			endDate.add(Calendar.DATE, -30);
+			endDate.add(Calendar.DAY_OF_MONTH, -30);
 			Log.i("SummTFrame", "You selected something motha titmonger!!30");
 		}
 		
-		allInfo.putSerializable("start", startDate);
-		allInfo.putSerializable("end", endDate);
+		//allInfo.putSerializable("start", startDate);
+		//allInfo.putSerializable("end", endDate);
 		
 	}
 
 
 	@Override
 	public void onNothingSelected(AdapterView<?> parent) {
-		
+		startDate = Calendar.getInstance();
+		endDate = Calendar.getInstance();
 	}
 	
 	public void toNextScreen(View view){
 		DatePicker start = (DatePicker) findViewById(R.id.startDate);
 		DatePicker end = (DatePicker) findViewById(R.id.endDate);
+		Log.i("SummTFrame", "created just the datepickers");
+		custStart = Calendar.getInstance();
+		custEnd = Calendar.getInstance();
 		
-		startDate.set(start.getYear(), start.getMonth(), start.getDayOfMonth());
-		endDate.set(end.getYear(), end.getMonth(), end.getDayOfMonth());
-		custStart = startDate;
-		custEnd = endDate;
+		custStart.set(start.getYear(), start.getMonth(), start.getDayOfMonth());
+		custEnd.set(end.getYear(), end.getMonth(), end.getDayOfMonth());
+		Log.i("SummTFrame", "set custom dates");
+		if(custStart.compareTo(custEnd) != 0){
+			startDate = custStart;
+			endDate = custEnd;
+		}
+		
 		Log.i("SummTFrame","button clicked and processing data");
-		allInfo.putSerializable("start", startDate);
-		allInfo.putSerializable("end", endDate);
-		if((firstChoice != "Nothing Selected" && !(custStart.equals(custEnd))) || 
-				(firstChoice == "Nothing Selected" && startDate.equals(endDate))){
+		if((firstChoice != "Nothing Selected" && (custStart.compareTo(custEnd) != 0)) || 
+				(firstChoice == "Nothing Selected" && (custStart.compareTo(custEnd) == 0))){
 			Toast.makeText(this, "Only select one option", Toast.LENGTH_LONG).show();
 		}
+		
+		else if(custStart.compareTo(custEnd) > 0){
+			Toast.makeText(this, "The end date must be after the start date",
+					Toast.LENGTH_LONG).show();
+		}
 		else{
+			allInfo.putSerializable("start", startDate);
+			allInfo.putSerializable("end", endDate);
 			Intent toLastScreen = new Intent(this, MainSummActivity.class);
 			toLastScreen.putExtras(allInfo);
 			startActivity(toLastScreen);
 		}
 	}
-
+	
+	/**
+	public void resetDatePickers(View view){
+		DatePicker start = (DatePicker) findViewById(R.id.startDate);
+		DatePicker end = (DatePicker) findViewById(R.id.endDate);
+		Log.i("SummTFrame", "about to reset date picker");
+		start.updateDate(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), 
+				Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
+		end.updateDate(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), 
+				Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
+		Log.i("SummTFrame", "reset the picker!");
+	}
+	*/
 }

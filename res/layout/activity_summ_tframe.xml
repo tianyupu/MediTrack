@@ -74,4 +74,14 @@
         android:text="@string/view_summary"
         android:onClick="toNextScreen" />
 
+    <!-- 
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/endDate"
+        android:text="@string/reset"
+        android:onClick="resetDatePickers" />
+	 -->
 </RelativeLayout>
