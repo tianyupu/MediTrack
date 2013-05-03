@@ -28,7 +28,8 @@ public class ViewActivity extends Activity {
 	private String babyId;
 	private String charId;
 	
-	private List<ParseObject> recordList;
+	private FindCallback f;
+	
 
 	
 	@SuppressLint("NewApi")
@@ -43,7 +44,7 @@ public class ViewActivity extends Activity {
     	datePickerFirst = (DatePicker) findViewById(R.id.datePicker_first);
     	datePickerLast = (DatePicker) findViewById(R.id.datePicker_last);	
     	
-    	recordList = new ArrayList<ParseObject>();
+    	//recordList = new ArrayList<ParseObject>();
     	
     	DisplayMetrics metrics = new DisplayMetrics();
     	getWindowManager().getDefaultDisplay().getMetrics(metrics);
@@ -55,18 +56,7 @@ public class ViewActivity extends Activity {
     		datePickerLast.setCalendarViewShown(false);
     	} 
     	
-		ParseQuery query = new ParseQuery("Record");
-		query.whereEqualTo( "" /*baby field in Parse*/, babyId);
-		query.whereEqualTo( "" /*char field in Parse*/, charId);
-		query.findInBackground(new FindCallback() {
-		    public void done(List<ParseObject>tempList, ParseException e) {
-		        if (e == null) {
-		            recordList = tempList;
-		        } else {
-		            //do nothing
-		        }
-		    }
-		});
+
 	}
 
 	@Override
@@ -88,19 +78,19 @@ public class ViewActivity extends Activity {
 		ArrayList<Calendar> calArr = new ArrayList<Calendar>();
 		ArrayList<Integer> valOne = new ArrayList<Integer>();
 		ArrayList<Integer> valTwo = new ArrayList<Integer>();
-		Iterator<ParseObject> iter = recordList.iterator();
-		while(iter.hasNext()) {
-			ParseObject p = iter.next();
-			valOne.add(p.getInt("valueOne"));
-			valTwo.add(p.getInt("valueTwo"));
-			Calendar cal = Calendar.getInstance();
-			cal.setTime(p.getDate("timestamp"));
-			calArr.add(cal);
-		}
+		//Iterator<ParseObject> iter = recordList.iterator();
+		//while(iter.hasNext()) {
+			//ParseObject p = iter.next();
+			//valOne.add(p.getInt("valueOne"));
+			//valTwo.add(p.getInt("valueTwo"));
+			//Calendar cal = Calendar.getInstance();
+			//cal.setTime(p.getDate("timestamp"));
+			//calArr.add(cal);
+		//}
 		
-		intent.putExtra("valOneList", valOne);
-		intent.putExtra("valTwoList", valTwo);
-		intent.putExtra("dateList", calArr);
+		//intent.putExtra("valOneList", valOne);
+		//intent.putExtra("valTwoList", valTwo);
+		//intent.putExtra("dateList", calArr);
 		
 		startActivity(intent);
 	}
@@ -114,17 +104,18 @@ public class ViewActivity extends Activity {
 		intent.putExtra("firstMonth", datePickerFirst.getMonth());
 		intent.putExtra("firstDay", datePickerFirst.getDayOfMonth());
 		
-		ArrayList<String> stringsList = new ArrayList<String>();
-		Iterator<ParseObject> iter = recordList.iterator();
-		while(iter.hasNext()) {
-			ParseObject p = iter.next();
-			String temp = p.getDate("timestamp").getMonth() + "/" + 
-					p.getDate("timestamp").getDate() + 
-					p.getInt("valueOne") + " " + p.getInt("valueTwo");
-			stringsList.add(temp);
-		}
 		
-		intent.putExtra("stringsList", stringsList);
+//		ArrayList<String> stringsList = new ArrayList<String>();
+//		Iterator<ParseObject> iter = recordList.iterator();
+//		while(iter.hasNext()) {
+//			ParseObject p = iter.next();
+//			String temp = p.getDate("timestamp").getMonth() + "/" + 
+//					p.getDate("timestamp").getDate() + 
+//					p.getInt("valueOne") + " " + p.getInt("valueTwo");
+//			stringsList.add(temp);
+//		}
+		
+		//intent.putStringArrayListExtra("stringsList", stringsList);
 		
 		startActivity(intent);
 	}
