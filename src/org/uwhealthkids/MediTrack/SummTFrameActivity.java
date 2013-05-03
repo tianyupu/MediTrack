@@ -117,6 +117,7 @@ public class SummTFrameActivity extends Activity implements OnItemSelectedListen
 		startDate = Calendar.getInstance();
 		endDate = Calendar.getInstance();
 		
+		
 		if(choice == "Nothing Selected") {
 			onNothingSelected(parent);
 		}
@@ -133,6 +134,9 @@ public class SummTFrameActivity extends Activity implements OnItemSelectedListen
 			endDate.add(Calendar.DATE, -30);
 			Log.i("SummTFrame", "You selected something motha titmonger!!30");
 		}
+		
+		allInfo.putSerializable("start", startDate);
+		allInfo.putSerializable("end", endDate);
 		
 	}
 
