@@ -1,7 +1,5 @@
 package org.uwhealthkids.MediTrack;
 
-import com.parse.Parse;
-
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,16 +13,21 @@ import android.content.Context;
 import android.content.Intent;
 
 public class AddActivity extends Activity {
-	protected Integer[] layouts = {
+	protected static Integer[] layouts = {
 			R.layout.add_heartrate, R.layout.add_bloodpressure,
 			R.layout.add_pulseoxygen, R.layout.add_feedings,
 			R.layout.add_weight, R.layout.add_medication
 	};
+	public final static String CHAR_ID_MEDICATION = "VxapkUMVwy";
+	public final static String CHAR_ID_WEIGHT = "j1ikY1U3st";
+	public final static String CHAR_ID_FEEDING = "2Ibm6va7I7";
+	public final static String CHAR_ID_HEARTRATE = "lutsUGHsug";
+	public final static String CHAR_ID_PULSEOXYGEN = "yqIvxyTqDk";
+	public final static String CHAR_ID_BLOODPRESSURE = "pQ4t2eh67w";
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		Parse.initialize(this, "Zx2IAp6TTPyM5UYRCr1Q4Q0GD0RyS0IDLzTm0aH0", "Dwj8peVWshOTpzos0Qae9yOBnhmZIMIxv4kJ6oTm");
 		setContentView(R.layout.activity_add);
 		
 		GridView gridView = (GridView) findViewById(R.id.addGridView);
