@@ -1,5 +1,7 @@
 package org.uwhealthkids.MediTrack;
 
+import com.parse.Parse;
+
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +24,7 @@ public class AddActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		Parse.initialize(this, "Zx2IAp6TTPyM5UYRCr1Q4Q0GD0RyS0IDLzTm0aH0", "Dwj8peVWshOTpzos0Qae9yOBnhmZIMIxv4kJ6oTm");
 		setContentView(R.layout.activity_add);
 		
 		GridView gridView = (GridView) findViewById(R.id.addGridView);

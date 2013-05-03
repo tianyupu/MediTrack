@@ -21,6 +21,7 @@ import android.widget.Spinner;
 public class MedicationAddActivity extends AddActivity {
 	public ArrayList<String> medicationNames = new ArrayList<String>();
 	public ArrayAdapter<String> adapter;
+	public ArrayList<ParseObject> medicationObjs = new ArrayList<ParseObject>();
 	
 	public void onCreate(Bundle savedBundleInstance) {
 		super.onCreate(savedBundleInstance);
@@ -46,6 +47,7 @@ public class MedicationAddActivity extends AddActivity {
 						String name = obj.getString("name");
 						if (!medicationNames.contains(name)) {
 							medicationNames.add(name);
+							medicationObjs.add(obj);
 						}
 					}
 					adapter.notifyDataSetChanged();
@@ -59,6 +61,15 @@ public class MedicationAddActivity extends AddActivity {
 			public void onItemSelected(AdapterView<?> parent, View view,
 					int position, long id) {
 				Log.i("MedicationAddActivity", "selected something");
+				Log.i("MedicationAddActivity", parent.getItemAtPosition(position).toString());
+				/*
+				ParseObject selectedObj = medicationObjs.get(position);
+				ParseObject testRecord = new ParseObject("Record");
+				testRecord.put("notes", "testing");
+				testRecord.put("medication", selectedObj);
+				testRecord.saveInBackground();
+				Log.i("MedicationAddActivity", "added test record to parse.com");
+				*/
 			}
 
 			@Override
