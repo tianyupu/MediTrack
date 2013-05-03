@@ -44,6 +44,9 @@ public class AddActivity extends Activity {
 				else if (layouts[arg2] == R.layout.add_medication) {
 					i = new Intent(CustomApplication.getInstance(), MedicationAddActivity.class);
 				}
+				else if (layouts[arg2] == R.layout.add_feedings) {
+					i = new Intent(CustomApplication.getInstance(), FeedingAddActivity.class);
+				}
 				else {
 					i = new Intent(CustomApplication.getInstance(), DefaultAddCharActivity.class);
 				}

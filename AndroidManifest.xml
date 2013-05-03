@@ -66,6 +66,7 @@
             android:name="org.uwhealthkids.MediTrack.MainSummActivity"
             android:label="@string/title_activity_main_summ" >
         </activity>
+        <activity android:name="org.uwhealthkids.MediTrack.FeedingAddActivity"></activity>
     </application>
 
 </manifest>
