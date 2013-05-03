@@ -62,14 +62,14 @@ public class MedicationAddActivity extends AddActivity {
 					int position, long id) {
 				Log.i("MedicationAddActivity", "selected something");
 				Log.i("MedicationAddActivity", parent.getItemAtPosition(position).toString());
-				/*
 				ParseObject selectedObj = medicationObjs.get(position);
 				ParseObject testRecord = new ParseObject("Record");
 				testRecord.put("notes", "testing");
 				testRecord.put("medication", selectedObj);
+				ParseObject currBaby = CustomApplication.getInstance().getCurrBaby();
+				testRecord.put("baby", currBaby);
 				testRecord.saveInBackground();
 				Log.i("MedicationAddActivity", "added test record to parse.com");
-				*/
 			}
 
 			@Override
