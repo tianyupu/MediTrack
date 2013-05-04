@@ -28,10 +28,6 @@ public class ViewActivity extends Activity {
 	private String babyId;
 	private String charId;
 	
-	private FindCallback f;
-	
-
-	
 	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -75,9 +71,9 @@ public class ViewActivity extends Activity {
 		intent.putExtra("firstMonth", datePickerFirst.getMonth());
 		intent.putExtra("firstDay", datePickerFirst.getDayOfMonth());
 		
-		ArrayList<Calendar> calArr = new ArrayList<Calendar>();
-		ArrayList<Integer> valOne = new ArrayList<Integer>();
-		ArrayList<Integer> valTwo = new ArrayList<Integer>();
+		//ArrayList<Calendar> calArr = new ArrayList<Calendar>();
+		//ArrayList<Integer> valOne = new ArrayList<Integer>();
+		//ArrayList<Integer> valTwo = new ArrayList<Integer>();
 		//Iterator<ParseObject> iter = recordList.iterator();
 		//while(iter.hasNext()) {
 			//ParseObject p = iter.next();
