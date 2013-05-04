@@ -61,19 +61,6 @@
         android:onClick="onOpSel"
         android:text="@string/weight" />
 
-    <CheckBox
-        android:id="@+id/medication_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onOpSel"
-        android:text="@string/medication_time" />
-
-    <CheckBox
-        android:id="@+id/medication_amount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onOpSel"
-        android:text="@string/medication_amount" />
 
     <Button
         android:id="@+id/summ_sel"

@@ -6,12 +6,10 @@ import java.util.Calendar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import com.parse.Parse;
-import com.parse.ParseAnalytics;
+
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 
 public class MainSummActivity extends Activity {
 
@@ -32,6 +30,13 @@ public class MainSummActivity extends Activity {
 		Integer[] dates = new Integer[] {start.get(Calendar.YEAR), start.get(Calendar.MONTH), start.get(Calendar.DATE),
 				end.get(Calendar.YEAR), end.get(Calendar.MONTH), end.get(Calendar.DATE)};
 		
+		//Parsing Stuff starts below
+		ParseObject baby = CustomApplication.getInstance().getCurrBaby();
+		ParseQuery query = new ParseQuery("Record");
+		query.whereEqualTo("baby", baby.getParseObject("baby"));
+		
+		
+		/**
 		ArrayAdapter<Integer> adapter2 = new ArrayAdapter<Integer>(this, android.R.layout.simple_list_item_1, dates);
 		ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, selections);
 		
@@ -41,7 +46,7 @@ public class MainSummActivity extends Activity {
 		ListView dv = (ListView) findViewById(R.id.secondList);
 		dv.setAdapter(adapter2);
 		Log.i("MainSumm", "Set the adapter");
-		
+		*/
 	}
 
 	@Override

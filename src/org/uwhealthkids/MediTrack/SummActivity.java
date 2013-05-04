@@ -68,12 +68,6 @@ public class SummActivity extends Activity {
 		case R.id.weight:
 			selections.add("Weight");
 			break;
-		case R.id.medication_amount:
-			selections.add("Medication Amount");
-			break;
-		case R.id.medication_time:
-			selections.add("Medication Time");
-			break;
 		default: break;
 		}
 	}
