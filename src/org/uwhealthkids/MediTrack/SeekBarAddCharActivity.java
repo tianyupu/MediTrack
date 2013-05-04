@@ -16,9 +16,9 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 
 public class SeekBarAddCharActivity extends AddActivity {
-	SeekBar seekBar;
-	TextView textView;
-	ParseObject charObj;
+	protected SeekBar seekBar;
+	protected TextView textView;
+	protected ParseObject charObj;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
