@@ -56,23 +56,26 @@ public class SummTFrameActivity extends Activity implements OnItemSelectedListen
 		 */
 		//-----------------------------------------------------------
 		Spinner tFrameSpinner = (Spinner) findViewById(R.id.pick_tframe);
-
+		tFrameSpinner.setOnItemSelectedListener(this);
 		
-		ArrayList<String> values = new ArrayList<String>();
+		/**ArrayList<String> values = new ArrayList<String>();
 		values.add("Last 7 Days");
 		values.add("Last 14 Days");
 		values.add("Last 30 Days");
-		//String[] values = new String[] { "Last 7 Days", "Last 14 Days",
-				//"Last 30 Days"};
+		*/
 		
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(tFrameSpinner.getContext(),
+		String[] values = new String[] { "Last 7 Days", "Last 14 Days",
+				"Last 30 Days"};
+		
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_spinner_item, values);
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		tFrameSpinner.setAdapter(adapter);
 		Log.i("SummTFrame", "Bitch is running correctly");		
 		
-		tFrameSpinner.setSelected(false);
-		tFrameSpinner.setOnItemSelectedListener(this);
+		//tFrameSpinner.setSelected(false);
+
+
 	}
 
 
