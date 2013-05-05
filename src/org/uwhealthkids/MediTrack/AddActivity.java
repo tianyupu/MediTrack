@@ -13,11 +13,17 @@ import android.content.Context;
 import android.content.Intent;
 
 public class AddActivity extends Activity {
-	protected Integer[] layouts = {
+	protected static Integer[] layouts = {
 			R.layout.add_heartrate, R.layout.add_bloodpressure,
 			R.layout.add_pulseoxygen, R.layout.add_feedings,
 			R.layout.add_weight, R.layout.add_medication
 	};
+	public final static String CHAR_ID_MEDICATION = "VxapkUMVwy";
+	public final static String CHAR_ID_WEIGHT = "j1ikY1U3st";
+	public final static String CHAR_ID_FEEDING = "2Ibm6va7I7";
+	public final static String CHAR_ID_HEARTRATE = "lutsUGHsug";
+	public final static String CHAR_ID_PULSEOXYGEN = "yqIvxyTqDk";
+	public final static String CHAR_ID_BLOODPRESSURE = "pQ4t2eh67w";
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -33,13 +39,16 @@ public class AddActivity extends Activity {
 					long arg3) {
 				Intent i;
 				if (layouts[arg2] == R.layout.add_pulseoxygen) {
-					i = new Intent(AddActivity.this, SeekBarAddCharActivity.class);
+					i = new Intent(CustomApplication.getInstance(), SeekBarAddCharActivity.class);
 				}
 				else if (layouts[arg2] == R.layout.add_medication) {
-					i = new Intent(AddActivity.this, MedicationAddActivity.class);
+					i = new Intent(CustomApplication.getInstance(), MedicationAddActivity.class);
+				}
+				else if (layouts[arg2] == R.layout.add_feedings) {
+					i = new Intent(CustomApplication.getInstance(), FeedingAddActivity.class);
 				}
 				else {
-					i = new Intent(AddActivity.this, DefaultAddCharActivity.class);
+					i = new Intent(CustomApplication.getInstance(), DefaultAddCharActivity.class);
 				}
 				i.putExtra("charId", arg2);
 				startActivity(i);

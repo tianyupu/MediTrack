@@ -37,6 +37,8 @@
     <string name="or_pick_own_date">Or pick your own date</string>
     <string name="begin">Start Date</string>
     <string name="end">End Date</string>
+    <string name="view_summary">See Summary</string>
+    <string name="reset">Reset</string>
     <string name="title_activity_view">ViewActivity</string>
     <string name="hello_world">Hello world!</string>
     <string name="patient_add_button">Add</string>
@@ -59,6 +61,11 @@
     <string name="boy">Boy</string>
     <string name="girl">Girl</string>
     <string name="pickDate">Pick Date</string>
+    <string name="title_activity_main_summ">MainSummActivity</string>
+    <string name="doctors">Pick Doctor</string>
+    <string name="noDoc">Skip</string>
+    <string name="confEmail">Confirm Email</string>
+    
     
 
 </resources>
