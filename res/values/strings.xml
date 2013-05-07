@@ -67,6 +67,7 @@
     <string name="confEmail">Confirm Email</string>
     <string name="babyPicture">Upload a baby picture</string>
     
-    
+    <!-- Strings used in preferences.xml -->
+    <string name="prefs_add_baby">Add new baby</string>
 
 </resources>
