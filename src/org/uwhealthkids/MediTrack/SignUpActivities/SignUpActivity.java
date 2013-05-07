@@ -55,9 +55,8 @@ public class SignUpActivity extends Activity{
 					} else {
 						
 						Context context = getApplicationContext();
-						CharSequence text = "Creating User";
 						int duration = Toast.LENGTH_LONG;
-						text = e.getMessage();;
+						CharSequence text = e.getMessage();;
 						Toast toast = Toast.makeText(context, text, duration);
 						toast.show();
 						// Sign up didn't succeed. Look at the ParseException
