@@ -1,6 +1,6 @@
 package org.uwhealthkids.MediTrack;
-import java.util.List;
 
+import java.util.List;
 
 import org.uwhealthkids.MediTrack.SignUpActivities.SignUpActivity;
 import org.uwhealthkids.MediTrack.SignUpActivities.SignUpBaby;
@@ -13,13 +13,13 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
-
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -28,7 +28,7 @@ public class MainActivity extends Activity {
 
 	private EditText usernameEditText;
 	private EditText passwordEditText;
-	private Context here = this;
+	//private Context here = this;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -76,7 +76,6 @@ public class MainActivity extends Activity {
 				}
 			}
 		});
-
 	}
 
 	@Override
@@ -85,12 +84,22 @@ public class MainActivity extends Activity {
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    // Handle item selection
+	    switch (item.getItemId()) {
+	        case R.id.action_settings:
+	        	startActivity(new Intent(this, Preferences.class));
+	        	return true;
+	        default:
+	            return super.onOptionsItemSelected(item);
+	    }
+	}
 
 	public void onSignupButtonClicked(View v) {
-
 		Intent intent = new Intent(this, SignUpActivity.class);
 		startActivity(intent);
-
 	}
 
 	public void onLoginButtonClicked(View v) {
@@ -105,17 +114,23 @@ public class MainActivity extends Activity {
 			public void done(ParseUser user, ParseException e) {
 				if (user != null) {
 					String userId = user.getObjectId();
-					if(hasBaby(userId) == true){
-						Intent intent = new Intent(here, PatientActivity.class);
-						startActivity(intent);;
-					}
-					else{
-						Intent intent = new Intent(here, SignUpBaby.class);
+					if (user.getBoolean("doctor")) {
+						Intent intent = new Intent(CustomApplication.getInstance(), DoctorMainActivity.class);
 						startActivity(intent);
+					}
+					else {
+						if (hasBaby(userId) == true) {
+						Intent intent = new Intent(CustomApplication.getInstance(), PatientActivity.class);
+						startActivity(intent);
+						}
+						else {
+							Intent intent = new Intent(CustomApplication.getInstance(), SignUpBaby.class);
+							startActivity(intent);
+						}
 					}
 
 				} else {
-					Context context = getApplicationContext();
+					Context context = CustomApplication.getInstance();
 					CharSequence text = e.getMessage();
 					int duration = Toast.LENGTH_LONG;
 					Toast toast = Toast.makeText(context, text, duration);
@@ -123,8 +138,6 @@ public class MainActivity extends Activity {
 				}
 			}
 		});
-
-
 	}
 
 	public void onAddButtonClicked(View v) {
@@ -142,7 +155,6 @@ public class MainActivity extends Activity {
 		startActivity(intent);
 	}
 
-
 	/**
 	 * hasBaby method checks if the parent has a baby in the records. 
 	 */
@@ -154,7 +166,6 @@ public class MainActivity extends Activity {
 		//Initializes userObject to null 
 		ParseObject userObject = null;
 		
-		
 		try {
 			//Sets userObject to the object it retrieves from the user quary with the right Id
 			userObject = userquery.get(userId);	
@@ -163,7 +174,6 @@ public class MainActivity extends Activity {
 		}
 		//makes constraint to the the relationship query to only include if user matchs the user object
 		relquery.whereEqualTo("user", userObject);
-		
 		
 		//Initializes boolean to true, assumes there are babies
 		boolean hasBaby = true;
