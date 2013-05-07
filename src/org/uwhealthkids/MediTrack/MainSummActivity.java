@@ -2,12 +2,15 @@ package org.uwhealthkids.MediTrack;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 
+import com.parse.FindCallback;
+import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
@@ -33,7 +36,13 @@ public class MainSummActivity extends Activity {
 		//Parsing Stuff starts below
 		ParseObject baby = CustomApplication.getInstance().getCurrBaby();
 		ParseQuery query = new ParseQuery("Record");
-		query.whereEqualTo("baby", baby.getParseObject("baby"));
+		query.whereEqualTo("baby", baby.getObjectId());
+		query.findInBackground(new FindCallback() {
+			public void done(List<ParseObject> babyList, ParseException e){
+				
+			}
+			
+		});
 		
 		
 		/**
