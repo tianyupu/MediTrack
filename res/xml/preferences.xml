@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+	<EditTextPreference
+	    android:key="pref_feed_goal"
+	    android:persistent="true"
+	    android:title="Change daily feeding goal">
+	</EditTextPreference>
 	<Preference android:title="@string/prefs_add_baby" >
 	    <intent android:action="org.uwhealthkids.MediTrack.SignUpActivities.SignUpBabyInfo" />
 	</Preference>
