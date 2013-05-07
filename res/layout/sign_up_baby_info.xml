@@ -38,6 +38,20 @@
             android:calendarViewShown="false" />
 
         <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/babyPicture"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <ImageButton
+            android:id="@+id/imageButton1"
+            android:layout_width="129dp"
+            android:layout_height="80dp"
+            android:onClick="button1Pressed"
+            android:src="@drawable/baby_pic" />
+	
+        <TextView
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
