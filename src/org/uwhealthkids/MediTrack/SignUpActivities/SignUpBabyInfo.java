@@ -2,6 +2,7 @@ package org.uwhealthkids.MediTrack.SignUpActivities;
 
 
 import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.Calendar;
 
 import org.uwhealthkids.MediTrack.*;
@@ -13,6 +14,7 @@ import com.parse.ParseUser;
 import android.app.Activity;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -30,7 +32,7 @@ import android.widget.TextView;
 
 
 public class SignUpBabyInfo extends Activity{
-
+	private static final int SELECT_PHOTO = 0;
 	TextView textTargetUri;
 	ImageView targetImage;
 	ImageButton buttonLoadImage;
@@ -102,27 +104,30 @@ public class SignUpBabyInfo extends Activity{
 	}
 
 	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		super.onActivityResult(requestCode, resultCode, data); 
-		if (resultCode == RESULT_OK){
-			Uri targetUri = data.getData();
-			textTargetUri.setText(targetUri.toString());
-			Bitmap bitmapa; 
-			Bitmap bitmapb;
-			try {  
-				bitmapa = BitmapFactory.decodeStream(getContentResolver().openInputStream(targetUri));
-				bitmapb = Bitmap.createScaledBitmap (bitmapa,100,100,false);
-				buttonLoadImage.setImageBitmap(bitmapb); 
-			} catch (FileNotFoundException e) {  
-				// TODO Auto-generated catch block  
-				e.printStackTrace(); 
-			}
-		}
+	protected void onActivityResult(int requestCode, int resultCode, Intent imageReturnedIntent) { 
+	    super.onActivityResult(requestCode, resultCode, imageReturnedIntent); 
+
+	    switch(requestCode) { 
+	    case SELECT_PHOTO:
+	        if(resultCode == RESULT_OK){  
+	            Uri selectedImage = imageReturnedIntent.getData();
+	            InputStream imageStream;
+				try {
+					imageStream = getContentResolver().openInputStream(selectedImage);
+					Bitmap yourSelectedImage = BitmapFactory.decodeStream(imageStream);
+					ImageView imageShowing = (ImageView)findViewById(R.id.babyPicImage);
+					imageShowing.setImageBitmap(yourSelectedImage);
+				} catch (FileNotFoundException e) {
+					
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+	        }
+	    }
 	}
+
+
 }
-
-
-
 
 
 
