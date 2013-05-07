@@ -8,6 +8,8 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".ViewActivity" >
 
+    
+    
     <TextView
         android:id="@+id/graphOf"
         android:layout_width="wrap_content"
@@ -53,5 +55,14 @@
         android:layout_alignBottom="@+id/to"
         android:layout_toRightOf="@+id/to"
         android:text=" " />
+
+    <LinearLayout
+        android:id="@+id/graphLinearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/graphOf"
+        android:layout_above="@+id/viewingFrom"
+        android:orientation="vertical" >
+    </LinearLayout>
 
 </RelativeLayout>
