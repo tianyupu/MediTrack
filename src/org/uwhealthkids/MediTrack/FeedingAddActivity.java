@@ -38,7 +38,7 @@ public class FeedingAddActivity extends AddActivity {
 				Calendar cal = Calendar.getInstance();
 				cal.set(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH), timePicker.getCurrentHour(), timePicker.getCurrentMinute());
 				ParseObject testRecord = new ParseObject("Record");
-				testRecord.put("notes", text.getText().toString());
+				testRecord.put("value1", Double.parseDouble(text.getText().toString()));
 				testRecord.put("baby", CustomApplication.getInstance().getCurrBaby());
 				testRecord.put("who_added", CustomApplication.getInstance().getCurrUser());
 				testRecord.put("time", cal.getTime());
