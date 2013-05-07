@@ -1,6 +1,6 @@
 package org.uwhealthkids.MediTrack;
-import java.util.List;
 
+import java.util.List;
 
 import org.uwhealthkids.MediTrack.SignUpActivities.SignUpActivity;
 import org.uwhealthkids.MediTrack.SignUpActivities.SignUpBaby;
@@ -13,13 +13,13 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
-
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -84,6 +84,18 @@ public class MainActivity extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    // Handle item selection
+	    switch (item.getItemId()) {
+	        case R.id.action_settings:
+	        	startActivity(new Intent(this, Preferences.class));
+	        	return true;
+	        default:
+	            return super.onOptionsItemSelected(item);
+	    }
 	}
 
 	public void onSignupButtonClicked(View v) {
