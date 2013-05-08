@@ -58,7 +58,7 @@ public class SignUpBabyInfo extends Activity{
 	public void onDocClicked(View v){
 		createBaby();
 
-		Intent intent = new Intent(this, PatientActivity.class);
+		Intent intent = new Intent(this, SignUpPickDoc.class);
 		startActivity(intent);
 	}
 

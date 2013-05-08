@@ -72,6 +72,7 @@
         <activity android:name="org.uwhealthkids.MediTrack.FeedingAddActivity"></activity>
         <activity android:name="org.uwhealthkids.MediTrack.Preferences"></activity>
         <activity android:name="org.uwhealthkids.MediTrack.ViewActivitySelectDates"></activity>
+        <activity android:name="org.uwhealthkids.MediTrack.SignUpActivities.SignUpPickDoc"> </activity>
     </application>
 
 </manifest>
