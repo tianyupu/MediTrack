@@ -1,5 +1,9 @@
 package org.uwhealthkids.MediTrack;
 
+import com.parse.Parse;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 import android.app.Activity;
@@ -12,10 +16,31 @@ import android.widget.TextView;
 
 public class PatientActivity extends Activity {
 
+	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_patient_main);
+		Parse.initialize(this, "Zx2IAp6TTPyM5UYRCr1Q4Q0GD0RyS0IDLzTm0aH0", "Dwj8peVWshOTpzos0Qae9yOBnhmZIMIxv4kJ6oTm");
+		ParseQuery babyRel = new ParseQuery("BabyUserRel");
+		ParseQuery baby = new ParseQuery("Baby");
+		ParseUser user = ParseUser.getCurrentUser();
+		
+		babyRel.whereEqualTo("user", user);
+		try {
+			ParseObject babyName = babyRel.get("baby");
+			ParseObject babyObj = baby.get(babyName.getObjectId());
+			CustomApplication.getInstance().setCurrBaby(babyObj);
+
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+
+
+		
 		TextView babyNameHolder = (TextView) findViewById(R.id.babyname);
 		String babyName = CustomApplication.getInstance().getCurrBaby().getString("fname");
 		babyName = babyName + " " + CustomApplication.getInstance().getCurrBaby().getString("surname");
