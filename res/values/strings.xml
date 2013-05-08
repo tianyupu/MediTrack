@@ -18,7 +18,7 @@
     <!-- choices of kinds of data to enter in -->
     <string name="heart_rate">Heart Rate</string>
     <string name="blood_pressure">Blood Pressure</string>
-    <string name="pulse_oxygen">Pulse Oxygen</string>
+    <string name="pulse_oxygen">Pulse Oxygen Saturation</string>
     <string name="feeding_time">Feeding Time</string>
     <string name="feeding_amount">Feeding Notes (amount, etc.)</string>
     <string name="weight">Weight</string>

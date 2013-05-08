@@ -57,7 +57,7 @@ public class SummActivity extends Activity {
 			selections.add("Blood Pressure");
 			break;
 		case R.id.pulse_oxygen:
-			selections.add("Pulse Oxygen");
+			selections.add("Pulse Oxygen Saturation");
 			break;
 		case R.id.feeding_time:
 			selections.add("Feeding Time");
