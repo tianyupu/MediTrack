@@ -10,6 +10,7 @@
         android:id="@+id/datePicker_first"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/textView_chooseDates"
         android:layout_centerHorizontal="true" />
     
     <DatePicker
@@ -38,5 +39,13 @@
         android:onClick="onListButtonClicked"
         android:text="List"
         tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/textView_chooseDates"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="Please select start and end dates" />
 
 </RelativeLayout>

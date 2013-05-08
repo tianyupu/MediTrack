@@ -24,6 +24,10 @@ public class ViewActivitySelectDates extends Activity {
 		
 		charid = (String) this.getIntent().getExtras().get("charid");
 		
+		if (charid == "VxapkUMVwy" || charid == "2Ibm6va7I7") {
+			findViewById(R.id.button_graph).setEnabled(false);
+		}
+		
     	datePickerFirst = (DatePicker) findViewById(R.id.datePicker_first);
     	datePickerLast = (DatePicker) findViewById(R.id.datePicker_last);	
     	
