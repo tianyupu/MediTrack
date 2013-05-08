@@ -1,118 +1,103 @@
 package org.uwhealthkids.MediTrack;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Iterator;
-import java.util.List;
-
-import com.parse.FindCallback;
-import com.parse.ParseException;
-import com.parse.ParseObject;
-import com.parse.ParseQuery;
-
 import android.os.Bundle;
-import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.content.Intent;
-import android.util.DisplayMetrics;
-import android.view.Menu;
 import android.view.View;
-import android.widget.Button;
-import android.widget.DatePicker;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
+import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 
 public class ViewActivity extends Activity {
+	protected static Integer[] layouts = {
+		R.layout.add_heartrate, R.layout.add_bloodpressure,
+		R.layout.add_pulseoxygen, R.layout.add_feedings,
+		R.layout.add_weight, R.layout.add_medication
+	};
+	public final static String CHAR_ID_MEDICATION = "VxapkUMVwy";
+	public final static String CHAR_ID_WEIGHT = "j1ikY1U3st";
+	public final static String CHAR_ID_FEEDING = "2Ibm6va7I7";
+	public final static String CHAR_ID_HEARTRATE = "lutsUGHsug";
+	public final static String CHAR_ID_PULSEOXYGEN = "yqIvxyTqDk";
+	public final static String CHAR_ID_BLOODPRESSURE = "pQ4t2eh67w";
 
-	private DatePicker datePickerFirst;
-	private DatePicker datePickerLast;
-	
-	private String babyId;
-	private String charId;
-	
-	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_view);
-		
-        babyId = getIntent().getStringExtra("" /*need babyId passed from other method*/);
-        charId = getIntent().getStringExtra("" /*charId passed from last method*/);
-		
-    	datePickerFirst = (DatePicker) findViewById(R.id.datePicker_first);
-    	datePickerLast = (DatePicker) findViewById(R.id.datePicker_last);	
-    	
-    	//recordList = new ArrayList<ParseObject>();
-    	
-    	DisplayMetrics metrics = new DisplayMetrics();
-    	getWindowManager().getDefaultDisplay().getMetrics(metrics);
-    	int width = metrics.widthPixels;
-    	int height = metrics.heightPixels;
-    	
-    	if (width < 500 && height < 900) {
-    		datePickerFirst.setCalendarViewShown(false);
-    		datePickerLast.setCalendarViewShown(false);
-    	} 
-    	
 
+
+		GridView gridView = (GridView) findViewById(R.id.addGridView);
+		gridView.setAdapter(new ImageAdapter(this));
+
+		gridView.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				Intent i = new Intent(CustomApplication.getInstance(), ViewActivitySelectDates.class);
+				switch(arg2) {
+				case 0:
+					i.putExtra("charid", CHAR_ID_HEARTRATE);
+				case 1:
+					i.putExtra("charid", CHAR_ID_BLOODPRESSURE);
+				case 2:
+					i.putExtra("charid", CHAR_ID_PULSEOXYGEN);
+				case 3:
+					i.putExtra("charid", CHAR_ID_FEEDING);
+				case 4:
+					i.putExtra("charid", CHAR_ID_WEIGHT);
+				case 5:
+					i.putExtra("charid", CHAR_ID_MEDICATION);
+				}
+				startActivity(i);
+			}
+		});
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.view, menu);
-		return true;
-	}
-	
-	public void onGraphButtonClicked(View v) {		
-		
-		Intent intent = new Intent(this, GraphViewActivity.class);
-		intent.putExtra("lastYear", datePickerLast.getYear());
-		intent.putExtra("lastMonth", datePickerLast.getMonth());
-		intent.putExtra("lastDay", datePickerLast.getDayOfMonth());
-		intent.putExtra("firstYear", datePickerFirst.getYear());
-		intent.putExtra("firstMonth", datePickerFirst.getMonth());
-		intent.putExtra("firstDay", datePickerFirst.getDayOfMonth());
-		
-		//ArrayList<Calendar> calArr = new ArrayList<Calendar>();
-		//ArrayList<Integer> valOne = new ArrayList<Integer>();
-		//ArrayList<Integer> valTwo = new ArrayList<Integer>();
-		//Iterator<ParseObject> iter = recordList.iterator();
-		//while(iter.hasNext()) {
-			//ParseObject p = iter.next();
-			//valOne.add(p.getInt("valueOne"));
-			//valTwo.add(p.getInt("valueTwo"));
-			//Calendar cal = Calendar.getInstance();
-			//cal.setTime(p.getDate("timestamp"));
-			//calArr.add(cal);
-		//}
-		
-		//intent.putExtra("valOneList", valOne);
-		//intent.putExtra("valTwoList", valTwo);
-		//intent.putExtra("dateList", calArr);
-		
-		startActivity(intent);
-	}
-	
-	public void onListButtonClicked(View v) {		
-		Intent intent = new Intent(this, ListviewActivity.class);
-		intent.putExtra("lastYear", datePickerLast.getYear());
-		intent.putExtra("lastMonth", datePickerLast.getMonth());
-		intent.putExtra("lastDay", datePickerLast.getDayOfMonth());
-		intent.putExtra("firstYear", datePickerFirst.getYear());
-		intent.putExtra("firstMonth", datePickerFirst.getMonth());
-		intent.putExtra("firstDay", datePickerFirst.getDayOfMonth());
-		
-		
-//		ArrayList<String> stringsList = new ArrayList<String>();
-//		Iterator<ParseObject> iter = recordList.iterator();
-//		while(iter.hasNext()) {
-//			ParseObject p = iter.next();
-//			String temp = p.getDate("timestamp").getMonth() + "/" + 
-//					p.getDate("timestamp").getDate() + 
-//					p.getInt("valueOne") + " " + p.getInt("valueTwo");
-//			stringsList.add(temp);
-//		}
-		
-		//intent.putStringArrayListExtra("stringsList", stringsList);
-		
-		startActivity(intent);
-	}
+	public class ImageAdapter extends BaseAdapter {
+		private Context mContext;
+
+		public ImageAdapter(Context c) {
+			mContext = c;
+		}
+
+		public int getCount() {
+			return mThumbIds.length;
+		}
+
+		public Object getItem(int position) {
+			return mThumbIds[position];
+		}
+
+		@Override
+		public long getItemId(int arg0) {
+			return arg0;
+		}
+
+		@Override
+		public View getView(int arg0, View arg1, ViewGroup arg2) {
+			ImageView imageView;
+			if (arg1 == null) {
+				imageView = new ImageView(mContext);
+				imageView.setLayoutParams(new GridView.LayoutParams(150, 150));
+				imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+				//imageView.setPadding(8, 8, 8, 8);
+			} else {
+				imageView = (ImageView) arg1;
+			}
+
+			imageView.setImageResource(mThumbIds[arg0]);
+			return imageView;
+		}
+
+		private Integer[] mThumbIds = {
+				R.drawable.char0_heartrate, R.drawable.char1_bloodpressure,
+				R.drawable.char2_pulseoxygen, R.drawable.char3_feedings,
+				R.drawable.char4_weight, R.drawable.char5_medication
+		};
+	}    
 }

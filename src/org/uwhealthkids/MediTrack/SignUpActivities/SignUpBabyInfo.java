@@ -1,13 +1,17 @@
 package org.uwhealthkids.MediTrack.SignUpActivities;
 
 
+import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.Calendar;
 
 import org.uwhealthkids.MediTrack.*;
 
 import com.parse.Parse;
+import com.parse.ParseException;
+import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 
@@ -30,12 +34,12 @@ import android.widget.TextView;
 
 
 
-
 public class SignUpBabyInfo extends Activity{
-	private static final int SELECT_PHOTO = 0;
+	private static final int SELECT_PHOTO = 100;
 	TextView textTargetUri;
 	ImageView targetImage;
 	ImageButton buttonLoadImage;
+	ParseFile imageFile;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -54,7 +58,7 @@ public class SignUpBabyInfo extends Activity{
 	public void onDocClicked(View v){
 		createBaby();
 
-		Intent intent = new Intent(this, PatientActivity.class);
+		Intent intent = new Intent(this, SignUpPickDoc.class);
 		startActivity(intent);
 	}
 
@@ -64,6 +68,7 @@ public class SignUpBabyInfo extends Activity{
 
 		// initializes the baby name
 		EditText babyname =  (EditText) findViewById(R.id.babyname);
+		EditText babySurname = (EditText) findViewById(R.id.babysurname);
 		RadioGroup gender = (RadioGroup) findViewById(R.id.genderRadioGroup);
 		RadioButton femaleButton = (RadioButton) findViewById(R.id.girl);
 
@@ -81,8 +86,12 @@ public class SignUpBabyInfo extends Activity{
 		//creates the baby parse object and saves it to the 
 		ParseObject baby = new ParseObject("Baby");
 		baby.put("fname", babyname.getText().toString());
+		baby.put("surname", babySurname.getText().toString());
 		baby.put("dob", cal.getTime());
 		baby.put("female", female);
+		if(imageFile != null){
+			baby.put("baby_pic", imageFile);
+		}
 		baby.saveInBackground();
 
 		//makes the newly created baby the current baby
@@ -100,7 +109,9 @@ public class SignUpBabyInfo extends Activity{
 
 	public void button1Pressed(View v) { 
 		Intent intent = new Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI); 
-		startActivityForResult(intent, 0);
+		startActivityForResult(intent, SELECT_PHOTO);
+	
+	
 	}
 
 	@Override
@@ -111,20 +122,48 @@ public class SignUpBabyInfo extends Activity{
 	    case SELECT_PHOTO:
 	        if(resultCode == RESULT_OK){  
 	            Uri selectedImage = imageReturnedIntent.getData();
+	            InputStream imageStream1;
 	            InputStream imageStream;
+	            byte[] inputData;
+	             
+	            
 				try {
-					imageStream = getContentResolver().openInputStream(selectedImage);
-					Bitmap yourSelectedImage = BitmapFactory.decodeStream(imageStream);
+					imageStream = getContentResolver().openInputStream(selectedImage);		
+					inputData = getBytes(imageStream);
+					imageFile = new ParseFile("babypic.jpg", inputData);
+					imageFile.save();
+					
+					
+					imageStream1 = getContentResolver().openInputStream(selectedImage);		
+					Bitmap yourSelectedImage = BitmapFactory.decodeStream(imageStream1);
 					ImageView imageShowing = (ImageView)findViewById(R.id.babyPicImage);
 					imageShowing.setImageBitmap(yourSelectedImage);
 				} catch (FileNotFoundException e) {
 					
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
 	        }
 	    }
 	}
+	public byte[] getBytes(InputStream inputStream) throws IOException {
+	      ByteArrayOutputStream byteBuffer = new ByteArrayOutputStream();
+	      int bufferSize = 1024;
+	      byte[] buffer = new byte[bufferSize];
+
+	      int len = 0;
+	      while ((len = inputStream.read(buffer)) != -1) {
+	        byteBuffer.write(buffer, 0, len);
+	      }
+	      return byteBuffer.toByteArray();
+	    }
+	
 
 
 }

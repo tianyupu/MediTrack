@@ -2,11 +2,9 @@ package org.uwhealthkids.MediTrack;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
-import com.parse.FindCallback;
 import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -14,29 +12,20 @@ import com.parse.ParseQuery;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.LinearLayout;
 
 public class GraphViewActivity extends Activity {
 
-	private ArrayList<RecordDetailsPojo> pojoArrayList;
 	private List<Float> valuesOneArr;
 	private List<Float> valuesTwoArr;
 	private List<Calendar> calendarArray;
 	
-	private int charid;
-	private int babyid;
-	
 	private Calendar dateFirst;
 	private Calendar dateLast;
 	
-	private DBHelper dbHelper;
-	private SQLiteDatabase sqliteDatabase;
-	
-	@SuppressWarnings({ "unchecked", "static-access" })
+	@SuppressWarnings({ "static-access" })
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
@@ -64,14 +53,14 @@ public class GraphViewActivity extends Activity {
 		ParseQuery babyquery = new ParseQuery("Baby");
 		ParseObject babyObject = null;
 		try {
-			babyObject = babyquery.get("KvqFGj101E");
+			babyObject = babyquery.get(CustomApplication.getInstance().getCurrBaby().toString());
 		} catch (ParseException e1) {
 			Log.d("tag", "could not find baby");
 		}
 		ParseQuery charquery = new ParseQuery("Charact");
 		ParseObject charObject = null;
 		try {
-			charObject = charquery.get("j1ikY1U3st");
+			charObject = charquery.get(this.getIntent().getExtras().getString("charid"));
 		} catch (ParseException e1) {
 			Log.d("tag", "could not find char");
 		}
@@ -111,7 +100,7 @@ public class GraphViewActivity extends Activity {
 			Log.d("error", "unable to get parselist");
 		}
 		
-		Iterator iter = parseList.iterator();
+		Iterator<ParseObject> iter = parseList.iterator();
     	while(iter.hasNext()) {
     		ParseObject po = (ParseObject) iter.next();
     		if (po.getNumber("value1") != null && po.getNumber("value2") != null 

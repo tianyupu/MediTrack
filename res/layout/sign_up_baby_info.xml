@@ -22,6 +22,23 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName" >
+              <requestFocus />
+        </EditText>
+
+        <TextView
+            android:id="@+id/babySurname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/babysurname"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <EditText
+            android:id="@+id/babysurname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName" >
+
         </EditText>
 
         <TextView
@@ -52,22 +69,17 @@
             <ImageView
                 android:id="@+id/babyPicImage"
                 android:layout_width="100dp"
-                android:layout_height="100dp" />
+                android:layout_height="100dp" 
+                android:contentDescription="@string/babyPicture"
+                />
 
             <Button
                 android:id="@+id/babypicbutton"
                 android:layout_width="159dp"
                 android:layout_height="65dp"
                 android:onClick="button1Pressed"
-                android:text="@string/doctors" />
+                android:text="@string/babyPicture" />
         </LinearLayout>
-
-        <ImageButton
-            android:id="@+id/imageButton1"
-            android:layout_width="129dp"
-            android:layout_height="80dp"
-            android:onClick="button1Pressed"
-            android:src="@drawable/baby_pic" />
 
         <TextView
             android:id="@+id/textView3"

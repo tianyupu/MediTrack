@@ -29,13 +29,12 @@ public class DoctorMainActivity extends ListActivity {
 	private ArrayAdapter<String> adapter;
 	private ArrayList<ParseObject> babyObj = new ArrayList<ParseObject>();
 	private ParseObject baby; 
-	ParseQuery babyquery = new ParseQuery("Baby");
+	private ParseQuery babyquery = new ParseQuery("Baby");
 
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		//setContentView(R.layout.activity_doctor_main);
 
 
 		// get current user

@@ -1,8 +1,6 @@
 package org.uwhealthkids.MediTrack;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -10,26 +8,18 @@ import com.parse.*;
 
 import android.os.Bundle;
 import android.app.Activity;
-import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import android.view.Menu;
 import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 
 public class ListviewActivity extends Activity {
 
 	private ListView listView;
 	private ArrayAdapter<String> listAdapter;
-	private ArrayList<RecordDetailsPojo> pojoArrayList;
 	private List<String> stringsList;
 	
-	private List<ParseObject> recordList;
-
-	
-    @Override
+	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listview);
@@ -42,14 +32,14 @@ public class ListviewActivity extends Activity {
 		ParseQuery babyquery = new ParseQuery("Baby");
 		ParseObject babyObject = null;
 		try {
-			babyObject = babyquery.get("KvqFGj101E");
+			babyObject = babyquery.get(CustomApplication.getInstance().getCurrBaby().toString());
 		} catch (ParseException e1) {
 			Log.d("tag", "could not find baby");
 		}
 		ParseQuery charquery = new ParseQuery("Charact");
 		ParseObject charObject = null;
 		try {
-			charObject = charquery.get("j1ikY1U3st");
+			charObject = charquery.get(this.getIntent().getExtras().getString("charid"));
 		} catch (ParseException e1) {
 			Log.d("tag", "could not find char");
 		}
@@ -60,7 +50,7 @@ public class ListviewActivity extends Activity {
 		    @SuppressWarnings("deprecation")
 			public void done(List<ParseObject>tempList, ParseException e) {
 		        if (e == null) {
-		        	Iterator iter = tempList.iterator();
+		        	Iterator<ParseObject> iter = tempList.iterator();
 		        	while(iter.hasNext()) {
 		        		ParseObject po = (ParseObject) iter.next();
 		        		String temp = "";
@@ -87,7 +77,7 @@ public class ListviewActivity extends Activity {
         
         //recordList = new ArrayList<ParseObject>();
         listView = (ListView) findViewById(R.id.listView);
-        pojoArrayList = new ArrayList<RecordDetailsPojo>();
+        //pojoArrayList = new ArrayList<RecordDetailsPojo>();
         //stringsList = getIntent().getStringArrayListExtra("stringsList");
         
         listView.setAdapter(listAdapter);
