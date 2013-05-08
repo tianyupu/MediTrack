@@ -1,11 +1,14 @@
 package org.uwhealthkids.MediTrack;
 
+import com.parse.ParseUser;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 public class PatientActivity extends Activity {
 
@@ -13,6 +16,10 @@ public class PatientActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_patient_main);
+		TextView babyNameHolder = (TextView) findViewById(R.id.babyname);
+		String babyName = CustomApplication.getInstance().getCurrBaby().getString("fname");
+		babyName = babyName + " " + CustomApplication.getInstance().getCurrBaby().getString("surname");
+		babyNameHolder.setText(babyName);
 	}
 
 	public void onAddButtonClicked(View v) {
@@ -50,6 +57,11 @@ public class PatientActivity extends Activity {
 	    switch (item.getItemId()) {
 	        case R.id.action_settings:
 	        	startActivity(new Intent(this, Preferences.class));
+	        	return true;
+	        case R.id.action_logout:
+	        	ParseUser.logOut();
+	        	startActivity(new Intent(this, MainActivity.class));
+	        	finish();
 	        	return true;
 	        default:
 	            return super.onOptionsItemSelected(item);
