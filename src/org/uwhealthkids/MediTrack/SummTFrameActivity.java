@@ -112,12 +112,14 @@ public class SummTFrameActivity extends Activity implements OnItemSelectedListen
 	public void onItemSelected(AdapterView<?> parent, View view, int pos,
 			long id) {
 		firstChoice = (String) parent.getItemAtPosition(pos);
+		Log.i("SummTFrame", firstChoice);
 		startDate = Calendar.getInstance();
 		endDate = Calendar.getInstance();
 		
 		
 		if(firstChoice == "Nothing Selected") {
-			onNothingSelected(parent);
+			//onNothingSelected(parent);
+			Log.i("SummTFrame", firstChoice);
 		}
 		
 		else if(firstChoice == "Last 7 Days"){
