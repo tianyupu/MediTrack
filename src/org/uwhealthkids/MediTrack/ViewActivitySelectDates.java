@@ -31,14 +31,16 @@ public class ViewActivitySelectDates extends Activity {
     	datePickerFirst = (DatePicker) findViewById(R.id.datePicker_first);
     	datePickerLast = (DatePicker) findViewById(R.id.datePicker_last);	
     	
-    	//recordList = new ArrayList<ParseObject>();
+    	//check if user is using a phone or a tablet
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+    	getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+
+        int width = displayMetrics.widthPixels / displayMetrics.densityDpi;
+        int height = displayMetrics.heightPixels / displayMetrics.densityDpi;
+
+        double screenDiagonal = Math.sqrt( width * width + height * height );
     	
-    	DisplayMetrics metrics = new DisplayMetrics();
-    	getWindowManager().getDefaultDisplay().getMetrics(metrics);
-    	int width = metrics.widthPixels;
-    	int height = metrics.heightPixels;
-    	
-    	if (width < 500 && height < 900) {
+    	if (screenDiagonal <= 7.0) {
     		datePickerFirst.setCalendarViewShown(false);
     		datePickerLast.setCalendarViewShown(false);
     	} 
