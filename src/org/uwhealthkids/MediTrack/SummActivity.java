@@ -59,11 +59,8 @@ public class SummActivity extends Activity {
 		case R.id.pulse_oxygen:
 			selections.add("Pulse Oxygen Saturation");
 			break;
-		case R.id.feeding_time:
-			selections.add("Feeding Time");
-			break;
-		case R.id.feeding_amount:
-			selections.add("Feeding amount");
+		case R.id.feeding_goal:
+			selections.add("Feeding Goal");
 			break;
 		case R.id.weight:
 			selections.add("Weight");

@@ -65,7 +65,6 @@ public class SummTFrameActivity extends Activity implements OnItemSelectedListen
 
 		ArrayList<String> values = new ArrayList<String>();
 		values.add("Nothing Selected");
-
 		values.add("Last 7 Days");
 		values.add("Last 14 Days");
 		values.add("Last 30 Days");
@@ -126,15 +125,15 @@ public class SummTFrameActivity extends Activity implements OnItemSelectedListen
 		}
 		
 		else if(firstChoice == "Last 7 Days"){
-			endDate.add(Calendar.DAY_OF_MONTH, -7);
+			startDate.add(Calendar.DAY_OF_MONTH, -7);
 			Log.i("SummTFrame", "You selected something motha titmonger!!7");
 		}
 		else if(firstChoice == "Last 14 Days"){
-			endDate.add(Calendar.DAY_OF_MONTH, -14);
+			startDate.add(Calendar.DAY_OF_MONTH, -14);
 			Log.i("SummTFrame", "You selected something motha titmonger!!14");
 		}
 		else if(firstChoice == "Last 30 Days"){
-			endDate.add(Calendar.DAY_OF_MONTH, -30);
+			startDate.add(Calendar.DAY_OF_MONTH, -30);
 			Log.i("SummTFrame", "You selected something motha titmonger!!30");
 		}
 		
@@ -168,12 +167,12 @@ public class SummTFrameActivity extends Activity implements OnItemSelectedListen
 		Log.i("SummTFrame","button clicked and processing data");
 		if((firstChoice != "Nothing Selected" && (custStart.compareTo(custEnd) != 0)) || 
 				(firstChoice == "Nothing Selected" && (custStart.compareTo(custEnd) == 0))){
-			Toast.makeText(this, "Only select one option", Toast.LENGTH_LONG).show();
+			Toast.makeText(this, "Only select one option", Toast.LENGTH_SHORT).show();
 		}
 		
 		else if(custStart.compareTo(custEnd) > 0){
 			Toast.makeText(this, "The end date must be after the start date",
-					Toast.LENGTH_LONG).show();
+					Toast.LENGTH_SHORT).show();
 		}
 		else{
 			allInfo.putSerializable("start", startDate);

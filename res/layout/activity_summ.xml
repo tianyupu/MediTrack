@@ -41,18 +41,12 @@
         android:text="@string/pulse_oxygen" />
 
     <CheckBox
-        android:id="@+id/feeding_time"
+        android:id="@+id/feeding_goal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="onOpSel"
-        android:text="@string/feeding_time" />
+        android:text="@string/feeding_goal" />
 
-    <CheckBox
-        android:id="@+id/feeding_amount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onOpSel"
-        android:text="@string/feeding_amount" />
 
     <CheckBox
         android:id="@+id/weight"
