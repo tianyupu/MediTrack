@@ -53,7 +53,7 @@ public class GraphViewActivity extends Activity {
 		ParseQuery babyquery = new ParseQuery("Baby");
 		ParseObject babyObject = null;
 		try {
-			babyObject = babyquery.get(CustomApplication.getInstance().getCurrBaby().toString());
+			babyObject = babyquery.get(CustomApplication.getInstance().getCurrBaby().getObjectId().toString());
 		} catch (ParseException e1) {
 			Log.d("tag", "could not find baby");
 		}
@@ -67,6 +67,7 @@ public class GraphViewActivity extends Activity {
 		query.setCachePolicy(ParseQuery.CachePolicy.NETWORK_ELSE_CACHE);
 		query.whereEqualTo( "baby" , babyObject);
 		query.whereEqualTo( "charact" , charObject);
+		query.orderByAscending("time");
 //		query.findInBackground(new FindCallback() {
 //		    @SuppressWarnings("deprecation")
 //			public void done(List<ParseObject>tempList, ParseException e) {

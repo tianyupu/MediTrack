@@ -42,16 +42,22 @@ public class ViewActivity extends Activity {
 				switch(arg2) {
 				case 0:
 					i.putExtra("charid", CHAR_ID_HEARTRATE);
+					break;
 				case 1:
 					i.putExtra("charid", CHAR_ID_BLOODPRESSURE);
+					break;
 				case 2:
 					i.putExtra("charid", CHAR_ID_PULSEOXYGEN);
+					break;
 				case 3:
 					i.putExtra("charid", CHAR_ID_FEEDING);
+					break;
 				case 4:
 					i.putExtra("charid", CHAR_ID_WEIGHT);
+					break;
 				case 5:
 					i.putExtra("charid", CHAR_ID_MEDICATION);
+					break;
 				}
 				startActivity(i);
 			}

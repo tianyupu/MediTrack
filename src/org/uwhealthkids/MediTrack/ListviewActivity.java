@@ -32,7 +32,7 @@ public class ListviewActivity extends Activity {
 		ParseQuery babyquery = new ParseQuery("Baby");
 		ParseObject babyObject = null;
 		try {
-			babyObject = babyquery.get(CustomApplication.getInstance().getCurrBaby().toString());
+			babyObject = babyquery.get(CustomApplication.getInstance().getCurrBaby().getObjectId().toString());
 		} catch (ParseException e1) {
 			Log.d("tag", "could not find baby");
 		}
@@ -43,9 +43,10 @@ public class ListviewActivity extends Activity {
 		} catch (ParseException e1) {
 			Log.d("tag", "could not find char");
 		}
-		query.setCachePolicy(ParseQuery.CachePolicy.CACHE_ELSE_NETWORK);
+		query.setCachePolicy(ParseQuery.CachePolicy.NETWORK_ELSE_CACHE);
 		query.whereEqualTo( "baby" , babyObject);
 		query.whereEqualTo( "charact" , charObject);
+		query.orderByAscending("time");
 		query.findInBackground(new FindCallback() {
 		    @SuppressWarnings("deprecation")
 			public void done(List<ParseObject>tempList, ParseException e) {
@@ -58,10 +59,10 @@ public class ListviewActivity extends Activity {
 		        			temp = temp + po.getNumber("value1").toString();
 		        		}
 		        		if (po.getNumber("value2") != null) {
-		        			temp = temp + po.getNumber("value2").toString();
+		        			temp = temp + " " + po.getNumber("value2").toString();
 		        		}
 		        		if (po.getDate("time") != null) {
-		        			temp = temp + (po.getDate("time").getMonth()+1) + "/" + 
+		        			temp = temp + " " + (po.getDate("time").getMonth()+1) + "/" + 
 			        				po.getDate("time").getDate();
 		        		}
 		        		
