@@ -8,10 +8,11 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.Preference;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -35,7 +36,7 @@ public class MainSummActivity extends Activity {
 		Bundle allInfo = prevIntent.getExtras();
 		ArrayList<String> selections = new ArrayList<String>();
 		final ArrayList<String> summary = new ArrayList<String>();
-		final Bundle thingsToSummarize = null;
+		final Bundle thingsToSummarize = new Bundle();
 
 		selections = allInfo.getStringArrayList("summSelections");
 		//Log.i("MainSumm", selections.get(0));
@@ -68,6 +69,11 @@ public class MainSummActivity extends Activity {
 		//TextView title = (TextView) findViewById(R.id.mainSummTitle);
 		Log.i("MainSumm", "created title textview");
 		//setContentView(R.layout.activity_main_summ);
+		
+		final ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, summary);
+		Log.i("MainSumm", "Made the adapter but didn't set");
+		ListView lv = (ListView) findViewById(R.id.mainList);
+		lv.setAdapter(adapter);
 		
 		
 
@@ -158,6 +164,7 @@ public class MainSummActivity extends Activity {
 				ArrayList<Integer> heartRateArray = new ArrayList<Integer>();
 				ArrayList<int[]> bpArray = new ArrayList<int[]>();
 				boolean firstWeightAdded = false;
+				double[] weights = new double[2];
 				
 				
 				for(int i = 0; i < babyList.size(); i++){
@@ -167,34 +174,37 @@ public class MainSummActivity extends Activity {
 							//(Date) babyList.get(i).getUpdatedAt();
 					double value1 = babyList.get(i).getDouble("value1");
 					double value2 = babyList.get(i).getDouble("value2");
+					String objID = charact.getObjectId();
 					Log.i("MainSumm", babyList.get(i).getObjectId() + " " + 
 							babyList.get(i).getDouble("value1") + " " +
-							charact.getObjectId() + value1 + value2);
+							objID);
 					
-					if(charact.getObjectId().equals(AddActivity.CHAR_ID_WEIGHT)){
+					if(objID.equals(AddActivity.CHAR_ID_WEIGHT)){
+						Log.i("MainSumm", "made it into weight if");
 						if(!firstWeightAdded){
-							thingsToSummarize.putDouble("weight1", value1);
-							//firstWeightAdded = true;
+							weights[0] = value1;
+							firstWeightAdded = true;
 						}
 						else if(firstWeightAdded){
-							thingsToSummarize.putDouble("weight2", value1);
+							weights[1] = value1;
+							Log.i("MainSumm", "adding weight to summarize");
 						}
-						Log.i("MainSumm", "adding weight to summarize");
+						
 					}
-					else if(charact.getObjectId().equals(AddActivity.CHAR_ID_HEARTRATE)){
+					else if(objID.equals(AddActivity.CHAR_ID_HEARTRATE)){
 						heartRateArray.add((int)value1);
 						//thingsToSummarize.putInt("heartrate", (int)value1);
 					}
-					else if(charact.getObjectId().equals(AddActivity.CHAR_ID_PULSEOXYGEN)){
+					else if(objID.equals(AddActivity.CHAR_ID_PULSEOXYGEN)){
 						pulseArray.add(value1);
 						//thingsToSummarize.putDouble("pulseoxygen", value1);
 					}
-					else if(charact.getObjectId().equals(AddActivity.CHAR_ID_BLOODPRESSURE)){
+					else if(objID.equals(AddActivity.CHAR_ID_BLOODPRESSURE)){
 						int[] bp = new int[] {(int) value1, (int) value2};
 						bpArray.add(bp);
 						//thingsToSummarize.putIntArray("bloodpressure", bp);
 					}
-					else if(charact.getObjectId().equals(AddActivity.CHAR_ID_FEEDING)){
+					else if(objID.equals(AddActivity.CHAR_ID_FEEDING)){
 						thingsToSummarize.putInt("feeding", (int) value1);
 					}
 					
@@ -216,10 +226,10 @@ public class MainSummActivity extends Activity {
 				} //end of for
 				Log.i("MainSumm", "made it out of for");
 				String summaryString;
-				if(thingsToSummarize.containsKey("weight1") && thingsToSummarize.containsKey("weight2")){
+				if(weights[0] != 0.0 && weights[1] != 0.0){
 					Log.i("MainSumm", "inside weight if");
 					summaryString = "Baby gained " + 
-							(thingsToSummarize.getInt("weight2") - thingsToSummarize.getInt("weight1"));
+							(weights[1] - weights[0]);
 					Log.i("MainSumm", summaryString);
 					summary.add(summaryString);
 				}
@@ -234,17 +244,17 @@ public class MainSummActivity extends Activity {
 					for(int i = 0; i < heartRateArray.size(); i++){
 						sum += heartRateArray.get(i);
 					}
-					int average = sum / heartRateArray.size();
+					double average = sum / heartRateArray.size();
 					summaryString = "Average heart rate is " + average;
 					summary.add(summaryString);
 				}
 				
 				if(!(pulseArray.isEmpty())) {
-					int sum = 0;
+					double sum = 0;
 					for(int i = 0; i < pulseArray.size(); i++){
 						sum += pulseArray.get(i);
 					}
-					int average = sum / pulseArray.size();
+					double average = sum / pulseArray.size();
 					summaryString = "Average pulse oxygen saturation is " + average;
 					summary.add(summaryString);
 				}
@@ -255,8 +265,8 @@ public class MainSummActivity extends Activity {
 						sum1 += bpArray.get(i)[0];
 						sum2 += bpArray.get(i)[1];
 					}
-					int average1 = sum1 / bpArray.size();
-					int average2 = sum2 / bpArray.size();
+					double average1 = sum1 / bpArray.size();
+					double average2 = sum2 / bpArray.size();
 					summaryString = "Average blood pressure is " + average2 + 
 							"/" + average1;
 					summary.add(summaryString);
@@ -276,6 +286,7 @@ public class MainSummActivity extends Activity {
 					summary.add(summaryString);
 				}
 				Log.i("MainSumm", summary.toString());
+				adapter.notifyDataSetChanged();
 			}
 
 		});
@@ -283,11 +294,8 @@ public class MainSummActivity extends Activity {
 
 		/**
 		ArrayAdapter<Integer> adapter2 = new ArrayAdapter<Integer>(this, android.R.layout.simple_list_item_1, dates);
-		ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, selections);
 
-		Log.i("MainSumm", "Made the adapter but didn't set");
-		ListView lv = (ListView) findViewById(R.id.mainList);
-		lv.setAdapter(adapter);
+
 		ListView dv = (ListView) findViewById(R.id.secondList);
 		dv.setAdapter(adapter2);
 		Log.i("MainSumm", "Set the adapter");
