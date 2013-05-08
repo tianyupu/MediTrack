@@ -69,5 +69,9 @@
     
     <!-- Strings used in preferences.xml -->
     <string name="prefs_add_baby">Add new baby</string>
+    <string-array name="options">
+        <item >View</item>
+        <item >Summary</item>
+    </string-array>
 
 </resources>
