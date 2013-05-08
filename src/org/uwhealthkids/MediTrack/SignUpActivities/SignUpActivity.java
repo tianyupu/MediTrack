@@ -50,6 +50,7 @@ public class SignUpActivity extends Activity{
 				public void done(ParseException e) {
 					//Sign up was successful taken to the log in screen
 					if (e == null) {
+						ParseUser.logOut();
 						Intent intent = new Intent(here,MainActivity.class);
 						startActivity(intent);
 					} else {
@@ -76,7 +77,7 @@ public class SignUpActivity extends Activity{
 		boolean valid = true;
 
 		//Get the editable texts
-		email = (EditText)findViewById(R.id.email);
+		email = (EditText)findViewById(R.id.emailad);
 		confEmail = (EditText) findViewById(R.id.confemail);
 		fname = (EditText)findViewById(R.id.fname);
 		surname = (EditText)findViewById(R.id.surname);

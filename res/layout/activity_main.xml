@@ -3,42 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:gravity="bottom"
     android:orientation="vertical" >
 
-    <EditText
-        android:id="@+id/username_edittext"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:hint="@string/username"
-        android:inputType="text" />
-
-    <EditText
-        android:id="@+id/password_edittext"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/username_edittext"
-        android:layout_centerHorizontal="true"
-        android:hint="@string/password"
-        android:inputType="textPassword"/>
-
-    <Button
-        android:id="@+id/signup_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/password_edittext"
-        android:onClick="onSignupButtonClicked"
-        android:text="@string/signup"/>
-    
-    <Button
-        android:id="@+id/login_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@id/signup_button"
-        android:layout_alignBottom="@id/signup_button"
-        android:layout_toRightOf="@id/signup_button"
-        android:onClick="onLoginButtonClicked"
-        android:text="@string/login" />
 <!--
     <Button
         android:id="@+id/button_add"
@@ -71,5 +38,56 @@
         android:onClick="onViewButtonClicked"
         android:text="View" />
  -->
+
+    <EditText
+        android:id="@+id/password_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/username_edittext"
+        android:ems="10"
+        android:hint="@string/password"
+        android:inputType="textPassword" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="53dp"
+        android:text="Welcome to MediTrack"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <EditText
+        android:id="@+id/username_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView1"
+        android:layout_marginTop="52dp"
+        android:ems="10"
+        android:hint="@string/username"
+        android:inputType="text" />
+
+    <Button
+        android:id="@+id/login_button"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/password_edittext"
+        android:layout_marginTop="38dp"
+        android:onClick="onLoginButtonClicked"
+        android:text="@string/login" />
+
+    <Button
+        android:id="@+id/signup_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/login_button"
+        android:layout_alignBottom="@+id/login_button"
+        android:layout_alignParentLeft="true"
+        android:onClick="onSignupButtonClicked"
+        android:text="@string/signup" />
 
 </RelativeLayout>
