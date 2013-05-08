@@ -1,5 +1,7 @@
 package org.uwhealthkids.MediTrack;
 
+import java.util.List;
+
 import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -13,34 +15,29 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class PatientActivity extends Activity {
-
-	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_patient_main);
 		Parse.initialize(this, "Zx2IAp6TTPyM5UYRCr1Q4Q0GD0RyS0IDLzTm0aH0", "Dwj8peVWshOTpzos0Qae9yOBnhmZIMIxv4kJ6oTm");
+/*
 		ParseQuery babyRel = new ParseQuery("BabyUserRel");
-		ParseQuery baby = new ParseQuery("Baby");
-		ParseUser user = ParseUser.getCurrentUser();
+		ParseObject user = CustomApplication.getInstance().getCurrUser();
 		
 		babyRel.whereEqualTo("user", user);
 		try {
-			ParseObject babyName = babyRel.get("baby");
-			ParseObject babyObj = baby.get(babyName.getObjectId());
-			CustomApplication.getInstance().setCurrBaby(babyObj);
-
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			List<ParseObject> babies = babyRel.find();
+			ParseObject currBaby = babies.get(0);
+			CustomApplication.getInstance().setCurrBaby(currBaby);
+		} catch (ParseException e1) {
+			Toast.makeText(CustomApplication.getInstance(), e1.toString(), Toast.LENGTH_LONG).show();
 		}
-		
-
-
-		
+*/
+				
 		TextView babyNameHolder = (TextView) findViewById(R.id.babyname);
 		String babyName = CustomApplication.getInstance().getCurrBaby().getString("fname");
 		babyName = babyName + " " + CustomApplication.getInstance().getCurrBaby().getString("surname");
