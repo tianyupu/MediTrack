@@ -40,12 +40,10 @@ public class ViewActivitySelectDates extends Activity {
 
         double screenDiagonal = Math.sqrt( width * width + height * height );
     	
-    	if (screenDiagonal <= 7.0) {
+    	if (screenDiagonal <= 4.8) {
     		datePickerFirst.setCalendarViewShown(false);
     		datePickerLast.setCalendarViewShown(false);
     	} 
-    	
-
 	}
 
 	@Override
