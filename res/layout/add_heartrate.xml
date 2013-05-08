@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
@@ -13,18 +13,28 @@
 
     <EditText
         android:id="@+id/char_data"
-        android:layout_width="match_parent"
+        android:layout_width="70sp"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="number" >
+        android:inputType="number"
+        android:layout_below="@id/char_label" >
 
         <requestFocus />
     </EditText>
 
+    <TextView
+        android:id="@+id/heart_rate_units_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/char_data"
+        android:layout_toRightOf="@+id/char_data"
+        android:text="@string/heart_rate_units_label" />
+    
     <Button
         android:id="@+id/save_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/button_save" />
+        android:text="@string/button_save"
+        android:layout_below="@id/char_data" />
 
-</LinearLayout>
+</RelativeLayout>

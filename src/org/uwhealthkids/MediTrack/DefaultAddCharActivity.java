@@ -10,13 +10,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class DefaultAddCharActivity extends AddActivity {
 	protected ParseObject charObj;
 	protected int charId;
+	public static final double LB_TO_KG_CONV_FACTOR = 0.4535;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -28,6 +31,14 @@ public class DefaultAddCharActivity extends AddActivity {
 		charId = id;
 		
 		setContentView(AddActivity.layouts[id]);
+		
+		if (AddActivity.layouts[id] == R.layout.add_weight) {
+			Spinner unitSpinner = (Spinner) findViewById(R.id.weight_units_spinner);
+			ArrayAdapter<CharSequence> unitSpinnerAdapt = 
+					ArrayAdapter.createFromResource(unitSpinner.getContext(), R.array.weight_units_array, android.R.layout.simple_spinner_item);
+			unitSpinnerAdapt.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+			unitSpinner.setAdapter(unitSpinnerAdapt);
+		}
 		
 		Button saveButton = (Button) findViewById(R.id.save_button);
 		saveButton.setOnClickListener(new OnClickListener() {
@@ -44,8 +55,17 @@ public class DefaultAddCharActivity extends AddActivity {
 				query.setCachePolicy(ParseQuery.CachePolicy.CACHE_ELSE_NETWORK);
 				if (AddActivity.layouts[charId] == R.layout.add_heartrate)
 					query.whereEqualTo("objectId", AddActivity.CHAR_ID_HEARTRATE);
-				else if (AddActivity.layouts[charId] == R.layout.add_weight)
+				else if (AddActivity.layouts[charId] == R.layout.add_weight) {
 		    		query.whereEqualTo("objectId", AddActivity.CHAR_ID_WEIGHT);
+		    		Spinner weightUnits = (Spinner) findViewById(R.id.weight_units_spinner);
+		    		String units = weightUnits.getSelectedItem().toString();
+		    		if (units.equals("kg")) { // units in kg, so store as is
+		    			testRecord.put("value1", Double.parseDouble(textView.getText().toString()));
+		    		}
+		    		else { // units in lb, so convert to kg and store
+		    			testRecord.put("value1", LB_TO_KG_CONV_FACTOR * Double.parseDouble(textView.getText().toString()));
+		    		}
+				}
 		    	else if (AddActivity.layouts[charId] == R.layout.add_bloodpressure) {
 		    		query.whereEqualTo("objectId", AddActivity.CHAR_ID_BLOODPRESSURE);
 		    		TextView text2 = (TextView) findViewById(R.id.char_data1);

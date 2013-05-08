@@ -6,7 +6,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -19,6 +21,7 @@ import com.parse.SaveCallback;
 
 public class FeedingAddActivity extends AddActivity {
 	public ParseObject charObj;
+	public static final double OUNCE_TO_ML_CONV_FACTOR = 29.57;
 	
 	public void onCreate(Bundle savedBundleInstance) {
 		super.onCreate(savedBundleInstance);
@@ -28,17 +31,29 @@ public class FeedingAddActivity extends AddActivity {
 		int id = i.getExtras().getInt("charId");
 		setContentView(AddActivity.layouts[id]);
 		
+		Spinner unitSpinner = (Spinner) findViewById(R.id.feedings_units_spinner);
+		ArrayAdapter<CharSequence> unitSpinnerAdapt = 
+				ArrayAdapter.createFromResource(unitSpinner.getContext(), R.array.feeding_units_array, android.R.layout.simple_spinner_item);
+		unitSpinnerAdapt.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		unitSpinner.setAdapter(unitSpinnerAdapt);
+		
 		Button saveButton = (Button) findViewById(R.id.save_button);
 		saveButton.setOnClickListener(new OnClickListener() {
-
 			@Override
 			public void onClick(View arg0) {
 				TimePicker timePicker = (TimePicker) findViewById(R.id.char_data);
 				TextView text = (TextView) findViewById(R.id.char_data1);
+				Spinner unitSpinner = (Spinner) findViewById(R.id.feedings_units_spinner);
 				Calendar cal = Calendar.getInstance();
 				cal.set(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH), timePicker.getCurrentHour(), timePicker.getCurrentMinute());
 				ParseObject testRecord = new ParseObject("Record");
-				testRecord.put("value1", Double.parseDouble(text.getText().toString()));
+				String units = unitSpinner.getSelectedItem().toString();
+				if (units.equals("mL")) { // input is in mL, so save as is
+					testRecord.put("value1", Double.parseDouble(text.getText().toString()));
+				}
+				else { // input is in ounces, so convert to mL
+					testRecord.put("value1", OUNCE_TO_ML_CONV_FACTOR * Double.parseDouble(text.getText().toString()));
+				}
 				testRecord.put("baby", CustomApplication.getInstance().getCurrBaby());
 				testRecord.put("who_added", CustomApplication.getInstance().getCurrUser());
 				testRecord.put("time", cal.getTime());
