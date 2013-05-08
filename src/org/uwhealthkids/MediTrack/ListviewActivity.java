@@ -18,6 +18,7 @@ public class ListviewActivity extends Activity {
 	private ListView listView;
 	private ArrayAdapter<String> listAdapter;
 	private List<String> stringsList;
+	private String units;
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -43,8 +44,9 @@ public class ListviewActivity extends Activity {
 		} catch (ParseException e1) {
 			Log.d("tag", "could not find char");
 		}
+		units = charObject.getString("Unit");
 		query.setCachePolicy(ParseQuery.CachePolicy.NETWORK_ELSE_CACHE);
-		query.whereEqualTo( "baby" , babyObject);
+		query.whereEqualTo( "baby", babyObject);
 		query.whereEqualTo( "charact" , charObject);
 		query.orderByAscending("time");
 		query.findInBackground(new FindCallback() {
@@ -59,7 +61,10 @@ public class ListviewActivity extends Activity {
 		        			temp = temp + po.getNumber("value1").toString();
 		        		}
 		        		if (po.getNumber("value2") != null) {
-		        			temp = temp + " " + po.getNumber("value2").toString();
+		        			temp = temp + "/" + po.getNumber("value2").toString();
+		        		}
+		        		else {
+		        			temp = temp + units;
 		        		}
 		        		if (po.getDate("time") != null) {
 		        			temp = temp + " " + (po.getDate("time").getMonth()+1) + "/" + 
