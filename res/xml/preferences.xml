@@ -6,6 +6,6 @@
 	    android:title="Change daily feeding goal">
 	</EditTextPreference>
 	<Preference android:title="@string/prefs_add_baby" >
-	    <intent android:action="org.uwhealthkids.MediTrack.SignUpActivities.SignUpBabyInfo" />
+	    <intent android:action="org.uwhealthkids.MediTrack.SignUpActivities.SignUpBaby" />
 	</Preference>
 </PreferenceScreen>
