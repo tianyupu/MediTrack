@@ -32,9 +32,26 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
 
 		Parse.initialize(this, "Zx2IAp6TTPyM5UYRCr1Q4Q0GD0RyS0IDLzTm0aH0", "Dwj8peVWshOTpzos0Qae9yOBnhmZIMIxv4kJ6oTm");
+		ParseUser currUser = ParseUser.getCurrentUser();
+		if (currUser != null) {
+			boolean isDoctor = currUser.getBoolean("doctor");
+			CustomApplication.getInstance().setCurrUser(currUser);
+			if (isDoctor) {
+				Intent intent = new Intent(CustomApplication.getInstance(), DoctorMainActivity.class);
+				startActivity(intent);
+			}
+			else {
+				Intent intent = new Intent(CustomApplication.getInstance(), PatientActivity.class);
+				startActivity(intent);
+			}
+			finish();
+		}
+		else {
+			setContentView(R.layout.activity_main);
+		}
+
 		// get a default baby for testing purposes
 		ParseQuery babyQuery = new ParseQuery("Baby");
 		babyQuery.setCachePolicy(ParseQuery.CachePolicy.CACHE_ELSE_NETWORK);
@@ -55,29 +72,8 @@ public class MainActivity extends Activity {
 				}
 			}
 		});
-
-		// get a default user for user for testing purposes
-		ParseQuery query = new ParseQuery("_User");
-		query.setCachePolicy(ParseQuery.CachePolicy.CACHE_ELSE_NETWORK);
-		query.whereEqualTo("objectId", "aP36gawCYz");
-		query.findInBackground(new FindCallback() {
-			@Override
-			public void done(List<ParseObject> objects, ParseException e) {
-				if (e == null) {
-					if (objects.size() == 1) {
-						CustomApplication.getInstance().setCurrUser(objects.get(0));
-					}
-					else {
-						Log.i("PatientActivity", "why the hell do I get more than 1 user");
-					}
-				}
-				else {
-					Log.i("PatientActivity", "error fetching user");
-				}
-			}
-		});
 	}
-
+/*
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -96,6 +92,7 @@ public class MainActivity extends Activity {
 	            return super.onOptionsItemSelected(item);
 	    }
 	}
+*/
 
 	public void onSignupButtonClicked(View v) {
 		Intent intent = new Intent(this, SignUpActivity.class);
@@ -139,7 +136,7 @@ public class MainActivity extends Activity {
 			}
 		});
 	}
-
+/*
 	public void onAddButtonClicked(View v) {
 		Intent intent = new Intent(this, AddActivity.class);
 		startActivity(intent);
@@ -154,7 +151,7 @@ public class MainActivity extends Activity {
 		Intent intent = new Intent(this, SummActivity.class);
 		startActivity(intent);
 	}
-
+*/
 	/**
 	 * hasBaby method checks if the parent has a baby in the records. 
 	 */

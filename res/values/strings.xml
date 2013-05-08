@@ -3,6 +3,7 @@
 
     <string name="app_name">MediTrack</string>
     <string name="action_settings">Settings</string>
+    <string name="action_logout">Logout</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="signup">Sign Up</string>
@@ -69,6 +70,7 @@
     <string name="noDoc">Skip</string>
     <string name="confEmail">Confirm Email</string>
     <string name="babyPicture">Upload a baby picture</string>
+    <string name="docregis">Register as a doctor</string>
 
 
 
@@ -79,8 +81,9 @@
 
 
     <string name="babysurname">Baby\'s Last Name</string>
-     <string name="prefs_add_baby">Add new baby</string>
-
+    
+    <!-- Strings for preferences menu -->
+    <string name="prefs_add_baby">Add new baby</string>
 
 
 </resources>

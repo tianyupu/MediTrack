@@ -51,7 +51,6 @@
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <ImageView
-        
         android:contentDescription="@string/baby_image"
         android:id="@+id/babypic"
         android:layout_width="wrap_content"
