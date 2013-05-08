@@ -11,16 +11,23 @@ import com.parse.ParseQuery;
 import com.parse.Parse;
 import com.parse.SaveCallback;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
+
+import android.content.DialogInterface;
 
 public class MedicationAddActivity extends AddActivity {
 	public ArrayList<String> medicationNames = new ArrayList<String>();
@@ -45,7 +52,7 @@ public class MedicationAddActivity extends AddActivity {
 		
 		// populate the spinner dropdown with medication from the cloud database
 		ParseQuery query = new ParseQuery("Medication");
-		query.setCachePolicy(ParseQuery.CachePolicy.CACHE_ELSE_NETWORK);
+		query.setCachePolicy(ParseQuery.CachePolicy.NETWORK_ELSE_CACHE);
 		query.findInBackground(new FindCallback() {
 			@Override
 			public void done(List<ParseObject> medicationList, ParseException e) {
@@ -57,10 +64,60 @@ public class MedicationAddActivity extends AddActivity {
 							medicationObjs.add(obj);
 						}
 					}
+					medicationNames.add("Add new medication...");
 					adapter.notifyDataSetChanged();
 				} else {
 					Toast.makeText(CustomApplication.getInstance(), "Couldn't establish an Internet connection. Please check your network settings.", Toast.LENGTH_LONG).show();
 				}
+			}
+		});
+		spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+			@Override
+			public void onItemSelected(AdapterView<?> parent, View view,
+					int pos, long id) {
+				String newSelected = (String) parent.getItemAtPosition(pos);
+				if (newSelected.equals("Add new medication...")) {
+					AlertDialog.Builder alert = new AlertDialog.Builder(parent.getContext());
+
+					alert.setTitle("Add new medication");
+					alert.setMessage("Please enter the name of the medication you wish to add.");
+
+					// Set an EditText view to get user input 
+					final EditText input = new EditText(CustomApplication.getInstance());
+					alert.setView(input);
+
+					alert.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int whichButton) {
+					  Editable value = input.getText();
+					  ParseObject newMedication = new ParseObject("Medication");
+					  newMedication.put("name", value.toString());
+					  newMedication.saveEventually(new SaveCallback() {
+							@Override
+							public void done(ParseException e) {
+								Toast.makeText(CustomApplication.getInstance(), "New medication saved successfully", Toast.LENGTH_SHORT).show();
+							}
+						});
+					  medicationNames.remove("Add new medication...");
+					  medicationNames.add(value.toString());
+					  medicationNames.add("Add new medication...");
+					  medicationObjs.add(newMedication);
+					  adapter.notifyDataSetChanged();
+					  Spinner sp = (Spinner) findViewById(R.id.medication_spinner);
+					  sp.setSelection(medicationNames.indexOf(value.toString()));
+					  }
+					});
+					alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+					  public void onClick(DialogInterface dialog, int whichButton) {
+					    // Canceled.
+					  }
+					});
+					alert.show();
+				}
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> parent) {
+				
 			}
 		});
 		
@@ -73,7 +130,12 @@ public class MedicationAddActivity extends AddActivity {
 				TextView text = (TextView) findViewById(R.id.char_data1);
 				Spinner spinner = (Spinner) findViewById(R.id.medication_spinner);
 				int position = spinner.getSelectedItemPosition();
-				ParseObject selectedObj = medicationObjs.get(position);
+				if (position == 0 || position == medicationNames.size()-1) {
+					// the user has selected "Select..." or "Add new medication...", which are not medications
+					Toast.makeText(CustomApplication.getInstance(), "Please select a medication from the list", Toast.LENGTH_LONG).show();
+					return;
+				}
+				ParseObject selectedObj = medicationObjs.get(position-1);
 				Calendar cal = Calendar.getInstance();
 				cal.set(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH), timePicker.getCurrentHour(), timePicker.getCurrentMinute());
 				ParseObject testRecord = new ParseObject("Record");
