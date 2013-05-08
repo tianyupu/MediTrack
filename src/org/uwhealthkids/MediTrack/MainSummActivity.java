@@ -48,6 +48,7 @@ public class MainSummActivity extends Activity {
 		Log.i("MainSumm", "record query set");
 		query.whereEqualTo("baby", baby);
 		
+		//Filter out list to only include selections made on first page
 		ArrayList<ParseObject> constraints = new ArrayList<ParseObject>();
 		for(int i = 0; i < selections.size(); i++){
 			String choice = selections.get(i);
@@ -96,14 +97,26 @@ public class MainSummActivity extends Activity {
 				Log.i("MainSumm", "equal to blood pressure");
 			}
 		}
+		//apply constraints
 		query.whereContainedIn("charact", constraints);
+		query.orderByAscending("updatedAt");
 		
 		query.setCachePolicy(ParseQuery.CachePolicy.NETWORK_ELSE_CACHE);
+		//make list of the parse objects from record
 		query.findInBackground(new FindCallback() {
 			public void done(List<ParseObject> babyList, ParseException e){
-				Log.i("MainSumm", "entered findinbackground done method");				
+				Log.i("MainSumm", "entered findinbackground done method");
+				
 				for(int i = 0; i < babyList.size(); i++){
-					Log.i("MainSumm", babyList.get(i).getObjectId());
+					ParseObject charact = babyList.get(i).getParseObject("charact");
+					Log.i("MainSumm", babyList.get(i).getObjectId() + " " + 
+							babyList.get(i).getDouble("value1") + " " +
+							charact.getObjectId());
+					charact.fetchIfNeededInBackground(new GetCallback() {
+						public void done(ParseObject object, ParseException e) {
+							Log.i("MainSumm", object.getString("name"));
+						}
+					});
 					/**
 					babyList.get(i).fetchIfNeededInBackground(new GetCallback() {
 						public void done(ParseObject object, ParseException e) {
