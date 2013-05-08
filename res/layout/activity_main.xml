@@ -39,7 +39,7 @@
         android:layout_toRightOf="@id/signup_button"
         android:onClick="onLoginButtonClicked"
         android:text="@string/login" />
-
+<!--
     <Button
         android:id="@+id/button_add"
         style="?android:attr/buttonStyleSmall"
@@ -70,5 +70,6 @@
         android:layout_alignBottom="@+id/button_summ"
         android:onClick="onViewButtonClicked"
         android:text="View" />
+ -->
 
 </RelativeLayout>

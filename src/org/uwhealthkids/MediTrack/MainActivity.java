@@ -77,7 +77,7 @@ public class MainActivity extends Activity {
 			}
 		});
 	}
-
+/*
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -96,6 +96,7 @@ public class MainActivity extends Activity {
 	            return super.onOptionsItemSelected(item);
 	    }
 	}
+*/
 
 	public void onSignupButtonClicked(View v) {
 		Intent intent = new Intent(this, SignUpActivity.class);
@@ -139,7 +140,7 @@ public class MainActivity extends Activity {
 			}
 		});
 	}
-
+/*
 	public void onAddButtonClicked(View v) {
 		Intent intent = new Intent(this, AddActivity.class);
 		startActivity(intent);
@@ -154,7 +155,7 @@ public class MainActivity extends Activity {
 		Intent intent = new Intent(this, SummActivity.class);
 		startActivity(intent);
 	}
-
+*/
 	/**
 	 * hasBaby method checks if the parent has a baby in the records. 
 	 */
