@@ -55,7 +55,7 @@
     <string name="baby">My Baby: </string>
     <string name="newRec">Start a record for my baby</string>
     <string name="hasRec">My baby has a record with MediTrack</string>
-    <string name="babyname">&quot;Baby's Name&quot;</string>
+    <string name="babyname">Baby\'s First Name</string>
     <string name="dob">Birthday:</string>
     <string name="gender">Gender:</string>
     <string name="boy">Boy</string>
@@ -66,12 +66,10 @@
     <string name="noDoc">Skip</string>
     <string name="confEmail">Confirm Email</string>
     <string name="babyPicture">Upload a baby picture</string>
+    <string name="babysurname">Baby\'s Last Name</string>
     
     <!-- Strings used in preferences.xml -->
     <string name="prefs_add_baby">Add new baby</string>
-    <string-array name="options">
-        <item >View</item>
-        <item >Summary</item>
-    </string-array>
+
 
 </resources>
