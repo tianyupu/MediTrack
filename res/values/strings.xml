@@ -72,13 +72,10 @@
     <string name="babyPicture">Upload a baby picture</string>
     <string name="docregis">Register as a doctor</string>
 
-
-
     <string-array name="options">
         <item >View</item>
         <item >Summary</item>
     </string-array>
-
 
     <string name="babysurname">Baby\'s Last Name</string>
     
@@ -93,7 +90,6 @@
     
     <!-- Strings for preferences menu -->
     <string name="prefs_add_baby">Add new baby</string>
-
 
 </resources>
 
