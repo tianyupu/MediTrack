@@ -1,10 +1,13 @@
 package org.uwhealthkids.MediTrack.SignUpActivities;
 
 import org.uwhealthkids.MediTrack.AddActivity;
+import org.uwhealthkids.MediTrack.DoctorMainActivity;
 import org.uwhealthkids.MediTrack.PatientActivity;
 import org.uwhealthkids.MediTrack.R;
 import org.uwhealthkids.MediTrack.R.id;
 import org.uwhealthkids.MediTrack.R.layout;
+
+import com.parse.ParseUser;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -26,6 +29,8 @@ public class SignUpBaby extends Activity{
 
 	}
 	public void onNextButtonClicked(View v) {
+		ParseUser currUser = ParseUser.getCurrentUser();
+		
 		RadioButton rd1 = (RadioButton) findViewById(R.id.hasRec);
 		RadioButton rd2 = (RadioButton) findViewById(R.id.newRec);
 		RadioGroup radioBabyGroup;
@@ -36,10 +41,19 @@ public class SignUpBaby extends Activity{
 			Intent intent = new Intent(this, AddActivity.class);
 			startActivity(intent);
 		}
-		if(checkedID == rd2.getId()){
+		else if(checkedID == rd2.getId()){
 			Intent intent = new Intent(this, SignUpBabyInfo.class);
 			startActivity(intent);
 		}
+		else {
+			boolean doctor = true;
+			currUser.put("doctor", doctor);
+			Intent intent = new Intent(this, DoctorMainActivity.class);
+			startActivity(intent);
+			
+			
+		}
+			
 	}
 
 
