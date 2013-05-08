@@ -46,7 +46,7 @@ public class MainSummActivity extends Activity {
 		Log.i("MainSumm", "got past calendar declarations");
 		
 		RelativeLayout layout = (RelativeLayout)findViewById(R.id.mainSummLayout);
-		final TextView title = new TextView(this);
+		final TextView title = (TextView) findViewById(R.id.mainSummTitle);
 		title.setText("Summary for: " + start.get(Calendar.MONTH) + "/" +
 				start.get(Calendar.DATE) + "/" + start.get(Calendar.YEAR) + 
 				" to " + end.get(Calendar.MONTH) + "/" + end.get(Calendar.DATE)
@@ -56,7 +56,7 @@ public class MainSummActivity extends Activity {
 				" to " + end.get(Calendar.MONTH) + "/" + end.get(Calendar.DATE)
 				+ "/" + end.get(Calendar.YEAR));
 
-        final RelativeLayout.LayoutParams params = 
+        /**final RelativeLayout.LayoutParams params = 
                 new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, 
                                                 RelativeLayout.LayoutParams.WRAP_CONTENT);
 
@@ -65,7 +65,7 @@ public class MainSummActivity extends Activity {
             title.setLayoutParams(params);
     		Log.i("MainSumm", "crashing after setlayout");
             layout.addView(title, params);
-
+		*/
 		//TextView title = (TextView) findViewById(R.id.mainSummTitle);
 		Log.i("MainSumm", "created title textview");
 		//setContentView(R.layout.activity_main_summ);
@@ -78,8 +78,8 @@ public class MainSummActivity extends Activity {
 		
 
 
-		Integer[] dates = new Integer[] {start.get(Calendar.YEAR), start.get(Calendar.MONTH), start.get(Calendar.DATE),
-				end.get(Calendar.YEAR), end.get(Calendar.MONTH), end.get(Calendar.DATE)};
+		//Integer[] dates = new Integer[] {start.get(Calendar.YEAR), start.get(Calendar.MONTH), start.get(Calendar.DATE),
+		//		end.get(Calendar.YEAR), end.get(Calendar.MONTH), end.get(Calendar.DATE)};
 
 		//Parsing Stuff starts below		
 

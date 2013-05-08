@@ -17,7 +17,7 @@
         android:layout_centerHorizontal="true" >
     </ListView>
 
-
+-->
     <TextView
         android:id="@+id/mainSummTitle"
         android:layout_width="wrap_content"
@@ -26,12 +26,13 @@
         android:layout_alignParentTop="true"
         android:text="@string/summary"
         android:textAppearance="?android:attr/textAppearanceLarge" />
- -->
+
     <ListView
         android:id="@+id/mainList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentBottom="true" >
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/mainSummTitle" >
 
     </ListView>
 

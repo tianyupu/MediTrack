@@ -29,7 +29,7 @@ public class SummTFrameActivity extends Activity implements OnItemSelectedListen
 		super.onCreate(savedInstanceState);
 		Log.i("SummTFrame","Good for you, you created it");
 		setContentView(R.layout.activity_summ_tframe);
-		Log.i("SummTFrame", "Past setContentView!!!!!!! Fuck yeah!!");
+		Log.i("SummTFrame", "Past setContentView!!");
 		//----------------------------------------------------------
 		//Used to test if information is passed correctly with intent
 		// Get the message from the intent
@@ -79,10 +79,6 @@ public class SummTFrameActivity extends Activity implements OnItemSelectedListen
 		Log.i("SummTFrame", "Bitch is running correctly");		
 		
 		//tFrameSpinner.setSelected(false);
-
-
-
-		tFrameSpinner.setOnItemSelectedListener(this);
 
 
 	}
@@ -145,8 +141,8 @@ public class SummTFrameActivity extends Activity implements OnItemSelectedListen
 
 	@Override
 	public void onNothingSelected(AdapterView<?> parent) {
-		startDate = Calendar.getInstance();
-		endDate = Calendar.getInstance();
+		//startDate = Calendar.getInstance();
+		//endDate = Calendar.getInstance();
 	}
 	
 	public void toNextScreen(View view){
@@ -162,6 +158,7 @@ public class SummTFrameActivity extends Activity implements OnItemSelectedListen
 		if(custStart.compareTo(custEnd) != 0){
 			startDate = custStart;
 			endDate = custEnd;
+			Log.i("SummTFrame", "set cust dates to reg dates");
 		}
 		
 		Log.i("SummTFrame","button clicked and processing data");
@@ -182,6 +179,7 @@ public class SummTFrameActivity extends Activity implements OnItemSelectedListen
 			startActivity(toLastScreen);
 		}
 	}
+	
 	
 	/**
 	public void resetDatePickers(View view){

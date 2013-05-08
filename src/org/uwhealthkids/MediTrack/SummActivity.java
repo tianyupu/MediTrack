@@ -12,7 +12,7 @@ import android.widget.CheckBox;
 
 public class SummActivity extends Activity {
 
-	public static ArrayList<String> selections = new ArrayList<String>();
+	ArrayList<String> selections;
 	public final static String EXTRA_MESSAGE = "org.uwhealthkids.MediTrack.MESSAGE";
 
 
@@ -20,6 +20,7 @@ public class SummActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_summ);
+		selections = new ArrayList<String>();
 	}
 
 
