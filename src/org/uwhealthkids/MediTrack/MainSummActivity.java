@@ -103,7 +103,7 @@ public class MainSummActivity extends Activity {
 			public void done(List<ParseObject> babyList, ParseException e){
 				Log.i("MainSumm", "entered findinbackground done method");				
 				for(int i = 0; i < babyList.size(); i++){
-					Log.i("MainSumm", babyList.get(i).toString());
+					Log.i("MainSumm", babyList.get(i).getObjectId());
 					/**
 					babyList.get(i).fetchIfNeededInBackground(new GetCallback() {
 						public void done(ParseObject object, ParseException e) {

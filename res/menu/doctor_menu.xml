@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item
+        android:id="@+id/doc_menu_view"
+        android:title="@string/patient_view_button"
+        />
+    <item 
+        android:id="@+id/doc_menu_sum"
+        android:title="@string/patient_summary_button"
+        />
+</menu>
