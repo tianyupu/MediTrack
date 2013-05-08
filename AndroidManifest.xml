@@ -56,12 +56,12 @@
         <activity android:name="org.uwhealthkids.MediTrack.SignUpActivities.SignUpActivity" >
         </activity>
         <activity android:name="org.uwhealthkids.MediTrack.SignUpActivities.SignUpBaby" >
-        </activity>
-        <activity android:name="org.uwhealthkids.MediTrack.SignUpActivities.SignUpBabyInfo" >
             <intent-filter>
-		        <action android:name="org.uwhealthkids.MediTrack.SignUpActivities.SignUpBabyInfo" />
+		        <action android:name="org.uwhealthkids.MediTrack.SignUpActivities.SignUpBaby" />
 		        <category android:name="android.intent.category.DEFAULT" />
 			</intent-filter>
+        </activity>
+        <activity android:name="org.uwhealthkids.MediTrack.SignUpActivities.SignUpBabyInfo" >
         </activity>
         <activity android:name="org.uwhealthkids.MediTrack.SignUpActivities.DatePickerFragment" >
         </activity>
@@ -71,6 +71,7 @@
         </activity>
         <activity android:name="org.uwhealthkids.MediTrack.FeedingAddActivity"></activity>
         <activity android:name="org.uwhealthkids.MediTrack.Preferences"></activity>
+        <activity android:name="org.uwhealthkids.MediTrack.ViewActivitySelectDates"></activity>
     </application>
 
 </manifest>

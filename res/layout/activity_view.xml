@@ -1,42 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-
-    <DatePicker
-        android:id="@+id/datePicker_first"
-        android:layout_width="wrap_content"
+    <TextView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true" />
+        android:text="Select Characteristic to View:"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
     
-    <DatePicker
-        android:id="@+id/datePicker_last"
-        android:layout_width="wrap_content"
+    <GridView
+        android:id="@+id/addGridView"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/datePicker_first"
-        android:layout_centerHorizontal="true" />
+        android:numColumns="2"
+        android:verticalSpacing="10dp"
+        android:gravity="center">
+    </GridView>
 
-    <Button
-        android:id="@+id/button_graph"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/datePicker_last"
-        android:layout_centerHorizontal="true"
-        android:onClick="onGraphButtonClicked"
-        android:text="Graph"
-        tools:ignore="HardcodedText" />
-    
-    <Button
-        android:id="@+id/button_list"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button_graph"
-        android:layout_centerHorizontal="true"
-        android:onClick="onListButtonClicked"
-        android:text="List"
-        tools:ignore="HardcodedText" />
-
-</RelativeLayout>
+</LinearLayout>
