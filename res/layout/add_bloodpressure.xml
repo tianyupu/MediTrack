@@ -15,7 +15,7 @@
         android:id="@+id/char_data"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/bloodpressure_low"
+        android:hint="@string/bloodpressure_high"
         android:ems="10"
         android:inputType="number" >
 
@@ -26,7 +26,7 @@
         android:id="@+id/char_data1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/bloodpressure_high"
+        android:hint="@string/bloodpressure_low"
         android:ems="10"
         android:inputType="number" />
 
