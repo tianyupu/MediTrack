@@ -94,6 +94,9 @@
     <string-array name="prefs_baby_list">
         <item>(no babies)</item>
     </string-array>
+    <string-array name="prefs_baby_vals">
+        <item></item>
+    </string-array>
 
 </resources>
 

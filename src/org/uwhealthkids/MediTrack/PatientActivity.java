@@ -31,6 +31,7 @@ public class PatientActivity extends Activity {
 
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(CustomApplication.getInstance());
         String babyId = sharedPrefs.getString("pref_curr_baby", "");
+        Log.i("PatientActivity", "baby id is "+babyId);
 
         if (babyId.equals("")) { // no baby has been set yet, so get all of them
         	Log.i("PatientActivity", "got here1");
@@ -65,6 +66,15 @@ public class PatientActivity extends Activity {
         	}
         }
 
+		TextView babyNameHolder = (TextView) findViewById(R.id.babyname);
+		String babyName = CustomApplication.getInstance().getCurrBaby().getString("fname");
+		babyName = babyName + " " + CustomApplication.getInstance().getCurrBaby().getString("surname");
+		babyNameHolder.setText(babyName);
+	}
+	
+	@Override
+	protected void onResume() {
+		super.onResume();
 		TextView babyNameHolder = (TextView) findViewById(R.id.babyname);
 		String babyName = CustomApplication.getInstance().getCurrBaby().getString("fname");
 		babyName = babyName + " " + CustomApplication.getInstance().getCurrBaby().getString("surname");
@@ -108,6 +118,8 @@ public class PatientActivity extends Activity {
 	        	return true;
 	        case R.id.action_logout:
 	        	ParseUser.logOut();
+	        	CustomApplication.getInstance().setCurrBaby(null);
+	        	CustomApplication.getInstance().setCurrUser(null);
 	        	startActivity(new Intent(this, MainActivity.class));
 	        	finish();
 	        	return true;
