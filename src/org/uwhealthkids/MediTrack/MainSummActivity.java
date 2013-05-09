@@ -47,9 +47,9 @@ public class MainSummActivity extends Activity {
 		
 		RelativeLayout layout = (RelativeLayout)findViewById(R.id.mainSummLayout);
 		final TextView title = (TextView) findViewById(R.id.mainSummTitle);
-		title.setText("Summary for: " + start.get(Calendar.MONTH) + "/" +
+		title.setText("Summary for: " + (start.get(Calendar.MONTH) + 1) + "/" +
 				start.get(Calendar.DATE) + "/" + start.get(Calendar.YEAR) + 
-				" to " + end.get(Calendar.MONTH) + "/" + end.get(Calendar.DATE)
+				" to " + (end.get(Calendar.MONTH) + 1) + "/" + end.get(Calendar.DATE)
 				+ "/" + end.get(Calendar.YEAR));
 		Log.i("MainSumm", "Summary for: " + start.get(Calendar.MONTH) + "/" +
 				start.get(Calendar.DATE) + "/" + start.get(Calendar.YEAR) + 
@@ -233,7 +233,7 @@ public class MainSummActivity extends Activity {
 					Log.i("MainSumm", summaryString);
 					summary.add(summaryString);
 				}
-				else{
+				else if(weights[0] != 0.0){
 					summaryString = "Baby gained 0";
 					Log.i("MainSumm", summaryString);
 					summary.add(summaryString);
