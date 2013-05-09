@@ -154,18 +154,25 @@ public class SummTFrameActivity extends Activity implements OnItemSelectedListen
 		custStart = Calendar.getInstance();
 		custEnd = Calendar.getInstance();
 		
+		Spinner TFspin = (Spinner) findViewById(R.id.pick_tframe);
+		firstChoice = (String) TFspin.getSelectedItem();
+		
 		custStart.set(start.getYear(), start.getMonth(), start.getDayOfMonth());
 		custEnd.set(end.getYear(), end.getMonth(), end.getDayOfMonth());
 		Log.i("SummTFrame", "set custom dates");
-		if(custStart.compareTo(custEnd) != 0){
-			startDate = custStart;
-			endDate = custEnd;
+		//custStart.compareTo(custEnd) != 0
+		boolean custDateSelected = false;
+		if((start.getYear() != end.getYear()) || (start.getMonth() != end.getMonth())
+				|| (start.getDayOfMonth() != end.getDayOfMonth())){
+			custDateSelected = true;
 			Log.i("SummTFrame", "set cust dates to reg dates");
 		}
 		
 		Log.i("SummTFrame","button clicked and processing data");
-		if((firstChoice != "Nothing Selected" && (custStart.compareTo(custEnd) != 0)) || 
-				(firstChoice == "Nothing Selected" && (custStart.compareTo(custEnd) == 0))){
+		//(firstChoice != "Nothing Selected" && (custStart.compareTo(custEnd) != 0)) || 
+		//(firstChoice == "Nothing Selected" && (custStart.compareTo(custEnd) == 0))
+		if((firstChoice != "Nothing Selected" && (custDateSelected)) || 
+				(firstChoice == "Nothing Selected" && !(custDateSelected))){
 			Toast.makeText(this, "Only select one option", Toast.LENGTH_SHORT).show();
 		}
 		
@@ -173,12 +180,23 @@ public class SummTFrameActivity extends Activity implements OnItemSelectedListen
 			Toast.makeText(this, "The end date must be after the start date",
 					Toast.LENGTH_SHORT).show();
 		}
+		else if(firstChoice == "Nothing Selected" && (custDateSelected)){
+			startDate = custStart;
+			endDate = custEnd;
+			allInfo.putSerializable("start", startDate);
+			allInfo.putSerializable("end", endDate);
+			Intent toLastScreen = new Intent(this, MainSummActivity.class);
+			toLastScreen.putExtras(allInfo);
+			startActivity(toLastScreen);
+			finish();
+		}
 		else{
 			allInfo.putSerializable("start", startDate);
 			allInfo.putSerializable("end", endDate);
 			Intent toLastScreen = new Intent(this, MainSummActivity.class);
 			toLastScreen.putExtras(allInfo);
 			startActivity(toLastScreen);
+			finish();
 		}
 	}
 	
