@@ -30,6 +30,7 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 
@@ -39,6 +40,8 @@ public class SignUpBabyInfo extends Activity{
 	ImageView targetImage;
 	ImageButton buttonLoadImage;
 	ParseFile imageFile;
+	Boolean babyMade;
+	ParseObject baby = new ParseObject("Baby");
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -62,46 +65,60 @@ public class SignUpBabyInfo extends Activity{
 	}
 
 	private void createBaby(){
-		//initializes the gender to female
-		boolean female = true;
+		try{
+			//initializes the gender to female
+			boolean female = true;
+			babyMade = false;
 
-		// initializes the baby name
-		EditText babyname =  (EditText) findViewById(R.id.babyname);
-		EditText babySurname = (EditText) findViewById(R.id.babysurname);
-		RadioGroup gender = (RadioGroup) findViewById(R.id.genderRadioGroup);
-		RadioButton femaleButton = (RadioButton) findViewById(R.id.girl);
+			// initializes the baby name
+			EditText babyname =  (EditText) findViewById(R.id.babyname);
+			EditText babySurname = (EditText) findViewById(R.id.babysurname);
+			RadioGroup gender = (RadioGroup) findViewById(R.id.genderRadioGroup);
+			RadioButton femaleButton = (RadioButton) findViewById(R.id.girl);
 
-		// gets baby's birthday from date picker
-		DatePicker dob = (DatePicker) findViewById(R.id.dobPicker);
-		Calendar cal = Calendar.getInstance();
-		cal.set(dob.getYear(),dob.getMonth(),dob.getDayOfMonth());
+			// gets baby's birthday from date picker
+			DatePicker dob = (DatePicker) findViewById(R.id.dobPicker);
+			Calendar cal = Calendar.getInstance();
+			cal.set(dob.getYear(),dob.getMonth(),dob.getDayOfMonth());
 
 
-		//checks which radio button was selected and changes the female boolean if it's a male
-		if(gender.getCheckedRadioButtonId() != femaleButton.getId()){
-			female = false;	
+			//checks which radio button was selected and changes the female boolean if it's a male
+			if(gender.getCheckedRadioButtonId() != femaleButton.getId()){
+				female = false;	
+			}
+
+			//creates the baby parse object and saves it to the 
+			
+			baby.put("fname", babyname.getText().toString());
+			baby.put("surname", babySurname.getText().toString());
+			baby.put("dob", cal.getTime());
+			baby.put("female", female);
+			if(imageFile != null){
+				baby.put("baby_pic", imageFile);
+			}
+			baby.save();
+			babyMade = true;
+
+			//makes the newly created baby the current baby
+			CustomApplication.getInstance().setCurrBaby(baby);
+
+			//creates a relationship object and puts the user and baby together
+			ParseUser user= ParseUser.getCurrentUser();
+			ParseObject Rel = new ParseObject("BabyUserRel");
+			Rel.put("baby", baby);
+			Rel.put("user", user);	
+			Rel.save();
+		} catch (ParseException e) {
+			if(babyMade == true){
+				try {
+					baby.delete();
+				} catch (ParseException e1) {
+					e1.printStackTrace();
+				}			
+			}
+			Toast.makeText(CustomApplication.getInstance(), "Couldn't establish an Internet connection. Please check your network settings.", Toast.LENGTH_LONG).show();
 		}
 
-		//creates the baby parse object and saves it to the 
-		ParseObject baby = new ParseObject("Baby");
-		baby.put("fname", babyname.getText().toString());
-		baby.put("surname", babySurname.getText().toString());
-		baby.put("dob", cal.getTime());
-		baby.put("female", female);
-		if(imageFile != null){
-			baby.put("baby_pic", imageFile);
-		}
-		baby.saveInBackground();
-
-		//makes the newly created baby the current baby
-		CustomApplication.getInstance().setCurrBaby(baby);
-
-		//creates a relationship object and puts the user and baby together
-		ParseUser user= ParseUser.getCurrentUser();
-		ParseObject Rel = new ParseObject("BabyUserRel");
-		Rel.put("baby", baby);
-		Rel.put("user", user);	
-		Rel.saveInBackground();
 
 	}
 
@@ -109,60 +126,56 @@ public class SignUpBabyInfo extends Activity{
 	public void button1Pressed(View v) { 
 		Intent intent = new Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI); 
 		startActivityForResult(intent, SELECT_PHOTO);
-	
-	
+
+
 	}
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent imageReturnedIntent) { 
-	    super.onActivityResult(requestCode, resultCode, imageReturnedIntent); 
+		super.onActivityResult(requestCode, resultCode, imageReturnedIntent); 
 
-	    switch(requestCode) { 
-	    case SELECT_PHOTO:
-	        if(resultCode == RESULT_OK){  
-	            Uri selectedImage = imageReturnedIntent.getData();
-	            InputStream imageStream1;
-	            InputStream imageStream;
-	            byte[] inputData;
-	             
-	            
+		switch(requestCode) { 
+		case SELECT_PHOTO:
+			if(resultCode == RESULT_OK){  
+				Uri selectedImage = imageReturnedIntent.getData();
+				InputStream imageStream1;
+				InputStream imageStream;
+				byte[] inputData;
+
+
 				try {
 					imageStream = getContentResolver().openInputStream(selectedImage);		
 					inputData = getBytes(imageStream);
 					imageFile = new ParseFile("babypic.jpg", inputData);
-					imageFile.save();
-					
-					
+					imageFile.saveInBackground();
+
+
 					imageStream1 = getContentResolver().openInputStream(selectedImage);		
 					Bitmap yourSelectedImage = BitmapFactory.decodeStream(imageStream1);
 					ImageView imageShowing = (ImageView)findViewById(R.id.babyPicImage);
 					imageShowing.setImageBitmap(yourSelectedImage);
 				} catch (FileNotFoundException e) {
-					
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				} catch (ParseException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-	        }
-	    }
+				} 
+			}
+		}
 	}
 	public byte[] getBytes(InputStream inputStream) throws IOException {
-	      ByteArrayOutputStream byteBuffer = new ByteArrayOutputStream();
-	      int bufferSize = 1024;
-	      byte[] buffer = new byte[bufferSize];
+		ByteArrayOutputStream byteBuffer = new ByteArrayOutputStream();
+		int bufferSize = 1024;
+		byte[] buffer = new byte[bufferSize];
 
-	      int len = 0;
-	      while ((len = inputStream.read(buffer)) != -1) {
-	        byteBuffer.write(buffer, 0, len);
-	      }
-	      return byteBuffer.toByteArray();
-	    }
-	
+		int len = 0;
+		while ((len = inputStream.read(buffer)) != -1) {
+			byteBuffer.write(buffer, 0, len);
+		}
+		return byteBuffer.toByteArray();
+	}
+
 
 
 }
