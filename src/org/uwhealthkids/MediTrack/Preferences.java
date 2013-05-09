@@ -1,5 +1,7 @@
 package org.uwhealthkids.MediTrack;
 
+import java.util.List;
+
 import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -28,12 +30,29 @@ public class Preferences extends PreferenceActivity implements OnSharedPreferenc
         
         ListPreference currBabyPref = (ListPreference) findPreference("pref_curr_baby");
         ParseQuery query = new ParseQuery("Baby");
+        ParseQuery getBabiesGivenUser = new ParseQuery("BabyUserRel");
         query.setCachePolicy(ParseQuery.CachePolicy.NETWORK_ELSE_CACHE);
+        getBabiesGivenUser.setCachePolicy(ParseQuery.CachePolicy.NETWORK_ELSE_CACHE);
+        getBabiesGivenUser.whereEqualTo("user", CustomApplication.getInstance().getCurrUser());
         ParseObject babyObj;
 		try {
 			babyObj = query.get(currBabyPref.getValue());
 			currBabyPref.setSummary("You're currently tracking "+babyObj.getString("fname")+" "+babyObj.getString("surname"));
+			List<ParseObject> babies = getBabiesGivenUser.find();
+			String[] entries = new String[babies.size()];
+			String[] entryValues = new String[babies.size()];
+			for (int i = 0; i < babies.size(); i++) {
+				ParseObject obj = babies.get(i);
+				ParseObject baby = obj.getParseObject("baby").fetchIfNeeded();
+				String fname = baby.getString("fname");
+				String surname = baby.getString("surname");
+				entries[i] = fname+" "+surname;
+				entryValues[i] = baby.getObjectId();
+			}
+			currBabyPref.setEntries(entries);
+			currBabyPref.setEntryValues(entryValues);
 		} catch (ParseException e) {
+			currBabyPref.setSummary("Please connect to the internet to view the current baby or change a baby to track.");
 			Toast.makeText(CustomApplication.getInstance(), 
 					"No internet connection found. Please check your network settings.", Toast.LENGTH_LONG).show();
 		}
@@ -59,9 +78,24 @@ public class Preferences extends PreferenceActivity implements OnSharedPreferenc
 	@SuppressWarnings("deprecation")
 	@Override
 	public void onSharedPreferenceChanged(SharedPreferences preferences, String key) {
+		Preference pref = findPreference(key);
 		if (key.equals("pref_feed_goal")) {
-			Preference feedingPref = findPreference(key);
-			feedingPref.setSummary("Your current feeding goal is "+preferences.getString(key, "not set"));
+			pref.setSummary("Your current feeding goal is "+preferences.getString(key, "not set"));
+		}
+		else if (key.equals("pref_curr_baby")) {
+		    ParseQuery query = new ParseQuery("Baby");
+		    query.setCachePolicy(ParseQuery.CachePolicy.NETWORK_ELSE_CACHE);
+		    ParseObject babyObj;
+			try {
+				babyObj = query.get(((ListPreference) pref).getValue());
+				pref.setSummary("You're currently tracking "+babyObj.getString("fname")+" "+babyObj.getString("surname"));
+				CustomApplication.getInstance().setCurrBaby(babyObj);
+			} catch (ParseException e) {
+				pref.setSummary("Please connect to the internet to view the current baby or change a baby to track.");
+				Toast.makeText(CustomApplication.getInstance(), 
+						"No internet connection found. Please check your network settings.", Toast.LENGTH_LONG).show();
+			}
+			
 		}
 	}
 }

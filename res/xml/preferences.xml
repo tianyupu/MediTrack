@@ -14,6 +14,6 @@
 	    android:key="pref_curr_baby"
         android:dialogTitle="Change the baby to track"
         android:entries="@array/prefs_baby_list"
-        android:entryValues="@array/prefs_baby_list">
+        android:entryValues="@array/prefs_baby_vals">
 	</ListPreference>
 </PreferenceScreen>
