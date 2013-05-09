@@ -15,6 +15,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 public class GraphViewActivity extends Activity {
 
@@ -25,11 +26,17 @@ public class GraphViewActivity extends Activity {
 	private Calendar dateFirst;
 	private Calendar dateLast;
 	
-	@SuppressWarnings({ "static-access" })
+	private TextView dateFirstText;
+	private TextView dateLastText;
+	
+	@SuppressWarnings({ "deprecation" })
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_graphview);
+		
+		dateFirstText = (TextView) findViewById(R.id.firstDate);
+		dateLastText = (TextView) findViewById(R.id.lastDate);
 		
 		valuesOneArr = new ArrayList<Float>();
 		valuesTwoArr = new ArrayList<Float>();
@@ -41,13 +48,9 @@ public class GraphViewActivity extends Activity {
 				intent.getIntExtra("lastDay", 0));
 		dateFirst.set(intent.getIntExtra("firstYear", 0), intent.getIntExtra("firstMonth", 0), 
 				intent.getIntExtra("firstDay", 0));
-//		charid = intent.getIntExtra("char_id", 0);
-//		babyid = intent.getIntExtra("baby_id", 0);
-//		
-//		valuesOneArr = intent.getIntegerArrayListExtra("valOneList");
-//		valuesTwoArr = intent.getIntegerArrayListExtra("valTwoList");
-//		calendarArray = (List<Calendar>) intent.getSerializableExtra("dateList");
-				
+		dateFirstText.setText(dateFirst.toString());
+		dateLastText.setText(dateLast.toString());
+			
 		Parse.initialize(this, "Zx2IAp6TTPyM5UYRCr1Q4Q0GD0RyS0IDLzTm0aH0", "Dwj8peVWshOTpzos0Qae9yOBnhmZIMIxv4kJ6oTm");
 		ParseQuery query = new ParseQuery("Record");
 		ParseQuery babyquery = new ParseQuery("Baby");
@@ -67,32 +70,7 @@ public class GraphViewActivity extends Activity {
 		query.setCachePolicy(ParseQuery.CachePolicy.NETWORK_ELSE_CACHE);
 		query.whereEqualTo( "baby" , babyObject);
 		query.whereEqualTo( "charact" , charObject);
-		query.orderByAscending("time");
-//		query.findInBackground(new FindCallback() {
-//		    @SuppressWarnings("deprecation")
-//			public void done(List<ParseObject>tempList, ParseException e) {
-//		        if (e == null) {
-//		        	Iterator iter = tempList.iterator();
-//		        	while(iter.hasNext()) {
-//		        		ParseObject po = (ParseObject) iter.next();
-//		        		String temp = "";
-//		        		if (po.getNumber("value1") != null) {
-//		        			valuesOneArr.add((Integer) po.getNumber("value1"));
-//		        		}
-//		        		if (po.getNumber("value2") != null) {
-//		        			valuesOneArr.add((Integer) po.getNumber("value2"));
-//		        		}
-//		        		if (po.getDate("time") != null) {
-//		        			Calendar c = null;
-//		        			c.setTime(po.getDate("time"));
-//		        			calendarArray.add(c);
-//		        		}
-//		        	}
-//		        } else {
-//		            //do nothing
-//		        }
-//		    }
-//		});
+		query.orderByAscending("createdAt");
 		
 		List<ParseObject>parseList = new ArrayList<ParseObject>();
 		try {
@@ -105,18 +83,17 @@ public class GraphViewActivity extends Activity {
     	while(iter.hasNext()) {
     		ParseObject po = (ParseObject) iter.next();
     		if (po.getNumber("value1") != null && po.getNumber("value2") != null 
-    				&& po.getDate("time") != null) {
+    				&& po.getDate("createdAt") != null) {
     			valuesOneArr.add(Float.parseFloat(po.getNumber("value1").toString()));
     			valuesTwoArr.add(Float.parseFloat(po.getNumber("value2").toString()));
     			Calendar c = Calendar.getInstance();
-    			c.setTime(po.getDate("time"));
+    			c.setTime(po.getCreatedAt());
     			calendarArray.add(c);
     		}
-    		else if (po.getNumber("value1") != null  
-    				&& po.getDate("time") != null) {
+    		else {
     			valuesOneArr.add(Float.parseFloat(po.getNumber("value1").toString()));
     			Calendar c = Calendar.getInstance();
-    			c.setTime(po.getDate("time"));
+    			c.setTime(po.getCreatedAt());
     			calendarArray.add(c);
     		}
     	}
@@ -155,7 +132,7 @@ public class GraphViewActivity extends Activity {
 		String[] verlabels = {String.valueOf(large), String.valueOf(small)};
 		String[] horlabels = new String[calendarArray.size()];
 		for (int i = 0; i < horlabels.length; i++) {
-			horlabels[i] = (calendarArray.get(i).MONTH+1) + "/" + calendarArray.get(i).DATE;
+			horlabels[i] = (calendarArray.get(i).getTime().getMonth()+1) + "/" + calendarArray.get(i).getTime().getDate();
 		}
 		
 		GraphView g = null;
@@ -167,36 +144,5 @@ public class GraphViewActivity extends Activity {
 		}
 		LinearLayout lv = (LinearLayout) findViewById(R.id.graphLinearLayout);
 		lv.addView(g);
-		
-//		String selection = DBHelper.RECORD_COLUMN_NAME_CHAR + "='" + charid + "' AND " +
-//				DBHelper.RECORD_COLUMN_NAME_BABY + "='" + babyid + "'";
-//		String[] columns = {DBHelper.RECORD_COLUMN_NAME_TIME, DBHelper.RECORD_COLUMN_NAME_VALUEONE, 
-//				DBHelper.RECORD_COLUMN_NAME_VALUETWO};
-//
-//		sqliteDatabase = dbHelper.getReadableDatabase();
-//		
-//		Cursor cursor = sqliteDatabase.query(DBHelper.TABLE_NAME_RECORD, 
-//				columns, selection, null, null, null, DBHelper.RECORD_COLUMN_NAME_TIME);
-//		
-//		while(cursor.moveToNext()) {
-//			Calendar cal = null;
-//			cal.setTime(new Date(cursor.getString(cursor.getColumnIndex
-//					(DBHelper.RECORD_COLUMN_NAME_TIME))));
-//			int valOne = Integer.parseInt(cursor.getString(cursor.getColumnIndex
-//					(DBHelper.RECORD_COLUMN_NAME_VALUEONE)));
-//			int valTwo = Integer.parseInt(cursor.getString(cursor.getColumnIndex
-//					(DBHelper.RECORD_COLUMN_NAME_VALUETWO)));
-//
-//			RecordDetailsPojo pojoClass = new RecordDetailsPojo();
-//			pojoClass.setTime(cal);
-//			pojoClass.setValOne(valOne);
-//			pojoClass.setValTwo(valTwo);
-//
-//			pojoArrayList.add(pojoClass);
-//
-//			valuesOneArr.add(valOne);
-//			valuesTwoArr.add(valTwo);
-//			calendarArray.add(cal);
-//		}
 	}
 }
