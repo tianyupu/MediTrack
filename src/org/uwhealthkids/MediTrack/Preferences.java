@@ -10,6 +10,7 @@ import com.parse.ParseQuery;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
+import android.preference.DialogPreference;
 import android.preference.EditTextPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
@@ -56,7 +57,9 @@ public class Preferences extends PreferenceActivity implements OnSharedPreferenc
 			Toast.makeText(CustomApplication.getInstance(), 
 					"No internet connection found. Please check your network settings.", Toast.LENGTH_LONG).show();
 		}
-        
+		
+		DialogPreference babyKey = (DialogPreference) findPreference("pref_baby_key");
+		babyKey.setDialogMessage(CustomApplication.getInstance().getCurrBaby().getObjectId());
 	}
 	
 	@SuppressWarnings("deprecation")
@@ -90,6 +93,8 @@ public class Preferences extends PreferenceActivity implements OnSharedPreferenc
 				babyObj = query.get(((ListPreference) pref).getValue());
 				pref.setSummary("You're currently tracking "+babyObj.getString("fname")+" "+babyObj.getString("surname"));
 				CustomApplication.getInstance().setCurrBaby(babyObj);
+				DialogPreference babyKey = (DialogPreference) findPreference("pref_baby_key");
+				babyKey.setDialogMessage(CustomApplication.getInstance().getCurrBaby().getObjectId());
 			} catch (ParseException e) {
 				pref.setSummary("Please connect to the internet to view the current baby or change a baby to track.");
 				Toast.makeText(CustomApplication.getInstance(), 
