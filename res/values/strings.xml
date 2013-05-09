@@ -91,6 +91,9 @@
     
     <!-- Strings for preferences menu -->
     <string name="prefs_add_baby">Add new baby</string>
+    <string-array name="prefs_baby_list">
+        <item>(no babies)</item>
+    </string-array>
 
 </resources>
 

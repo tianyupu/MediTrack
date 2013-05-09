@@ -8,4 +8,12 @@
 	<Preference android:title="@string/prefs_add_baby" >
 	    <intent android:action="org.uwhealthkids.MediTrack.SignUpActivities.SignUpBaby" />
 	</Preference>
+	<ListPreference
+	    android:title="Change current baby"
+	    android:persistent="true"
+	    android:key="pref_curr_baby"
+        android:dialogTitle="Change the baby to track"
+        android:entries="@array/prefs_baby_list"
+        android:entryValues="@array/prefs_baby_list">
+	</ListPreference>
 </PreferenceScreen>

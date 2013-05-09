@@ -34,6 +34,7 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 
 		Parse.initialize(this, "Zx2IAp6TTPyM5UYRCr1Q4Q0GD0RyS0IDLzTm0aH0", "Dwj8peVWshOTpzos0Qae9yOBnhmZIMIxv4kJ6oTm");
+/*
 		// get a default baby for testing purposes
 		ParseQuery babyQuery = new ParseQuery("Baby");
 		babyQuery.setCachePolicy(ParseQuery.CachePolicy.CACHE_ELSE_NETWORK);
@@ -54,10 +55,12 @@ public class MainActivity extends Activity {
 				}
 			}
 		});
+*/
 		ParseUser currUser = ParseUser.getCurrentUser();
 		if (currUser != null) {
 			boolean isDoctor = currUser.getBoolean("doctor");
 			CustomApplication.getInstance().setCurrUser(currUser);
+			Log.i("MainActivity", currUser.getString("username"));
 			if (isDoctor) {
 				Intent intent = new Intent(CustomApplication.getInstance(), DoctorMainActivity.class);
 				startActivity(intent);
