@@ -26,10 +26,9 @@
         android:id="@+id/babyname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/babypic"
         android:layout_centerHorizontal="true"
         android:text="@string/patient_baby_name"
-        android:gravity="center"
+        android:layout_marginTop="50dp"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <ImageView
@@ -37,9 +36,10 @@
         android:id="@+id/babypic"
         android:layout_width="100sp"
         android:layout_height="100sp"
-        android:layout_above="@+id/add"
-        android:layout_marginBottom="54dp"
-        android:layout_toLeftOf="@+id/babyname"
+        android:layout_above="@id/add"
+        android:layout_below="@id/babyname"
+        android:layout_centerHorizontal="true"
+        
         android:src="@drawable/ic_launcher" />
 
     <Button
