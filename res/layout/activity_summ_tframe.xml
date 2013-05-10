@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     tools:context=".SummTFrameActivity" >
 
     <TextView
@@ -13,17 +12,16 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:text="@string/title_of_tFrame"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <Spinner
         android:id="@+id/pick_tframe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/title"
-        android:spinnerMode="dropdown"
-        android:contentDescription="Time Frames To Choose"
-        android:prompt="@string/chooseOne" />
-	 
+        android:prompt="@string/chooseOne"
+        android:spinnerMode="dropdown" />
+
     <TextView
         android:id="@+id/pick_date"
         android:layout_width="wrap_content"
@@ -31,30 +29,35 @@
         android:layout_alignLeft="@+id/pick_tframe"
         android:layout_below="@+id/pick_tframe"
         android:text="@string/or_pick_own_date"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <DatePicker
-        android:id="@+id/endDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/startDate"
-        android:layout_below="@+id/startDate" />
-
-    <DatePicker
-        android:id="@+id/startDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/pick_date" />
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
         android:id="@+id/firstDay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_alignTop="@+id/startDate"
+        android:layout_below="@+id/pick_date"
         android:text="@string/begin"
         android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:onClick="toNextScreen"
+        android:text="@string/view_summary" />
+
+    <!--
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/endDate"
+        android:text="@string/reset" />
+        -->
 
     <TextView
         android:id="@+id/lastDay"
@@ -65,23 +68,22 @@
         android:text="@string/end"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
-    <Button
-        android:id="@+id/button1"
+    <DatePicker
+        android:id="@+id/startDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:text="@string/view_summary"
-        android:onClick="toNextScreen" />
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/firstDay"
+        android:scaleX=".75"
+        android:scaleY=".75" />
 
-    <!-- 
-    <Button
-        android:id="@+id/button2"
+    <DatePicker
+        android:id="@+id/endDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/endDate"
-        android:text="@string/reset"
-        android:onClick="resetDatePickers" />
-	 -->
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/lastDay"
+        android:scaleX=".75"
+        android:scaleY=".75" />
+
 </RelativeLayout>
