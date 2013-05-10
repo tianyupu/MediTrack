@@ -3,9 +3,11 @@ package org.uwhealthkids.MediTrack;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -24,6 +26,7 @@ public class SummTFrameActivity extends Activity implements OnItemSelectedListen
 	private Bundle allInfo = new Bundle();
 	String firstChoice;
 
+	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -33,6 +36,24 @@ public class SummTFrameActivity extends Activity implements OnItemSelectedListen
 		//----------------------------------------------------------
 		//Used to test if information is passed correctly with intent
 		// Get the message from the intent
+		
+    	DatePicker datePickerFirst = (DatePicker) findViewById(R.id.startDate);
+    	DatePicker datePickerLast = (DatePicker) findViewById(R.id.endDate);	
+    	Log.i("SummTFrame", "got date pickers");
+    	//check if user is using a phone or a tablet
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+    	getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+
+        int width = displayMetrics.widthPixels / displayMetrics.densityDpi;
+        int height = displayMetrics.heightPixels / displayMetrics.densityDpi;
+        Log.i("SummTFrame", "calculated width and height");
+        double screenDiagonal = Math.sqrt( width * width + height * height );
+    	
+    	if (screenDiagonal <= 4.8) {
+    		datePickerFirst.setCalendarViewShown(false);
+    		datePickerLast.setCalendarViewShown(false);
+    		Log.i("SummTFrame", "set calendar view to not show up");
+    	}
 		
 	    Intent intent = getIntent();
 	    Bundle selections = intent.getExtras();
