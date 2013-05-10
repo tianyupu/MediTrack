@@ -22,7 +22,7 @@
     <string name="blood_pressure">Blood Pressure</string>
     <string name="pulse_oxygen">Pulse Oxygen Saturation</string>
     <string name="feeding_time">Feeding Time</string>
-    <string name="feeding_amount">Feeding amount</string>
+    <string name="feeding_amount">Amount</string>
     <string name="feeding_goal">Feeding Goal</string>
     <string name="weight">Weight</string>
     <string name="medication_time">Medication Time</string>

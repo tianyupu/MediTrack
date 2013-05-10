@@ -9,7 +9,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/feeding_label"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp" />
    
    <TimePicker
         android:id="@+id/char_data"
@@ -24,19 +27,21 @@
     
     <EditText
         android:id="@+id/char_data1"
-        android:layout_width="wrap_content"
+        android:layout_width="120sp"
         android:layout_height="wrap_content"
         android:hint="@string/feeding_amount"
         android:ems="10"
         android:inputType="number"
-        android:layout_below="@id/char_data" />
+        android:layout_below="@id/char_data"
+        android:layout_marginLeft="10dp" />
 
     <Button
         android:id="@+id/save_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/button_save"
-        android:layout_below="@id/char_data1" />
+        android:layout_below="@id/char_data1"
+        android:layout_marginLeft="10dp" />
 
     <Spinner
         android:id="@+id/feedings_units_spinner"

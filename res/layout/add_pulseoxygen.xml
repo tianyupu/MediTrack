@@ -9,7 +9,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/pulse_oxygen"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp" />
+    
     <LinearLayout
         android:id="@+id/divider"
         android:layout_width="match_parent"
@@ -22,7 +26,8 @@
 	    android:layout_height="wrap_content"
 	    android:layout_weight="0.85"
 	    android:max="100"
-	    android:progress="0" />
+	    android:progress="0"
+	    android:layout_marginLeft="10dp" />
     
     <TextView
         android:id="@+id/slider_value"
@@ -36,6 +41,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/button_save"
-        android:layout_below="@id/divider" />
+        android:layout_below="@id/divider"
+        android:layout_marginLeft="10dp" />
 
 </RelativeLayout>

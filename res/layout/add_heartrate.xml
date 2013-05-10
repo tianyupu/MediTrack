@@ -9,7 +9,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/heart_rate"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp" />
 
     <EditText
         android:id="@+id/char_data"
@@ -17,7 +20,8 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="number"
-        android:layout_below="@id/char_label" >
+        android:layout_below="@id/char_label"
+        android:layout_marginLeft="10dp" >
 
         <requestFocus />
     </EditText>
@@ -35,6 +39,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/button_save"
-        android:layout_below="@id/char_data" />
+        android:layout_below="@id/char_data"
+        android:layout_marginLeft="10dp" />
 
 </RelativeLayout>
