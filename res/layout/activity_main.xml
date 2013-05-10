@@ -68,7 +68,7 @@
         android:layout_marginTop="52dp"
         android:ems="10"
         android:hint="@string/username"
-        android:inputType="text">
+        android:inputType="textEmailAddress">
         <requestFocus />
     </EditText>
 
