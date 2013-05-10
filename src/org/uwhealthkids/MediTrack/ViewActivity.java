@@ -101,7 +101,7 @@ public class ViewActivity extends Activity {
 		}
 
 		private Integer[] mThumbIds = {
-				R.drawable.heartrate111, R.drawable.bloodpressure,
+				R.drawable.heartrate, R.drawable.bloodpressure,
 				R.drawable.pulseoxygen, R.drawable.feeding,
 				R.drawable.weight, R.drawable.medication
 		};
