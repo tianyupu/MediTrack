@@ -21,7 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class PatientActivity extends Activity {
-
+    SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(CustomApplication.getInstance());
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -29,7 +29,6 @@ public class PatientActivity extends Activity {
 		Log.i("PatientActivity", "got here");
 		Parse.initialize(this, "Zx2IAp6TTPyM5UYRCr1Q4Q0GD0RyS0IDLzTm0aH0", "Dwj8peVWshOTpzos0Qae9yOBnhmZIMIxv4kJ6oTm");
 
-        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(CustomApplication.getInstance());
         String babyId = sharedPrefs.getString("pref_curr_baby", "");
         Log.i("PatientActivity", "baby id is "+babyId);
 
@@ -119,6 +118,9 @@ public class PatientActivity extends Activity {
 	        case R.id.action_logout:
 	        	ParseUser.logOut();
 	        	ParseQuery.clearAllCachedResults();
+	        	SharedPreferences.Editor editor = sharedPrefs.edit();
+	        	editor.clear();
+	        	editor.commit();
 	        	CustomApplication.getInstance().setCurrBaby(null);
 	        	CustomApplication.getInstance().setCurrUser(null);
 	        	startActivity(new Intent(this, MainActivity.class));
