@@ -2,8 +2,10 @@ package org.uwhealthkids.MediTrack;
 
 import java.util.List;
 
+import com.parse.GetDataCallback;
 import com.parse.Parse;
 import com.parse.ParseException;
+import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
@@ -11,12 +13,15 @@ import com.parse.ParseUser;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -64,20 +69,40 @@ public class PatientActivity extends Activity {
         		Toast.makeText(CustomApplication.getInstance(), e.toString(), Toast.LENGTH_LONG).show();
         	}
         }
-
+        showBabyName();
+        showBabyPic();
+	}
+	
+	@Override
+	protected void onResume() {
+		super.onResume();
+		showBabyName();
+		showBabyPic();
+	}
+	
+	protected void showBabyName() {
 		TextView babyNameHolder = (TextView) findViewById(R.id.babyname);
 		String babyName = CustomApplication.getInstance().getCurrBaby().getString("fname");
 		babyName = babyName + " " + CustomApplication.getInstance().getCurrBaby().getString("surname");
 		babyNameHolder.setText(babyName);
 	}
 	
-	@Override
-	protected void onResume() {
-		super.onResume();
-		TextView babyNameHolder = (TextView) findViewById(R.id.babyname);
-		String babyName = CustomApplication.getInstance().getCurrBaby().getString("fname");
-		babyName = babyName + " " + CustomApplication.getInstance().getCurrBaby().getString("surname");
-		babyNameHolder.setText(babyName);
+	protected void showBabyPic() {
+		ParseFile babyPic = CustomApplication.getInstance().getCurrBaby().getParseFile("baby_pic");
+		if (babyPic != null) {
+			babyPic.getDataInBackground(new GetDataCallback() {
+				@Override
+				public void done(byte[] data, ParseException e) {
+					ImageView babyPicHolder = (ImageView) findViewById(R.id.babypic);
+					Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length-1);
+					babyPicHolder.setImageBitmap(bitmap);
+				}
+			});
+		}
+		else {
+			ImageView babyPicHolder = (ImageView) findViewById(R.id.babypic);
+			babyPicHolder.setImageResource(R.drawable.defaultbaby);
+		}
 	}
 
 	public void onAddButtonClicked(View v) {
