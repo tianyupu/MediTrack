@@ -77,7 +77,7 @@ public class SignUpBabyInfo extends Activity{
 			babyMade = false;
 
 			// initializes the baby name
-			EditText babyname =  (EditText) findViewById(R.id.babyname);
+			EditText babyfirstname =  (EditText) findViewById(R.id.babyfirstname);
 			EditText babySurname = (EditText) findViewById(R.id.babysurname);
 			RadioGroup gender = (RadioGroup) findViewById(R.id.genderRadioGroup);
 			RadioButton femaleButton = (RadioButton) findViewById(R.id.girl);
@@ -95,7 +95,7 @@ public class SignUpBabyInfo extends Activity{
 
 			//creates the baby parse object and saves it to the 
 
-			baby.put("fname", babyname.getText().toString());
+			baby.put("fname", babyfirstname.getText().toString());
 			baby.put("surname", babySurname.getText().toString());
 			baby.put("dob", cal.getTime());
 			baby.put("female", female);
