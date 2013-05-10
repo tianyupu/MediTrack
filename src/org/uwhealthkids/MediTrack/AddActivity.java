@@ -93,9 +93,9 @@ public class AddActivity extends Activity {
 		}
 		
 		private Integer[] mThumbIds = {
-				R.drawable.char0_heartrate, R.drawable.char1_bloodpressure,
-				R.drawable.char2_pulseoxygen, R.drawable.char3_feedings,
-				R.drawable.char4_weight, R.drawable.char5_medication
+				R.drawable.heartrate111, R.drawable.bloodpressure,
+				R.drawable.pulseoxygen, R.drawable.feeding,
+				R.drawable.weight, R.drawable.medication
 		};
 	}
 

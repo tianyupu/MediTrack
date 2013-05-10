@@ -14,6 +14,13 @@
 	    android:key="pref_curr_baby"
         android:dialogTitle="Change the baby to track"
         android:entries="@array/prefs_baby_list"
-        android:entryValues="@array/prefs_baby_list">
+        android:entryValues="@array/prefs_baby_vals">
 	</ListPreference>
+	<org.uwhealthkids.MediTrack.DialogExPreference
+	    android:key="pref_baby_key"
+	    android:title="Get the baby key"
+	    android:dialogTitle="Baby key"
+	    android:dialogMessage=""
+        android:positiveButtonText="OK"
+        android:negativeButtonText="Cancel" />
 </PreferenceScreen>
