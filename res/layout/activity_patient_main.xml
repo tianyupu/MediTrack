@@ -29,6 +29,7 @@
         android:layout_alignBottom="@+id/babypic"
         android:layout_centerHorizontal="true"
         android:text="@string/patient_baby_name"
+        android:gravity="center"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <ImageView
@@ -47,7 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_alignRight="@+id/babyname"
         android:layout_centerVertical="true"
-        android:layout_marginRight="72dp"
+        android:layout_marginRight="63dp"
         android:onClick="onAddButtonClicked"
         android:text="@string/patient_add_button" />
 
