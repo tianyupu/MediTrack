@@ -11,11 +11,13 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class GraphViewActivity extends Activity {
 
@@ -48,8 +50,8 @@ public class GraphViewActivity extends Activity {
 				intent.getIntExtra("lastDay", 0));
 		dateFirst.set(intent.getIntExtra("firstYear", 0), intent.getIntExtra("firstMonth", 0), 
 				intent.getIntExtra("firstDay", 0));
-		dateFirstText.setText(intent.getIntExtra("firstMonth", 0) + "/" + intent.getIntExtra("firstDay", 0));
-		dateLastText.setText(intent.getIntExtra("lastMonth", 0) + "/" + intent.getIntExtra("lastDay", 0));
+		dateFirstText.setText((intent.getIntExtra("firstMonth", 0)+1) + "/" + intent.getIntExtra("firstDay", 0));
+		dateLastText.setText((intent.getIntExtra("lastMonth", 0)+1) + "/" + intent.getIntExtra("lastDay", 0));
 
 		Parse.initialize(this, "Zx2IAp6TTPyM5UYRCr1Q4Q0GD0RyS0IDLzTm0aH0", "Dwj8peVWshOTpzos0Qae9yOBnhmZIMIxv4kJ6oTm");
 		ParseQuery query = new ParseQuery("Record");
@@ -67,6 +69,8 @@ public class GraphViewActivity extends Activity {
 		} catch (ParseException e1) {
 			Log.d("tag", "could not find char");
 		}
+
+		
 		query.setCachePolicy(ParseQuery.CachePolicy.NETWORK_ELSE_CACHE);
 		query.whereEqualTo( "baby" , babyObject);
 		query.whereEqualTo( "charact" , charObject);
@@ -82,8 +86,7 @@ public class GraphViewActivity extends Activity {
 		Iterator<ParseObject> iter = parseList.iterator();
 		while(iter.hasNext()) {
 			ParseObject po = (ParseObject) iter.next();
-			if (po.getNumber("value1") != null && po.getNumber("value2") != null 
-					&& po.getDate("createdAt") != null) {
+			if (po.getNumber("value1") != null && po.getNumber("value2") != null ) {
 				valuesOneArr.add(Float.parseFloat(po.getNumber("value1").toString()));
 				valuesTwoArr.add(Float.parseFloat(po.getNumber("value2").toString()));
 				Calendar c = Calendar.getInstance();
@@ -101,23 +104,25 @@ public class GraphViewActivity extends Activity {
 		int indexOne=0;int indexTwo=calendarArray.size()-1;
 		boolean foundFirst = false; boolean foundLast = false;
 
-		for (int i=0; i < calendarArray.size(); i++) {
-			if (!foundFirst && calendarArray.get(i).compareTo(dateFirst)>=0) {
-				foundFirst = true;
-				indexOne = i;
+		if (indexOne - indexTwo >= 1) {
+			for (int i=0; i < calendarArray.size(); i++) {
+				if (!foundFirst && calendarArray.get(i).compareTo(dateFirst)>=0) {
+					foundFirst = true;
+					indexOne = i;
+				}
+				if (!foundLast && calendarArray.get(i).compareTo(dateLast)>=0) {
+					foundLast = true;
+					indexTwo = i;
+				}
 			}
-			if (!foundLast && calendarArray.get(i).compareTo(dateLast)>=0) {
-				foundLast = true;
-				indexTwo = i;
-			}
-		}
 
-		if (foundFirst && foundLast) {
-			calendarArray.subList(indexOne, indexTwo);
-			valuesOneArr.subList(indexOne, indexTwo);
-			if (valuesTwoArr.size() > indexTwo) {
-				valuesTwoArr.subList(indexOne, indexTwo);
-			}
+
+				calendarArray.subList(indexOne, indexTwo);
+				valuesOneArr.subList(indexOne, indexTwo);
+				if (valuesTwoArr.size() > indexTwo) {
+					valuesTwoArr.subList(indexOne, indexTwo);
+				}
+			
 		}
 
 		float large = 0;
@@ -131,7 +136,7 @@ public class GraphViewActivity extends Activity {
 			}
 		}
 		if (valuesTwoArr.size() > 0) {
-			for (float f : valuesOneArr) {
+			for (float f : valuesTwoArr) {
 				if (f < small) {
 					small = f;
 				}

@@ -3,11 +3,13 @@ package org.uwhealthkids.MediTrack;
 import android.os.Bundle;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.View;
 import android.widget.DatePicker;
+import android.widget.Toast;
 
 public class ViewActivitySelectDates extends Activity {
 
@@ -24,7 +26,7 @@ public class ViewActivitySelectDates extends Activity {
 		
 		charid = (String) this.getIntent().getExtras().get("charid");
 		
-		if (charid == "VxapkUMVwy" || charid == "2Ibm6va7I7") {
+		if (charid == "VxapkUMVwy") {
 			findViewById(R.id.button_graph).setEnabled(false);
 		}
 		
@@ -53,6 +55,18 @@ public class ViewActivitySelectDates extends Activity {
 	}
 	
 	public void onGraphButtonClicked(View v) {		
+		
+		if (charid == "VxapkUMVwy") {
+			Context context = getApplicationContext();
+			CharSequence text = "Cannot graph medication";
+			int duration = Toast.LENGTH_SHORT;
+
+			Toast toast = Toast.makeText(context, text, duration);
+			toast.show();
+			finish();
+			Intent i = new Intent(this, ViewActivitySelectDates.class);
+			startActivity(i);
+		}
 		
 		Intent intent = new Intent(this, GraphViewActivity.class);
 		intent.putExtra("lastYear", datePickerLast.getYear());

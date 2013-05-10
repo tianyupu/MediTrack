@@ -83,7 +83,14 @@ public class ListviewActivity extends Activity {
 							}
 							else {
 								if (characteristic.equals("Medication")) {
-									temp = temp + "mg" + po.getParseObject("medication").getString("name");
+									ParseObject p = (ParseObject) po.get("medication");
+									ParseQuery medQuery = new ParseQuery("Medication");
+									try {
+										temp = medQuery.get(p.getObjectId()).get("name").toString();
+										
+									} catch (ParseException e1) {
+										//do nothing
+									}
 								}
 								else if (characteristic.equals("Pulse Oxygen Saturation")) {
 									temp = (po.getDouble("value1") * 100) + "%";

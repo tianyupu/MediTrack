@@ -11,14 +11,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView_chooseDates"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true" 
+        android:scaleX = ".7"
+        android:scaleY= ".7"/>
     
     <DatePicker
         android:id="@+id/datePicker_last"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/datePicker_first"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true" 
+        android:scaleX = ".7"
+        android:scaleY= ".7"/>
 
     <Button
         android:id="@+id/button_graph"
