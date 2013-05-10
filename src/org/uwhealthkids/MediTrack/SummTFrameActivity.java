@@ -49,7 +49,8 @@ public class SummTFrameActivity extends Activity implements OnItemSelectedListen
         Log.i("SummTFrame", "calculated width and height");
         double screenDiagonal = Math.sqrt( width * width + height * height );
     	
-    	if (screenDiagonal <= 4.8) {
+    	if (screenDiagonal <= 4.8 && android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.HONEYCOMB) {
+    		Log.i("SummTFrame", "in if");
     		datePickerFirst.setCalendarViewShown(false);
     		datePickerLast.setCalendarViewShown(false);
     		Log.i("SummTFrame", "set calendar view to not show up");
