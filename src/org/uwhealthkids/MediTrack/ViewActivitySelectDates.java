@@ -26,7 +26,7 @@ public class ViewActivitySelectDates extends Activity {
 		
 		charid = (String) this.getIntent().getExtras().get("charid");
 		
-		if (charid == "VxapkUMVwy") {
+		if (charid.equals("VxapkUMVwy")) {
 			findViewById(R.id.button_graph).setEnabled(false);
 		}
 		
@@ -56,7 +56,7 @@ public class ViewActivitySelectDates extends Activity {
 	
 	public void onGraphButtonClicked(View v) {		
 		
-		if (charid == "VxapkUMVwy") {
+		if (charid.equals("VxapkUMVwy")) {
 			Context context = getApplicationContext();
 			CharSequence text = "Cannot graph medication";
 			int duration = Toast.LENGTH_SHORT;
