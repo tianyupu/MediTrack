@@ -118,6 +118,7 @@ public class PatientActivity extends Activity {
 	        	return true;
 	        case R.id.action_logout:
 	        	ParseUser.logOut();
+	        	ParseQuery.clearAllCachedResults();
 	        	CustomApplication.getInstance().setCurrBaby(null);
 	        	CustomApplication.getInstance().setCurrUser(null);
 	        	startActivity(new Intent(this, MainActivity.class));
