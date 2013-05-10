@@ -93,8 +93,9 @@ public class PatientActivity extends Activity {
 			babyPic.getDataInBackground(new GetDataCallback() {
 				@Override
 				public void done(byte[] data, ParseException e) {
+					Log.i("PatientActivity", "got the image from the web");
 					ImageView babyPicHolder = (ImageView) findViewById(R.id.babypic);
-					Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length-1);
+					Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
 					babyPicHolder.setImageBitmap(bitmap);
 				}
 			});

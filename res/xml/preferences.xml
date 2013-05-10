@@ -1,26 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-	<EditTextPreference
-	    android:key="pref_feed_goal"
-	    android:persistent="true"
-	    android:title="Change daily feeding goal">
-	</EditTextPreference>
-	<Preference android:title="@string/prefs_add_baby" >
-	    <intent android:action="org.uwhealthkids.MediTrack.SignUpActivities.SignUpBaby" />
-	</Preference>
-	<ListPreference
-	    android:title="Change current baby"
-	    android:persistent="true"
-	    android:key="pref_curr_baby"
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <EditTextPreference
+        android:key="pref_feed_goal"
+        android:persistent="true"
+        android:title="Change daily feeding goal" >
+    </EditTextPreference>
+
+    <Preference android:title="@string/prefs_add_baby" >
+        <intent android:action="org.uwhealthkids.MediTrack.SignUpActivities.SignUpBaby" />
+    </Preference>
+
+    <ListPreference
         android:dialogTitle="Change the baby to track"
         android:entries="@array/prefs_baby_list"
-        android:entryValues="@array/prefs_baby_vals">
-	</ListPreference>
-	<org.uwhealthkids.MediTrack.DialogExPreference
-	    android:key="pref_baby_key"
-	    android:title="Get the baby key"
-	    android:dialogTitle="Baby key"
-	    android:dialogMessage=""
+        android:entryValues="@array/prefs_baby_vals"
+        android:key="pref_curr_baby"
+        android:persistent="true"
+        android:title="Change current baby" >
+    </ListPreference>
+
+    <org.uwhealthkids.MediTrack.DialogExPreference
+        android:dialogMessage=""
+        android:dialogTitle="Baby key"
+        android:key="pref_baby_key"
+        android:negativeButtonText="Cancel"
         android:positiveButtonText="OK"
-        android:negativeButtonText="Cancel" />
+        android:title="Get the baby key" />
+
+    <Preference android:title="@string/babyPicture" >
+        <intent android:action="org.uwhealthkids.MediTrack.UploadProfilePicActivity" />
+    </Preference>
+
 </PreferenceScreen>

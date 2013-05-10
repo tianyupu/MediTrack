@@ -95,6 +95,8 @@
     <string-array name="prefs_baby_vals">
         <item></item>
     </string-array>
+    <string name="prefs_upload_pic">Upload photo</string>
+    <string name="prefs_upload_hint">Select picture</string>
 
 </resources>
 

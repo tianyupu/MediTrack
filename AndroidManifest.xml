@@ -10,19 +10,20 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.GET_TASKS"/>
+    <uses-permission android:name="android.permission.GET_TASKS" />
 
     <application
+        android:name="org.uwhealthkids.MediTrack.CustomApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" 
-        android:name="org.uwhealthkids.MediTrack.CustomApplication">
+        android:theme="@style/AppTheme" >
         <activity
             android:name="org.uwhealthkids.MediTrack.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -58,9 +59,9 @@
         </activity>
         <activity android:name="org.uwhealthkids.MediTrack.SignUpActivities.SignUpBaby" >
             <intent-filter>
-		        <action android:name="org.uwhealthkids.MediTrack.SignUpActivities.SignUpBaby" />
-		        <category android:name="android.intent.category.DEFAULT" />
-			</intent-filter>
+                <action android:name="org.uwhealthkids.MediTrack.SignUpActivities.SignUpBaby" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
         <activity android:name="org.uwhealthkids.MediTrack.SignUpActivities.SignUpBabyInfo" >
         </activity>
@@ -70,11 +71,22 @@
             android:name="org.uwhealthkids.MediTrack.MainSummActivity"
             android:label="@string/title_activity_main_summ" >
         </activity>
-        <activity android:name="org.uwhealthkids.MediTrack.FeedingAddActivity"></activity>
-        <activity android:name="org.uwhealthkids.MediTrack.Preferences"></activity>
-        <activity android:name="org.uwhealthkids.MediTrack.ViewActivitySelectDates"></activity>
-        <activity android:name="org.uwhealthkids.MediTrack.SignUpActivities.SignUpPickDoc"> </activity>
-         <activity android:name="org.uwhealthkids.MediTrack.SignUpActivities.SignUpFindBaby"> </activity>
+        <activity android:name="org.uwhealthkids.MediTrack.FeedingAddActivity" >
+        </activity>
+        <activity android:name="org.uwhealthkids.MediTrack.Preferences" >
+        </activity>
+        <activity android:name="org.uwhealthkids.MediTrack.ViewActivitySelectDates" >
+        </activity>
+        <activity android:name="org.uwhealthkids.MediTrack.SignUpActivities.SignUpPickDoc" >
+        </activity>
+        <activity android:name="org.uwhealthkids.MediTrack.SignUpActivities.SignUpFindBaby" >
+        </activity>
+        <activity android:name="org.uwhealthkids.MediTrack.UploadProfilePicActivity" >
+            <intent-filter>
+                <action android:name="org.uwhealthkids.MediTrack.UploadProfilePicActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

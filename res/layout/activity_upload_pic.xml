@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/baby_pic_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/babyPicture"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <ImageView
+        android:id="@+id/baby_pic_preview"
+        android:layout_width="100sp"
+        android:layout_height="100sp"
+        android:layout_below="@id/baby_pic_label"
+        android:contentDescription="@string/babyPicture" />
+
+    <Button
+        android:id="@+id/babypicbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="selectPic"
+        android:text="@string/prefs_upload_hint"
+        android:layout_below="@id/baby_pic_preview" />
+    
+    <Button
+        android:id="@+id/upload_baby_pic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="uploadPic"
+        android:layout_toRightOf="@id/babypicbutton" 
+        android:layout_alignTop="@id/babypicbutton"
+        android:text="@string/prefs_upload_pic" />
+        
+</RelativeLayout>
