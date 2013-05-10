@@ -75,7 +75,7 @@ public class SignUpFindBaby extends Activity {
 		CustomApplication.getInstance().setCurrBaby(baby);
 		Intent intent = new Intent(this, PatientActivity.class);
 		startActivity(intent);
-		getParent().finish();
+
 		finish();
 		
 		} catch (ParseException e) {
