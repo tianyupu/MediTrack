@@ -116,7 +116,7 @@ public class GraphView extends View {
 		paint.setTextSize(20);
 		canvas.drawText(title, (graphwidth / 2) + horstart, border - 4, paint);
 
-		if (max != min) {
+		if (valuesOne.size() >= 2) {
 			paint.setColor(Color.LTGRAY);
 			if (type == BAR) {
 				float colwidth = (width - (2 * border)) / valuesOne.size();

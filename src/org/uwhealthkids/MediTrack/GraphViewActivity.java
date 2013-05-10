@@ -22,22 +22,22 @@ public class GraphViewActivity extends Activity {
 	private List<Float> valuesOneArr;
 	private List<Float> valuesTwoArr;
 	private List<Calendar> calendarArray;
-	
+
 	private Calendar dateFirst;
 	private Calendar dateLast;
-	
+
 	private TextView dateFirstText;
 	private TextView dateLastText;
-	
+
 	@SuppressWarnings({ "deprecation" })
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-	    super.onCreate(savedInstanceState);
+		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_graphview);
-		
+
 		dateFirstText = (TextView) findViewById(R.id.firstDate);
 		dateLastText = (TextView) findViewById(R.id.lastDate);
-		
+
 		valuesOneArr = new ArrayList<Float>();
 		valuesTwoArr = new ArrayList<Float>();
 		calendarArray = new ArrayList<Calendar>();
@@ -48,9 +48,9 @@ public class GraphViewActivity extends Activity {
 				intent.getIntExtra("lastDay", 0));
 		dateFirst.set(intent.getIntExtra("firstYear", 0), intent.getIntExtra("firstMonth", 0), 
 				intent.getIntExtra("firstDay", 0));
-		dateFirstText.setText(dateFirst.toString());
-		dateLastText.setText(dateLast.toString());
-			
+		dateFirstText.setText(intent.getIntExtra("firstMonth", 0) + "/" + intent.getIntExtra("firstDay", 0));
+		dateLastText.setText(intent.getIntExtra("lastMonth", 0) + "/" + intent.getIntExtra("lastDay", 0));
+
 		Parse.initialize(this, "Zx2IAp6TTPyM5UYRCr1Q4Q0GD0RyS0IDLzTm0aH0", "Dwj8peVWshOTpzos0Qae9yOBnhmZIMIxv4kJ6oTm");
 		ParseQuery query = new ParseQuery("Record");
 		ParseQuery babyquery = new ParseQuery("Baby");
@@ -71,36 +71,36 @@ public class GraphViewActivity extends Activity {
 		query.whereEqualTo( "baby" , babyObject);
 		query.whereEqualTo( "charact" , charObject);
 		query.orderByAscending("createdAt");
-		
+
 		List<ParseObject>parseList = new ArrayList<ParseObject>();
 		try {
 			parseList = query.find();
 		} catch (ParseException e) {
 			Log.d("error", "unable to get parselist");
 		}
-		
+
 		Iterator<ParseObject> iter = parseList.iterator();
-    	while(iter.hasNext()) {
-    		ParseObject po = (ParseObject) iter.next();
-    		if (po.getNumber("value1") != null && po.getNumber("value2") != null 
-    				&& po.getDate("createdAt") != null) {
-    			valuesOneArr.add(Float.parseFloat(po.getNumber("value1").toString()));
-    			valuesTwoArr.add(Float.parseFloat(po.getNumber("value2").toString()));
-    			Calendar c = Calendar.getInstance();
-    			c.setTime(po.getCreatedAt());
-    			calendarArray.add(c);
-    		}
-    		else {
-    			valuesOneArr.add(Float.parseFloat(po.getNumber("value1").toString()));
-    			Calendar c = Calendar.getInstance();
-    			c.setTime(po.getCreatedAt());
-    			calendarArray.add(c);
-    		}
-    	}
-		
+		while(iter.hasNext()) {
+			ParseObject po = (ParseObject) iter.next();
+			if (po.getNumber("value1") != null && po.getNumber("value2") != null 
+					&& po.getDate("createdAt") != null) {
+				valuesOneArr.add(Float.parseFloat(po.getNumber("value1").toString()));
+				valuesTwoArr.add(Float.parseFloat(po.getNumber("value2").toString()));
+				Calendar c = Calendar.getInstance();
+				c.setTime(po.getCreatedAt());
+				calendarArray.add(c);
+			}
+			else {
+				valuesOneArr.add(Float.parseFloat(po.getNumber("value1").toString()));
+				Calendar c = Calendar.getInstance();
+				c.setTime(po.getCreatedAt());
+				calendarArray.add(c);
+			}
+		}
+
 		int indexOne=0;int indexTwo=calendarArray.size()-1;
 		boolean foundFirst = false; boolean foundLast = false;
-		
+
 		for (int i=0; i < calendarArray.size(); i++) {
 			if (!foundFirst && calendarArray.get(i).compareTo(dateFirst)>=0) {
 				foundFirst = true;
@@ -111,13 +111,15 @@ public class GraphViewActivity extends Activity {
 				indexTwo = i;
 			}
 		}
-		
-		calendarArray.subList(indexOne, indexTwo);
-		valuesOneArr.subList(indexOne, indexTwo);
-		if (valuesTwoArr.size() > indexTwo) {
-			valuesTwoArr.subList(indexOne, indexTwo);
+
+		if (foundFirst && foundLast) {
+			calendarArray.subList(indexOne, indexTwo);
+			valuesOneArr.subList(indexOne, indexTwo);
+			if (valuesTwoArr.size() > indexTwo) {
+				valuesTwoArr.subList(indexOne, indexTwo);
+			}
 		}
-		
+
 		float large = 0;
 		float small = Float.MAX_VALUE;
 		for (float f : valuesOneArr) {
@@ -128,13 +130,20 @@ public class GraphViewActivity extends Activity {
 				small = f;
 			}
 		}
-		
+		if (valuesTwoArr.size() > 0) {
+			for (float f : valuesOneArr) {
+				if (f < small) {
+					small = f;
+				}
+			}
+		}
+
 		String[] verlabels = {String.valueOf(large), String.valueOf(small)};
 		String[] horlabels = new String[calendarArray.size()];
 		for (int i = 0; i < horlabels.length; i++) {
 			horlabels[i] = (calendarArray.get(i).getTime().getMonth()+1) + "/" + calendarArray.get(i).getTime().getDate();
 		}
-		
+
 		GraphView g = null;
 		if (valuesTwoArr.size() != 0) {
 			g = new GraphView(this, valuesOneArr, valuesTwoArr, charObject.getString("name"), horlabels, verlabels, false);
