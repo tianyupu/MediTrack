@@ -73,6 +73,7 @@
         <activity android:name="org.uwhealthkids.MediTrack.Preferences"></activity>
         <activity android:name="org.uwhealthkids.MediTrack.ViewActivitySelectDates"></activity>
         <activity android:name="org.uwhealthkids.MediTrack.SignUpActivities.SignUpPickDoc"> </activity>
+         <activity android:name="org.uwhealthkids.MediTrack.SignUpActivities.SignUpFindBaby"> </activity>
     </application>
 
 </manifest>

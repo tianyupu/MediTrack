@@ -72,11 +72,9 @@
     <string name="confEmail">Confirm Email</string>
     <string name="babyPicture">Upload a baby picture</string>
     <string name="docregis">Register as a doctor</string>
-
-    <string-array name="options">
-        <item >View</item>
-        <item >Summary</item>
-    </string-array>
+	<string name ="findBaby">Enter Baby Id</string>
+	<string name ="findBabyButton">Find My Baby</string>
+	<string name ="foundBaby">This is my baby!</string>
 
     <string name="babysurname">Baby\'s Last Name</string>
     

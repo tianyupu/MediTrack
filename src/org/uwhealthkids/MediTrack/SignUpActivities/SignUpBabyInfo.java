@@ -51,20 +51,26 @@ public class SignUpBabyInfo extends Activity{
 
 
 	public void onSkipDocClicked(View v) {
-		createBaby();
+		if(createBaby()){
 
-		Intent intent = new Intent(this, PatientActivity.class);
-		startActivity(intent);
+			Intent intent = new Intent(this, PatientActivity.class);
+			startActivity(intent);
+			getParent().finish();
+			finish();
+		}
 	}
 
 	public void onDocClicked(View v){
-		createBaby();
-
-		Intent intent = new Intent(this, SignUpPickDoc.class);
-		startActivity(intent);
+		
+		if(createBaby()){
+			Intent intent = new Intent(this, SignUpPickDoc.class);
+			startActivity(intent);
+			getParent().finish();
+			finish();
+		}
 	}
 
-	private void createBaby(){
+	private boolean createBaby(){
 		try{
 			//initializes the gender to female
 			boolean female = true;
@@ -88,7 +94,7 @@ public class SignUpBabyInfo extends Activity{
 			}
 
 			//creates the baby parse object and saves it to the 
-			
+
 			baby.put("fname", babyname.getText().toString());
 			baby.put("surname", babySurname.getText().toString());
 			baby.put("dob", cal.getTime());
@@ -108,6 +114,9 @@ public class SignUpBabyInfo extends Activity{
 			Rel.put("baby", baby);
 			Rel.put("user", user);	
 			Rel.save();
+
+			return true;
+
 		} catch (ParseException e) {
 			if(babyMade == true){
 				try {
@@ -116,8 +125,11 @@ public class SignUpBabyInfo extends Activity{
 					e1.printStackTrace();
 				}			
 			}
+
 			Toast.makeText(CustomApplication.getInstance(), "Couldn't establish an Internet connection. Please check your network settings.", Toast.LENGTH_LONG).show();
+			return false;
 		}
+
 
 
 	}
@@ -126,6 +138,7 @@ public class SignUpBabyInfo extends Activity{
 	public void button1Pressed(View v) { 
 		Intent intent = new Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI); 
 		startActivityForResult(intent, SELECT_PHOTO);
+
 
 
 	}

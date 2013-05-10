@@ -38,8 +38,9 @@ public class SignUpBaby extends Activity{
 		radioBabyGroup = (RadioGroup) findViewById(R.id.babyRadioGroup);
 		int checkedID = radioBabyGroup.getCheckedRadioButtonId();
 		if(checkedID == rd1.getId()){
-			Intent intent = new Intent(this, AddActivity.class);
+			Intent intent = new Intent(this, SignUpFindBaby.class);
 			startActivity(intent);
+			
 		}
 		else if(checkedID == rd2.getId()){
 			Intent intent = new Intent(this, SignUpBabyInfo.class);
@@ -49,8 +50,7 @@ public class SignUpBaby extends Activity{
 			boolean doctor = true;
 			currUser.put("doctor", doctor);
 			Intent intent = new Intent(this, DoctorMainActivity.class);
-			startActivity(intent);
-			
+			startActivity(intent);	
 			
 		}
 			
