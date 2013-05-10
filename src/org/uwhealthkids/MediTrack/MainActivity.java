@@ -5,7 +5,6 @@ import java.util.List;
 import org.uwhealthkids.MediTrack.SignUpActivities.SignUpActivity;
 import org.uwhealthkids.MediTrack.SignUpActivities.SignUpBaby;
 
-import com.parse.FindCallback;
 import com.parse.LogInCallback;
 import com.parse.Parse;
 import com.parse.ParseException;
@@ -18,8 +17,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
