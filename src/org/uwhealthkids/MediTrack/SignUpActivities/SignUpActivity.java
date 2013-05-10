@@ -53,6 +53,7 @@ public class SignUpActivity extends Activity{
 						ParseUser.logOut();
 						Intent intent = new Intent(here,MainActivity.class);
 						startActivity(intent);
+						finish();
 					} else {
 						
 						Context context = getApplicationContext();

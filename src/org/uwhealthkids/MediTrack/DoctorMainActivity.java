@@ -15,6 +15,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView.AdapterContextMenuInfo;
@@ -105,8 +106,29 @@ public class DoctorMainActivity extends ListActivity {
 		return true;
 	}
 
-
-
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.doctor_main, menu);
+		return true;
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    // Handle item selection
+	    switch (item.getItemId()) {
+	        case R.id.doctor_action_logout:
+	        	ParseUser.logOut();
+	        	ParseQuery.clearAllCachedResults();
+	        	CustomApplication.getInstance().setCurrBaby(null);
+	        	CustomApplication.getInstance().setCurrUser(null);
+	        	startActivity(new Intent(this, MainActivity.class));
+	        	finish();
+	        	return true;
+	        default:
+	            return super.onOptionsItemSelected(item);
+	    }
+	}
 }
 
 
