@@ -52,6 +52,7 @@ public class SignUpBaby extends Activity{
 			Intent intent = new Intent(this, DoctorMainActivity.class);
 			startActivity(intent);	
 		}
+		finish();
 			
 	}
 

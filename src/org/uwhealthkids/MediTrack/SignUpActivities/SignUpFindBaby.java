@@ -1,5 +1,8 @@
 package org.uwhealthkids.MediTrack.SignUpActivities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.uwhealthkids.MediTrack.CustomApplication;
 import org.uwhealthkids.MediTrack.PatientActivity;
 import org.uwhealthkids.MediTrack.R;
@@ -10,8 +13,12 @@ import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 import android.app.Activity;
+import android.app.ActivityManager;
+import android.app.ActivityManager.RunningTaskInfo;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -73,8 +80,21 @@ public class SignUpFindBaby extends Activity {
 		Rel.save();
 		
 		CustomApplication.getInstance().setCurrBaby(baby);
-		Intent intent = new Intent(this, PatientActivity.class);
-		startActivity(intent);
+		
+		ArrayList<String> runningactivities = new ArrayList<String>();
+
+		ActivityManager activityManager = (ActivityManager)CustomApplication.getInstance().getSystemService (Context.ACTIVITY_SERVICE); 
+
+		List<RunningTaskInfo> services = activityManager.getRunningTasks(Integer.MAX_VALUE); 
+
+		    for (int i1 = 0; i1 < services.size(); i1++) { 
+		        runningactivities.add(0,services.get(i1).topActivity.toString());  
+		    } 
+		    Log.i("SignUpFindBaby", ""+runningactivities.size());
+		    if(runningactivities.contains("ComponentInfo{org.uwhealthkids.MediTrack.PatientActivity}")==false){
+		    	Intent intent = new Intent(this, PatientActivity.class);
+				startActivity(intent);
+		    }
 
 		finish();
 		
@@ -83,6 +103,7 @@ public class SignUpFindBaby extends Activity {
 
 		}
 	}
+
 
 
 
