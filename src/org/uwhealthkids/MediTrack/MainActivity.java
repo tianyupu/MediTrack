@@ -66,8 +66,14 @@ public class MainActivity extends Activity {
 				startActivity(intent);
 			}
 			else {
-				Intent intent = new Intent(CustomApplication.getInstance(), PatientActivity.class);
-				startActivity(intent);
+				if (hasBaby(currUser.getObjectId())) {
+					Intent intent = new Intent(CustomApplication.getInstance(), PatientActivity.class);
+					startActivity(intent);
+				}
+				else {
+					Intent intent = new Intent(CustomApplication.getInstance(), SignUpBaby.class);
+					startActivity(intent);
+				}
 			}
 			finish();
 		}
