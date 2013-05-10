@@ -68,7 +68,9 @@
         android:layout_marginTop="52dp"
         android:ems="10"
         android:hint="@string/username"
-        android:inputType="text" />
+        android:inputType="text">
+        <requestFocus />
+    </EditText>
 
     <Button
         android:id="@+id/login_button"
