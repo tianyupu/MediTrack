@@ -27,6 +27,7 @@ public class MainSummActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		final long startTime = System.nanoTime();
 		setContentView(R.layout.activity_main_summ);
 		Log.i("MainSumm", "set content passed");
 		Parse.initialize(this, "Zx2IAp6TTPyM5UYRCr1Q4Q0GD0RyS0IDLzTm0aH0", "Dwj8peVWshOTpzos0Qae9yOBnhmZIMIxv4kJ6oTm");
@@ -156,8 +157,14 @@ public class MainSummActivity extends Activity {
 		query.setCachePolicy(ParseQuery.CachePolicy.NETWORK_ELSE_CACHE);
 		Log.i("MainSumm", "past cache");
 		//make list of the parse objects from record
+
+
+
+
 		query.findInBackground(new FindCallback() {
 			public void done(List<ParseObject> babyList, ParseException e){
+
+
 				Log.i("MainSumm", "entered findinbackground done method");
 				
 				ArrayList<Double> pulseArray = new ArrayList<Double>();
@@ -287,6 +294,8 @@ public class MainSummActivity extends Activity {
 				}
 				Log.i("MainSumm", summary.toString());
 				adapter.notifyDataSetChanged();
+				long endTime = System.nanoTime();
+				Log.i("MainSumm", "It took " + 	(endTime - startTime));
 			}
 
 		});
