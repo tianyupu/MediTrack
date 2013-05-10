@@ -97,9 +97,6 @@ public class DoctorMainActivity extends ListActivity {
 			case R.id.doc_menu_sum:
 				baby = babyObj.get(info.position);
 				CustomApplication.getInstance().setCurrBaby(baby);
-				intent = new Intent(this, SummActivity.class);
-				startActivity(intent);
-				Toast.makeText(this, "sum : " + BabyNames.get(info.position)  , Toast.LENGTH_SHORT).show();
 				break;
 		}
 
