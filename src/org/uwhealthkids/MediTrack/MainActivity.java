@@ -128,6 +128,7 @@ public class MainActivity extends Activity {
 							startActivity(intent);
 						}
 					}
+					finish();
 
 				} else {
 					Context context = CustomApplication.getInstance();
