@@ -55,7 +55,7 @@ public class SignUpBabyInfo extends Activity{
 
 			Intent intent = new Intent(this, PatientActivity.class);
 			startActivity(intent);
-			getParent().finish();
+			
 			finish();
 		}
 	}
@@ -65,7 +65,7 @@ public class SignUpBabyInfo extends Activity{
 		if(createBaby()){
 			Intent intent = new Intent(this, SignUpPickDoc.class);
 			startActivity(intent);
-			getParent().finish();
+			
 			finish();
 		}
 	}
