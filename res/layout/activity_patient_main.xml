@@ -22,25 +22,6 @@
         android:onClick="onSummButtonClicked"
         android:text="@string/patient_summary_button" />
 
-    <Button
-        android:id="@+id/view"
-        android:layout_width="125dp"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/summ"
-        android:layout_alignLeft="@+id/summ"
-        android:onClick="onViewButtonClicked"
-        android:text="@string/patient_view_button" />
-
-    <Button
-        android:id="@+id/add"
-        android:layout_width="125dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="28dp"
-        android:onClick="onAddButtonClicked"
-        android:text="@string/patient_add_button" />
-
     <TextView
         android:id="@+id/babyname"
         android:layout_width="wrap_content"
@@ -59,5 +40,24 @@
         android:layout_marginBottom="54dp"
         android:layout_toLeftOf="@+id/babyname"
         android:src="@drawable/ic_launcher" />
+
+    <Button
+        android:id="@+id/add"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/babyname"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="72dp"
+        android:onClick="onAddButtonClicked"
+        android:text="@string/patient_add_button" />
+
+    <Button
+        android:id="@+id/view"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/summ"
+        android:layout_alignLeft="@+id/summ"
+        android:onClick="onViewButtonClicked"
+        android:text="@string/patient_view_button" />
 
 </RelativeLayout>
