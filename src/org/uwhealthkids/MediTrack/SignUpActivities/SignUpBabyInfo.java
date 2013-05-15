@@ -177,7 +177,7 @@ public class SignUpBabyInfo extends Activity{
 			}
 		}
 	}
-	public byte[] getBytes(InputStream inputStream) throws IOException {
+	private byte[] getBytes(InputStream inputStream) throws IOException {
 		ByteArrayOutputStream byteBuffer = new ByteArrayOutputStream();
 		int bufferSize = 1024;
 		byte[] buffer = new byte[bufferSize];
@@ -188,6 +188,8 @@ public class SignUpBabyInfo extends Activity{
 		}
 		return byteBuffer.toByteArray();
 	}
+	
+	
 
 
 

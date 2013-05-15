@@ -1,6 +1,7 @@
 package org.uwhealthkids.MediTrack;
 
 import java.util.List;
+import java.util.Locale;
 
 import org.uwhealthkids.MediTrack.SignUpActivities.SignUpActivity;
 import org.uwhealthkids.MediTrack.SignUpActivities.SignUpBaby;
@@ -129,7 +130,7 @@ public class MainActivity extends Activity {
 		usernameEditText = (EditText) findViewById(R.id.username_edittext);
 		passwordEditText = (EditText) findViewById(R.id.password_edittext);
 
-		String username = usernameEditText.getText().toString();
+		String username = usernameEditText.getText().toString().toLowerCase(Locale.US);
 		String password = passwordEditText.getText().toString();
 
 

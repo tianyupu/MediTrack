@@ -1,5 +1,7 @@
 package org.uwhealthkids.MediTrack.SignUpActivities;
 
+import java.util.Locale;
+
 import org.uwhealthkids.MediTrack.*;
 
 import com.parse.Parse;
@@ -34,15 +36,15 @@ public class SignUpActivity extends Activity{
 
 	}
 	public void onnextButtonClicked(View v) {
-		
+
 		if(validInfo()){
-			
+
 			// if all the entered information is valid, then the user can go and sign-up
 			boolean doctor = false;
 			ParseUser user = new ParseUser();
-			user.setUsername(email.getText().toString());
+			user.setUsername(email.getText().toString().toLowerCase(Locale.US));
 			user.setPassword(password.getText().toString());
-			user.setEmail(email.getText().toString());
+			user.setEmail(email.getText().toString().toLowerCase(Locale.US));
 			user.put("fname", fname.getText().toString());
 			user.put("surname", surname.getText().toString());
 			user.put("doctor", doctor);
@@ -50,12 +52,13 @@ public class SignUpActivity extends Activity{
 				public void done(ParseException e) {
 					//Sign up was successful taken to the log in screen
 					if (e == null) {
+						Toast.makeText(CustomApplication.getInstance(),"Your account was successfully made. Please check your email and validate it.", Toast.LENGTH_LONG).show();
 						ParseUser.logOut();
 						Intent intent = new Intent(here,MainActivity.class);
 						startActivity(intent);
 						finish();
 					} else {
-						
+
 						Context context = getApplicationContext();
 						int duration = Toast.LENGTH_LONG;
 						CharSequence text = e.getMessage();;
@@ -66,11 +69,7 @@ public class SignUpActivity extends Activity{
 					}
 				}
 			});
-
-
-				
 		}
-
 	}
 
 
@@ -93,7 +92,7 @@ public class SignUpActivity extends Activity{
 		//Verify that the information that they put in is usable
 		if(!checkString(fname.getText().toString())){
 			valid = false;
-			text = fname.getText().toString();
+			text = "Not a valid first name";
 			Toast toast = Toast.makeText(context, text, duration);
 			toast.show();
 		}
@@ -119,25 +118,26 @@ public class SignUpActivity extends Activity{
 		}
 		if(!checkPassword(password.getText().toString())){
 			valid = false;
-			text = "The password must contain a number";
-			Toast toast = Toast.makeText(context, text, duration);
-			toast.show();
+			Toast.makeText(CustomApplication.getInstance(), "Password must be at least 6 characters, contain upper and lower case letters, a digit, and no spaces. ", Toast.LENGTH_LONG).show();
 		}
-
-		//Toast toast = Toast.makeText(context, text, duration);
-		//toast.show();
-
 
 		return valid;
 
 	}
 
-	//Returns true if password contains a number
+	//Returns true if password contains a number, is has more than 5 characters and no white space. 
 	private boolean checkPassword(String password){
 		boolean validPassword = true;
+		
 		if(!password.matches(".*\\d.*")){
 			validPassword=false;   
 		} 
+		else if(password.length()<6){
+			validPassword=false;
+		}
+		else if(password.contains(" ")){
+			validPassword=false;
+		}
 		return validPassword;
 	}
 
@@ -146,12 +146,14 @@ public class SignUpActivity extends Activity{
 
 		//changes it to false if the name is longer than 30 characters
 		if(name.length()>30){
+			
 			validName=false;
 		}
 
 		//changes it to false if there is a digit in the string
 		if(name.matches(".*\\d.*")){
 			validName=false;   
+
 		} 
 
 		return validName;
