@@ -81,6 +81,8 @@
         </activity>
         <activity android:name="org.uwhealthkids.MediTrack.SignUpActivities.SignUpFindBaby" >
         </activity>
+         <activity android:name="org.uwhealthkids.MediTrack.SignUpActivities.SignUpResetPassword" >
+        </activity>
         <activity android:name="org.uwhealthkids.MediTrack.UploadProfilePicActivity" >
             <intent-filter>
                 <action android:name="org.uwhealthkids.MediTrack.UploadProfilePicActivity" />

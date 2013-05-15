@@ -92,4 +92,16 @@
         android:onClick="onSignupButtonClicked"
         android:text="@string/signup" />
 
+    <TextView
+        android:id="@+id/pwResetText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/login_button"
+        android:layout_marginTop="24dp"
+        android:onClick="onResetPassword"
+        android:text="Forgot Password?"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textStyle="bold|italic" />
+
 </RelativeLayout>

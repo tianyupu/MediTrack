@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.uwhealthkids.MediTrack.SignUpActivities.SignUpActivity;
 import org.uwhealthkids.MediTrack.SignUpActivities.SignUpBaby;
+import org.uwhealthkids.MediTrack.SignUpActivities.SignUpResetPassword;
 
 import com.parse.LogInCallback;
 import com.parse.Parse;
@@ -19,6 +20,7 @@ import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
@@ -31,7 +33,7 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 
 		Parse.initialize(this, "Zx2IAp6TTPyM5UYRCr1Q4Q0GD0RyS0IDLzTm0aH0", "Dwj8peVWshOTpzos0Qae9yOBnhmZIMIxv4kJ6oTm");
-/*
+		/*
 		// get a default baby for testing purposes
 		ParseQuery babyQuery = new ParseQuery("Baby");
 		babyQuery.setCachePolicy(ParseQuery.CachePolicy.CACHE_ELSE_NETWORK);
@@ -52,7 +54,7 @@ public class MainActivity extends Activity {
 				}
 			}
 		});
-*/
+		 */
 		ParseUser currUser = ParseUser.getCurrentUser();
 		if (currUser != null) {
 			boolean isDoctor = currUser.getBoolean("doctor");
@@ -77,15 +79,34 @@ public class MainActivity extends Activity {
 		else {
 			setContentView(R.layout.activity_main);
 		}
+		
+		
+		TextView pwReset = (TextView)findViewById(R.id.pwResetText);
+		
+		pwReset.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(CustomApplication.getInstance(), SignUpResetPassword.class);
+				startActivity(intent);
+				
+			}
+		});
+		
+		
 	}
-/*
+
+
+
+
+	/*
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
-	
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 	    // Handle item selection
@@ -97,7 +118,7 @@ public class MainActivity extends Activity {
 	            return super.onOptionsItemSelected(item);
 	    }
 	}
-*/
+	 */
 
 	public void onSignupButtonClicked(View v) {
 		Intent intent = new Intent(this, SignUpActivity.class);
@@ -123,8 +144,8 @@ public class MainActivity extends Activity {
 					}
 					else {
 						if (hasBaby(userId) == true) {
-						Intent intent = new Intent(CustomApplication.getInstance(), PatientActivity.class);
-						startActivity(intent);
+							Intent intent = new Intent(CustomApplication.getInstance(), PatientActivity.class);
+							startActivity(intent);
 						}
 						else {
 							Intent intent = new Intent(CustomApplication.getInstance(), SignUpBaby.class);
@@ -143,7 +164,7 @@ public class MainActivity extends Activity {
 			}
 		});
 	}
-/*
+	/*
 	public void onAddButtonClicked(View v) {
 		Intent intent = new Intent(this, AddActivity.class);
 		startActivity(intent);
@@ -158,7 +179,7 @@ public class MainActivity extends Activity {
 		Intent intent = new Intent(this, SummActivity.class);
 		startActivity(intent);
 	}
-*/
+	 */
 	/**
 	 * hasBaby method checks if the parent has a baby in the records. 
 	 */
@@ -166,10 +187,10 @@ public class MainActivity extends Activity {
 		//Initializes quaries. One to the Baby User Relationship table, and one to the user table
 		ParseQuery relquery = new ParseQuery("BabyUserRel");
 		ParseQuery userquery = new ParseQuery("_User");
-		
+
 		//Initializes userObject to null 
 		ParseObject userObject = null;
-		
+
 		try {
 			//Sets userObject to the object it retrieves from the user quary with the right Id
 			userObject = userquery.get(userId);	
@@ -178,7 +199,7 @@ public class MainActivity extends Activity {
 		}
 		//makes constraint to the the relationship query to only include if user matchs the user object
 		relquery.whereEqualTo("user", userObject);
-		
+
 		//Initializes boolean to true, assumes there are babies
 		boolean hasBaby = true;
 		try {
