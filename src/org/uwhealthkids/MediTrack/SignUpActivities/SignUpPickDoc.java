@@ -44,7 +44,6 @@ public class SignUpPickDoc extends Activity{
 		listview.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 		listview.setAdapter(adapter);
 		
-	
 		
 		
 
@@ -86,6 +85,7 @@ public class SignUpPickDoc extends Activity{
 		
 		Intent intent = new Intent(this, PatientActivity.class);
 		startActivity(intent);
+		finish();
 	}
 
 }
