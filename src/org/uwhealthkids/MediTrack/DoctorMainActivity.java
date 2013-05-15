@@ -31,6 +31,7 @@ public class DoctorMainActivity extends ListActivity {
 	private ArrayList<ParseObject> babyObj = new ArrayList<ParseObject>();
 	private ParseObject baby; 
 	private ParseQuery babyquery = new ParseQuery("Baby");
+	private ListView listview;
 
 
 	@Override
@@ -41,7 +42,7 @@ public class DoctorMainActivity extends ListActivity {
 		// get current user
 		ParseUser currUser = ParseUser.getCurrentUser();
 		//finds the view
-		ListView listview = getListView();
+		listview = getListView();
 		adapter = new ArrayAdapter<String>(listview.getContext(), android.R.layout.simple_list_item_1, BabyNames);
 		listview.setAdapter(adapter);
 		
@@ -52,6 +53,12 @@ public class DoctorMainActivity extends ListActivity {
 		query.findInBackground(new FindCallback(){
 			public void done(List<ParseObject> relObj, ParseException e){
 				if(e == null){
+					if(relObj.size() == 0){
+						BabyNames.add("Sorry No Patients");
+					}
+					else{
+						registerForContextMenu(listview);
+					}
 					for(ParseObject obj : relObj){
 						try {
 							baby= babyquery.get(obj.getParseObject("baby").getObjectId());
@@ -66,13 +73,7 @@ public class DoctorMainActivity extends ListActivity {
 				}else
 					Toast.makeText(CustomApplication.getInstance(), "Couldn't establish an Internet connection. Please check your network settings.", Toast.LENGTH_LONG).show();	
 			}
-		});		
-
-		
-
-		//Register for context menu
-		registerForContextMenu(listview);
-
+		});	
 	}
 
 	//This will be invoked when an item in the listview is long
@@ -97,6 +98,8 @@ public class DoctorMainActivity extends ListActivity {
 			case R.id.doc_menu_sum:
 				baby = babyObj.get(info.position);
 				CustomApplication.getInstance().setCurrBaby(baby);
+				intent = new Intent(this, SummActivity.class);
+				startActivity(intent);
 				break;
 		}
 
