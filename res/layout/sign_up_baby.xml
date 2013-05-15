@@ -38,6 +38,17 @@
         
     </RadioGroup>
 
+    <EditText
+        android:id="@+id/doctorCodeEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10" 
+        android:visibility="invisible"
+        android:hint="Doctor Code"
+        />
+
+    
+
     <Button
         android:id="@+id/next"
         android:layout_width="match_parent"

@@ -1,6 +1,5 @@
 package org.uwhealthkids.MediTrack.SignUpActivities;
 
-
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -32,8 +31,6 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
-
 public class SignUpBabyInfo extends Activity{
 	private static final int SELECT_PHOTO = 100;
 	TextView textTargetUri;
@@ -49,23 +46,18 @@ public class SignUpBabyInfo extends Activity{
 		Parse.initialize(this, "Zx2IAp6TTPyM5UYRCr1Q4Q0GD0RyS0IDLzTm0aH0", "Dwj8peVWshOTpzos0Qae9yOBnhmZIMIxv4kJ6oTm");
 	}
 
-
 	public void onSkipDocClicked(View v) {
 		if(createBaby()){
-
 			Intent intent = new Intent(this, PatientActivity.class);
 			startActivity(intent);
-			
 			finish();
 		}
 	}
 
 	public void onDocClicked(View v){
-		
 		if(createBaby()){
 			Intent intent = new Intent(this, SignUpPickDoc.class);
 			startActivity(intent);
-			
 			finish();
 		}
 	}
@@ -129,18 +121,11 @@ public class SignUpBabyInfo extends Activity{
 			Toast.makeText(CustomApplication.getInstance(), "Couldn't establish an Internet connection. Please check your network settings.", Toast.LENGTH_LONG).show();
 			return false;
 		}
-
-
-
 	}
-
 
 	public void button1Pressed(View v) { 
 		Intent intent = new Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI); 
 		startActivityForResult(intent, SELECT_PHOTO);
-
-
-
 	}
 
 	@Override
@@ -161,7 +146,6 @@ public class SignUpBabyInfo extends Activity{
 					inputData = getBytes(imageStream);
 					imageFile = new ParseFile("babypic.jpg", inputData);
 					imageFile.saveInBackground();
-
 
 					imageStream1 = getContentResolver().openInputStream(selectedImage);		
 					Bitmap yourSelectedImage = BitmapFactory.decodeStream(imageStream1);
@@ -188,12 +172,4 @@ public class SignUpBabyInfo extends Activity{
 		}
 		return byteBuffer.toByteArray();
 	}
-	
-	
-
-
-
 }
-
-
-

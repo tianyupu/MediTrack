@@ -79,22 +79,24 @@ public class MainActivity extends Activity {
 		}
 		else {
 			setContentView(R.layout.activity_main);
+
+			TextView pwReset = (TextView)findViewById(R.id.pwResetText);
+
+			pwReset.setOnClickListener(new View.OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					Intent intent = new Intent(CustomApplication.getInstance(), SignUpResetPassword.class);
+					startActivity(intent);
+
+				}
+			});
 		}
-		
-		
-		TextView pwReset = (TextView)findViewById(R.id.pwResetText);
-		
-		pwReset.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				Intent intent = new Intent(CustomApplication.getInstance(), SignUpResetPassword.class);
-				startActivity(intent);
-				
-			}
-		});
-		
-		
+
+
+
+
+
 	}
 
 
