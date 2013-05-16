@@ -23,8 +23,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-
-
 public class DoctorMainActivity extends ListActivity {
 	private ArrayList<String> BabyNames = new ArrayList<String>();
 	private ArrayAdapter<String> adapter;
@@ -41,11 +39,11 @@ public class DoctorMainActivity extends ListActivity {
 
 		// get current user
 		ParseUser currUser = ParseUser.getCurrentUser();
+		
 		//finds the view
 		listview = getListView();
 		adapter = new ArrayAdapter<String>(listview.getContext(), android.R.layout.simple_list_item_1, BabyNames);
 		listview.setAdapter(adapter);
-		
 		
 		//populate the list
 		ParseQuery query = new ParseQuery("BabyUserRel");
